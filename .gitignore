@@ -1,0 +1,40 @@
+# Vendor
+vendor/
+node_modules/
+
+# Configuration sensible
+config/database.php
+config/mongodb.php
+.env
+.env.local
+
+# Docker
+mysql_data/
+mongo_data/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+
+# Cache
+cache/
+tmp/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Uploads (fichiers uploadés par les utilisateurs)
+public/uploads/*
+!public/uploads/.gitkeep
+
+# Composer
+composer.phar
+composer.lock
