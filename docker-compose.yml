@@ -1,0 +1,104 @@
+version: '3.8'
+
+services:
+  # Service Web - Application PHP
+  web:
+    build: .
+    container_name: vite-et-gourmand-web
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/var/www/html
+    environment:
+      - DB_HOST=db
+      - DB_NAME=vite_et_gourmand
+      - DB_USER=resto_user
+      - DB_PASSWORD=resto_pass
+      - MONGO_HOST=mongodb
+      - MONGO_PORT=27017
+      - MONGO_DB=vite_et_gourmand_stats
+    depends_on:
+      - db
+      - mongodb
+    networks:
+      - app-network
+
+  # Base de données MySQL
+  db:
+    image: mysql:8.0
+    container_name: vite-et-gourmand-db
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: vite_et_gourmand
+      MYSQL_USER: resto_user
+      MYSQL_PASSWORD: resto_pass
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./sql:/docker-entrypoint-initdb.d
+    networks:
+      - app-network
+
+  # Base de données MongoDB (pour les statistiques)
+  mongodb:
+    image: mongo:7.0
+    container_name: vite-et-gourmand-mongo
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: admin_pass
+      MONGO_INITDB_DATABASE: vite_et_gourmand_stats
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - app-network
+
+  # phpMyAdmin - Interface de gestion MySQL
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: vite-et-gourmand-phpmyadmin
+    restart: unless-stopped
+    ports:
+      - "8081:80"
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      MYSQL_ROOT_PASSWORD: root_password
+    depends_on:
+      - db
+    networks:
+      - app-network
+
+  # Mongo Express - Interface de gestion MongoDB
+  mongo-express:
+    image: mongo-express:latest
+    container_name: vite-et-gourmand-mongo-express
+    restart: unless-stopped
+    ports:
+      - "8082:8081"
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: admin
+      ME_CONFIG_MONGODB_ADMINPASSWORD: admin_pass
+      ME_CONFIG_MONGODB_URL: mongodb://admin:admin_pass@mongodb:27017/
+      ME_CONFIG_BASICAUTH: false
+    depends_on:
+      - mongodb
+    networks:
+      - app-network
+
+# Réseaux
+networks:
+  app-network:
+    driver: bridge
+
+# Volumes persistants
+volumes:
+  mysql_data:
+    driver: local
+  mongo_data:
+    driver: local

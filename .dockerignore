@@ -1,0 +1,63 @@
+Créez/remplacez le fichier `.dockerignore` avec ce contenu :
+```
+# Git
+.git
+.gitignore
+.gitattributes
+
+# Documentation
+README.md
+CHANGELOG.md
+LICENSE
+
+# CI/CD
+.github
+.gitlab-ci.yml
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+logs/
+
+# Dépendances (seront installées dans le conteneur)
+vendor/
+node_modules/
+
+# Cache
+cache/
+tmp/
+*.cache
+
+# Tests
+tests/
+phpunit.xml
+
+# Docker
+docker-compose.yml
+Dockerfile
+.dockerignore
+
+# Environnement
+.env
+.env.local
+.env.production
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Volumes Docker
+mysql_data/
+mongo_data/
+
+# Fichiers temporaires
+*.tmp
+*.bak
+*.swp
