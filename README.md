@@ -164,19 +164,19 @@ Accès direct sans authentification.
 
 ## Comptes de test
 
+> **Mot de passe pour tous les comptes : `password`**
+
 ### Administrateur
 - **Email** : admin@viteetgourmand.fr
-- **Mot de passe** : Admin123!
+- **Mot de passe** : password
 
 ### Employé
 - **Email** : employe@viteetgourmand.fr
-- **Mot de passe** : Employe123!
+- **Mot de passe** : password
 
 ### Client
 - **Email** : client@test.fr
-- **Mot de passe** : Client123!
-
-> Les mots de passe respectent les exigences : 10 caractères minimum, 1 majuscule, 1 minuscule, 1 chiffre, 1 caractère spécial.
+- **Mot de passe** : password
 
 ---
 
