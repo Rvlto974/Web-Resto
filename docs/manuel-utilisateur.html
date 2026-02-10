@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manuel Utilisateur - Vite & Gourmand</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background: #fff;
+        }
+
+        /* Page breaks for PDF */
+        .page-break { page-break-before: always; }
+
+        /* Cover page */
+        .cover {
+            text-align: center;
+            padding: 100px 0;
+            border-bottom: 3px solid #2E7D32;
+            margin-bottom: 50px;
+        }
+        .cover h1 {
+            font-size: 42px;
+            color: #2E7D32;
+            margin-bottom: 20px;
+        }
+        .cover .subtitle {
+            font-size: 24px;
+            color: #666;
+            margin-bottom: 40px;
+        }
+        .cover .version {
+            font-size: 16px;
+            color: #999;
+        }
+        .cover .logo {
+            font-size: 80px;
+            margin-bottom: 30px;
+        }
+
+        /* Table of contents */
+        .toc {
+            background: #f9f9f9;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 50px;
+        }
+        .toc h2 {
+            color: #2E7D32;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #2E7D32;
+            padding-bottom: 10px;
+        }
+        .toc ul {
+            list-style: none;
+        }
+        .toc li {
+            padding: 8px 0;
+            border-bottom: 1px dotted #ddd;
+        }
+        .toc a {
+            color: #333;
+            text-decoration: none;
+        }
+        .toc a:hover { color: #2E7D32; }
+        .toc .page-num {
+            float: right;
+            color: #999;
+        }
+
+        /* Sections */
+        h2 {
+            color: #2E7D32;
+            font-size: 28px;
+            margin: 40px 0 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #2E7D32;
+        }
+        h3 {
+            color: #1B5E20;
+            font-size: 20px;
+            margin: 30px 0 15px;
+        }
+        h4 {
+            color: #333;
+            font-size: 16px;
+            margin: 20px 0 10px;
+        }
+
+        p { margin-bottom: 15px; }
+
+        /* Info boxes */
+        .info-box {
+            background: #E8F5E9;
+            border-left: 4px solid #2E7D32;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .warning-box {
+            background: #FFF3E0;
+            border-left: 4px solid #FF8F00;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .danger-box {
+            background: #FFEBEE;
+            border-left: 4px solid #C62828;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background: #2E7D32;
+            color: white;
+        }
+        tr:nth-child(even) { background: #f9f9f9; }
+
+        /* Code/credentials */
+        code {
+            background: #f4f4f4;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-family: 'Consolas', monospace;
+            color: #C62828;
+        }
+        .credentials {
+            background: #f4f4f4;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        .credentials h4 { margin-top: 0; }
+
+        /* Screenshots placeholder */
+        .screenshot {
+            background: #f0f0f0;
+            border: 2px dashed #ccc;
+            padding: 60px 20px;
+            text-align: center;
+            margin: 20px 0;
+            border-radius: 8px;
+            color: #666;
+        }
+        .screenshot-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        /* Steps */
+        .steps {
+            counter-reset: step;
+            list-style: none;
+            padding-left: 0;
+        }
+        .steps li {
+            position: relative;
+            padding-left: 50px;
+            margin-bottom: 20px;
+        }
+        .steps li::before {
+            counter-increment: step;
+            content: counter(step);
+            position: absolute;
+            left: 0;
+            width: 35px;
+            height: 35px;
+            background: #2E7D32;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            text-align: center;
+            color: #999;
+            font-size: 14px;
+        }
+
+        /* Icons (emoji) */
+        .icon { font-size: 20px; margin-right: 8px; }
+
+        /* Print styles */
+        @media print {
+            body { padding: 20px; }
+            .page-break { page-break-before: always; }
+            a { color: #333; text-decoration: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- COUVERTURE -->
+    <div class="cover">
+        <div class="logo">🍽️</div>
+        <h1>Vite & Gourmand</h1>
+        <p class="subtitle">Manuel Utilisateur</p>
+        <p class="version">Version 1.0 - Février 2026</p>
+    </div>
+
+    <!-- TABLE DES MATIERES -->
+    <div class="toc">
+        <h2>📋 Table des matières</h2>
+        <ul>
+            <li><a href="#intro">1. Introduction</a> <span class="page-num">3</span></li>
+            <li><a href="#acces">2. Accès à l'application</a> <span class="page-num">4</span></li>
+            <li><a href="#visiteur">3. Guide Visiteur</a> <span class="page-num">5</span></li>
+            <li><a href="#client">4. Guide Client</a> <span class="page-num">7</span></li>
+            <li><a href="#employe">5. Guide Employé</a> <span class="page-num">10</span></li>
+            <li><a href="#admin">6. Guide Administrateur</a> <span class="page-num">13</span></li>
+            <li><a href="#faq">7. FAQ</a> <span class="page-num">15</span></li>
+        </ul>
+    </div>
+
+    <!-- 1. INTRODUCTION -->
+    <div class="page-break"></div>
+    <h2 id="intro">1. Introduction</h2>
+
+    <p><strong>Vite & Gourmand</strong> est une application web permettant aux clients de l'entreprise de traiteur bordelaise de consulter les menus et de passer des commandes en ligne.</p>
+
+    <h3>🎯 Objectifs de l'application</h3>
+    <ul>
+        <li>Présenter les menus et services de Vite & Gourmand</li>
+        <li>Permettre aux clients de commander en ligne</li>
+        <li>Offrir un suivi des commandes en temps réel</li>
+        <li>Faciliter la gestion pour les employés et administrateurs</li>
+    </ul>
+
+    <h3>👥 Rôles utilisateurs</h3>
+    <table>
+        <tr>
+            <th>Rôle</th>
+            <th>Description</th>
+            <th>Accès</th>
+        </tr>
+        <tr>
+            <td><strong>Visiteur</strong></td>
+            <td>Utilisateur non connecté</td>
+            <td>Consultation menus, contact</td>
+        </tr>
+        <tr>
+            <td><strong>Client</strong></td>
+            <td>Utilisateur inscrit et connecté</td>
+            <td>Commandes, historique, avis</td>
+        </tr>
+        <tr>
+            <td><strong>Employé</strong></td>
+            <td>Membre de l'équipe</td>
+            <td>Gestion menus/commandes/avis</td>
+        </tr>
+        <tr>
+            <td><strong>Administrateur</strong></td>
+            <td>Gérant de l'entreprise</td>
+            <td>Statistiques, gestion employés</td>
+        </tr>
+    </table>
+
+    <!-- 2. ACCES -->
+    <div class="page-break"></div>
+    <h2 id="acces">2. Accès à l'application</h2>
+
+    <h3>🌐 URL de l'application</h3>
+    <div class="info-box">
+        <strong>Application :</strong> <code>http://localhost:8080</code>
+    </div>
+
+    <h3>🔑 Comptes de test</h3>
+
+    <div class="credentials">
+        <h4>👑 Administrateur</h4>
+        <p><strong>Email :</strong> <code>admin@viteetgourmand.fr</code></p>
+        <p><strong>Mot de passe :</strong> <code>password</code></p>
+    </div>
+
+    <div class="credentials">
+        <h4>👔 Employé</h4>
+        <p><strong>Email :</strong> <code>employe@viteetgourmand.fr</code></p>
+        <p><strong>Mot de passe :</strong> <code>password</code></p>
+    </div>
+
+    <div class="credentials">
+        <h4>👤 Client</h4>
+        <p><strong>Email :</strong> <code>client@test.fr</code></p>
+        <p><strong>Mot de passe :</strong> <code>password</code></p>
+    </div>
+
+    <div class="warning-box">
+        <strong>⚠️ Note :</strong> Ces identifiants sont fournis à des fins de test uniquement. En production, chaque utilisateur devra créer son propre compte avec un mot de passe sécurisé.
+    </div>
+
+    <!-- 3. GUIDE VISITEUR -->
+    <div class="page-break"></div>
+    <h2 id="visiteur">3. Guide Visiteur</h2>
+
+    <p>En tant que visiteur (non connecté), vous pouvez consulter les menus, voir les détails et contacter l'entreprise.</p>
+
+    <h3>🏠 Page d'accueil</h3>
+    <p>La page d'accueil présente :</p>
+    <ul>
+        <li>L'entreprise Vite & Gourmand et son histoire</li>
+        <li>Les points forts (25 ans d'expérience, produits locaux, livraison)</li>
+        <li>Les avis clients validés</li>
+        <li>Un accès rapide aux menus</li>
+    </ul>
+
+    <div class="screenshot">
+        <div class="screenshot-title">Capture : Page d'accueil</div>
+        <p>Affiche le hero banner, les avantages et les témoignages clients</p>
+    </div>
+
+    <h3>📖 Consulter les menus</h3>
+    <ol class="steps">
+        <li>Cliquez sur <strong>"Nos Menus"</strong> dans la navigation</li>
+        <li>Utilisez les <strong>filtres</strong> pour affiner votre recherche :
+            <ul>
+                <li>Par thème (Noël, Pâques, Classique, etc.)</li>
+                <li>Par régime (Classique, Végétarien, Vegan)</li>
+                <li>Par prix maximum</li>
+                <li>Par nombre de personnes</li>
+            </ul>
+        </li>
+        <li>Cliquez sur <strong>"Voir le menu"</strong> pour accéder aux détails</li>
+    </ol>
+
+    <div class="screenshot">
+        <div class="screenshot-title">Capture : Liste des menus avec filtres</div>
+        <p>Affiche les cartes menus avec thème, prix et nombre de personnes</p>
+    </div>
+
+    <h3>🔍 Détail d'un menu</h3>
+    <p>La page de détail affiche :</p>
+    <ul>
+        <li>Galerie d'images du menu</li>
+        <li>Description complète</li>
+        <li>Composition (entrée, plat, dessert)</li>
+        <li>Liste des allergènes</li>
+        <li>Prix et nombre de personnes minimum</li>
+        <li>Conditions de commande et livraison</li>
+        <li>Avis des clients</li>
+    </ul>
+
+    <div class="info-box">
+        <strong>💡 Astuce :</strong> Pour commander, vous devez créer un compte et vous connecter.
+    </div>
+
+    <h3>📧 Page Contact</h3>
+    <p>Utilisez le formulaire de contact pour toute question. Vous pouvez envoyer un message sans être connecté.</p>
+
+    <!-- 4. GUIDE CLIENT -->
+    <div class="page-break"></div>
+    <h2 id="client">4. Guide Client</h2>
+
+    <h3>📝 Créer un compte</h3>
+    <ol class="steps">
+        <li>Cliquez sur <strong>"S'inscrire"</strong></li>
+        <li>Remplissez le formulaire :
+            <ul>
+                <li>Nom et prénom</li>
+                <li>Email (servira d'identifiant)</li>
+                <li>Téléphone</li>
+                <li>Adresse complète</li>
+                <li>Mot de passe (min. 10 caractères)</li>
+            </ul>
+        </li>
+        <li>Validez l'inscription</li>
+        <li>Connectez-vous avec vos identifiants</li>
+    </ol>
+
+    <div class="warning-box">
+        <strong>🔐 Exigences mot de passe :</strong><br>
+        Minimum 10 caractères avec au moins 1 majuscule, 1 minuscule, 1 chiffre et 1 caractère spécial.
+    </div>
+
+    <h3>🛒 Passer une commande</h3>
+    <ol class="steps">
+        <li>Connectez-vous à votre compte</li>
+        <li>Choisissez un menu dans la liste</li>
+        <li>Sur la page de détail, sélectionnez le <strong>nombre de personnes</strong></li>
+        <li>Cliquez sur <strong>"Commander ce menu"</strong></li>
+        <li>Vérifiez/modifiez les informations de livraison :
+            <ul>
+                <li>Adresse de livraison</li>
+                <li>Date et heure souhaitées</li>
+                <li>Instructions spéciales</li>
+            </ul>
+        </li>
+        <li>Confirmez la commande</li>
+    </ol>
+
+    <div class="screenshot">
+        <div class="screenshot-title">Capture : Formulaire de commande</div>
+        <p>Sélection du nombre de personnes et informations de livraison</p>
+    </div>
+
+    <h4>💰 Tarification</h4>
+    <table>
+        <tr>
+            <th>Élément</th>
+            <th>Calcul</th>
+        </tr>
+        <tr>
+            <td>Prix de base</td>
+            <td>Prix du menu pour le nombre minimum de personnes</td>
+        </tr>
+        <tr>
+            <td>Personnes supplémentaires</td>
+            <td>+ Prix/personne × nombre en plus</td>
+        </tr>
+        <tr>
+            <td>Réduction (5+ pers. sup.)</td>
+            <td>-10% sur le total</td>
+        </tr>
+        <tr>
+            <td>Livraison hors Bordeaux</td>
+            <td>5€ + 0,59€/km</td>
+        </tr>
+    </table>
+
+    <h3>📋 Suivre mes commandes</h3>
+    <p>Accédez à votre <strong>espace client</strong> pour voir l'historique de vos commandes.</p>
+
+    <h4>États de commande :</h4>
+    <table>
+        <tr>
+            <th>État</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td>🆕 Nouvelle</td>
+            <td>Commande en attente de validation</td>
+        </tr>
+        <tr>
+            <td>✅ Acceptée</td>
+            <td>Commande validée par l'équipe</td>
+        </tr>
+        <tr>
+            <td>👨‍🍳 En préparation</td>
+            <td>Les plats sont en cours de préparation</td>
+        </tr>
+        <tr>
+            <td>🚚 En livraison</td>
+            <td>Commande en route</td>
+        </tr>
+        <tr>
+            <td>📦 Livrée</td>
+            <td>Commande réceptionnée</td>
+        </tr>
+        <tr>
+            <td>✔️ Terminée</td>
+            <td>Commande clôturée</td>
+        </tr>
+    </table>
+
+    <h3>⭐ Laisser un avis</h3>
+    <p>Après la livraison de votre commande, vous pouvez laisser un avis :</p>
+    <ol class="steps">
+        <li>Allez dans <strong>Mes commandes</strong></li>
+        <li>Trouvez la commande livrée</li>
+        <li>Cliquez sur <strong>"Laisser un avis"</strong></li>
+        <li>Attribuez une note (1 à 5 étoiles)</li>
+        <li>Rédigez votre commentaire</li>
+        <li>Validez (l'avis sera soumis à modération)</li>
+    </ol>
+
+    <h3>👤 Gérer mon profil</h3>
+    <p>Dans votre espace client, vous pouvez :</p>
+    <ul>
+        <li>Modifier vos informations personnelles</li>
+        <li>Changer votre adresse de livraison par défaut</li>
+        <li>Modifier votre mot de passe</li>
+    </ul>
+
+    <!-- 5. GUIDE EMPLOYE -->
+    <div class="page-break"></div>
+    <h2 id="employe">5. Guide Employé</h2>
+
+    <p>En tant qu'employé, vous avez accès à l'espace d'administration pour gérer les menus, commandes et avis.</p>
+
+    <h3>🏠 Tableau de bord</h3>
+    <p>Après connexion, accédez au tableau de bord via <strong>"Administration"</strong>. Vous y trouverez :</p>
+    <ul>
+        <li>Statistiques des commandes du jour</li>
+        <li>Commandes en attente</li>
+        <li>Avis à modérer</li>
+        <li>Accès rapide aux différentes sections</li>
+    </ul>
+
+    <div class="screenshot">
+        <div class="screenshot-title">Capture : Tableau de bord employé</div>
+        <p>Vue d'ensemble des commandes et statistiques</p>
+    </div>
+
+    <h3>📖 Gérer les menus</h3>
+
+    <h4>Ajouter un menu</h4>
+    <ol class="steps">
+        <li>Allez dans <strong>Administration > Menus</strong></li>
+        <li>Cliquez sur <strong>"Nouveau menu"</strong></li>
+        <li>Remplissez les informations :
+            <ul>
+                <li>Titre et description</li>
+                <li>Thème et régime alimentaire</li>
+                <li>Nombre de personnes minimum</li>
+                <li>Prix de base et prix/personne supplémentaire</li>
+                <li>Délai de commande</li>
+                <li>Instructions de conservation</li>
+            </ul>
+        </li>
+        <li>Ajoutez les plats (entrée, plat, dessert)</li>
+        <li>Uploadez les images</li>
+        <li>Enregistrez</li>
+    </ol>
+
+    <h4>Modifier/Supprimer un menu</h4>
+    <p>Dans la liste des menus, utilisez les boutons d'action pour modifier ou supprimer un menu.</p>
+
+    <div class="warning-box">
+        <strong>⚠️ Attention :</strong> La suppression d'un menu est irréversible. Les commandes existantes seront conservées.
+    </div>
+
+    <h3>📦 Gérer les commandes</h3>
+
+    <h4>Traiter une commande</h4>
+    <ol class="steps">
+        <li>Allez dans <strong>Administration > Commandes</strong></li>
+        <li>Filtrez par statut si nécessaire</li>
+        <li>Cliquez sur une commande pour voir les détails</li>
+        <li>Changez le statut selon l'avancement :
+            <ul>
+                <li><strong>Accepter</strong> la commande</li>
+                <li>Passer en <strong>Préparation</strong></li>
+                <li>Marquer <strong>En livraison</strong></li>
+                <li>Confirmer la <strong>Livraison</strong></li>
+            </ul>
+        </li>
+    </ol>
+
+    <div class="info-box">
+        <strong>📧 Notifications :</strong> Le client reçoit un email à chaque changement de statut.
+    </div>
+
+    <h3>⭐ Modérer les avis</h3>
+    <ol class="steps">
+        <li>Allez dans <strong>Administration > Avis</strong></li>
+        <li>Consultez les avis en attente</li>
+        <li>Pour chaque avis, vous pouvez :
+            <ul>
+                <li><strong>Approuver</strong> : l'avis sera publié</li>
+                <li><strong>Refuser</strong> : l'avis ne sera pas affiché</li>
+            </ul>
+        </li>
+    </ol>
+
+    <!-- 6. GUIDE ADMIN -->
+    <div class="page-break"></div>
+    <h2 id="admin">6. Guide Administrateur</h2>
+
+    <p>L'administrateur dispose de toutes les fonctionnalités employé, plus des outils de gestion avancés.</p>
+
+    <h3>👥 Gérer les employés</h3>
+
+    <h4>Créer un compte employé</h4>
+    <ol class="steps">
+        <li>Allez dans <strong>Administration > Employés</strong></li>
+        <li>Cliquez sur <strong>"Nouvel employé"</strong></li>
+        <li>Renseignez les informations :
+            <ul>
+                <li>Nom, prénom, email</li>
+                <li>Téléphone</li>
+                <li>Mot de passe temporaire</li>
+            </ul>
+        </li>
+        <li>L'employé recevra un email avec ses identifiants</li>
+    </ol>
+
+    <h4>Désactiver un compte</h4>
+    <p>Vous pouvez désactiver un compte employé sans le supprimer. L'employé ne pourra plus se connecter.</p>
+
+    <div class="danger-box">
+        <strong>🔒 Sécurité :</strong> Désactivez immédiatement les comptes des employés qui quittent l'entreprise.
+    </div>
+
+    <h3>📊 Statistiques</h3>
+    <p>Accédez aux statistiques via <strong>Administration > Statistiques</strong>.</p>
+
+    <h4>Données disponibles :</h4>
+    <ul>
+        <li><strong>Commandes par menu</strong> : graphique du nombre de commandes par menu</li>
+        <li><strong>Chiffre d'affaires</strong> : CA total et par menu avec filtres de dates</li>
+        <li><strong>Clients</strong> : nombre de clients inscrits et actifs</li>
+        <li><strong>Avis</strong> : notes moyennes par menu</li>
+    </ul>
+
+    <div class="screenshot">
+        <div class="screenshot-title">Capture : Page statistiques</div>
+        <p>Graphiques et tableaux du chiffre d'affaires</p>
+    </div>
+
+    <h4>Calculer le CA par menu</h4>
+    <ol class="steps">
+        <li>Allez dans <strong>Statistiques</strong></li>
+        <li>Sélectionnez la période (dates de début et fin)</li>
+        <li>Optionnellement, filtrez par menu ou thème</li>
+        <li>Le CA s'affiche avec le détail par menu</li>
+    </ol>
+
+    <!-- 7. FAQ -->
+    <div class="page-break"></div>
+    <h2 id="faq">7. FAQ</h2>
+
+    <h3>❓ Questions fréquentes</h3>
+
+    <h4>Comment réinitialiser mon mot de passe ?</h4>
+    <p>Sur la page de connexion, cliquez sur <strong>"Mot de passe oublié"</strong>. Un email vous sera envoyé avec un lien de réinitialisation.</p>
+
+    <h4>Puis-je annuler une commande ?</h4>
+    <p>Oui, tant que la commande n'a pas été acceptée par l'équipe. Allez dans vos commandes et cliquez sur "Annuler".</p>
+
+    <h4>Quel est le délai de commande minimum ?</h4>
+    <p>Le délai varie selon les menus (généralement 48h à 5 jours). Cette information est affichée sur chaque fiche menu.</p>
+
+    <h4>Comment sont calculés les frais de livraison ?</h4>
+    <p>La livraison est gratuite dans Bordeaux. Hors Bordeaux : 5€ + 0,59€ par km.</p>
+
+    <h4>Mon avis n'apparaît pas, pourquoi ?</h4>
+    <p>Les avis sont soumis à modération. L'équipe valide les avis sous 24-48h.</p>
+
+    <h4>Comment contacter le support ?</h4>
+    <p>Utilisez le formulaire de contact ou appelez le 05 XX XX XX XX (Lun-Ven 9h-18h).</p>
+
+    <h3>🆘 Besoin d'aide ?</h3>
+    <div class="info-box">
+        <p><strong>📧 Email :</strong> contact@viteetgourmand.fr</p>
+        <p><strong>📞 Téléphone :</strong> 05 XX XX XX XX</p>
+        <p><strong>🕐 Horaires :</strong> Lundi - Vendredi 9h-18h, Samedi 9h-12h</p>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <p>Manuel Utilisateur - Vite & Gourmand v1.0</p>
+        <p>© 2026 Vite & Gourmand - Tous droits réservés</p>
+        <p><em>Document généré le 10 février 2026</em></p>
+    </div>
+
+</body>
+</html>
