@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1440, initial-scale=1.0">
+    <title>Wireframe - Détail Menu Desktop</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: Arial, sans-serif;
+            background: #fff;
+            color: #333;
+            width: 1440px;
+            margin: 0 auto;
+            border: 1px solid #ccc;
+        }
+        .placeholder { background: #E0E0E0; display: flex; align-items: center; justify-content: center; color: #666; }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 60px;
+            border-bottom: 1px solid #BDBDBD;
+        }
+        .logo { font-weight: bold; font-size: 24px; }
+        .nav { display: flex; gap: 40px; }
+        .nav-link { color: #333; text-decoration: none; font-size: 16px; }
+        .header-actions { display: flex; gap: 15px; }
+        .btn-outline {
+            border: 1px solid #9E9E9E;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        .btn-primary {
+            background: #9E9E9E;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        .breadcrumb {
+            padding: 15px 60px;
+            font-size: 14px;
+            color: #666;
+            border-bottom: 1px solid #BDBDBD;
+        }
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            padding: 40px 60px;
+        }
+        .gallery-section {}
+        .main-image {
+            height: 400px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+        .thumbnails {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+        .thumbnail {
+            height: 80px;
+            border-radius: 5px;
+            border: 2px solid transparent;
+        }
+        .thumbnail.active { border-color: #666; }
+        .info-section {}
+        .menu-title { font-size: 36px; font-weight: bold; margin-bottom: 20px; }
+        .badges { display: flex; gap: 12px; margin-bottom: 20px; }
+        .badge {
+            background: #E0E0E0;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+        .price { font-size: 36px; font-weight: bold; margin-bottom: 5px; }
+        .price-info { font-size: 16px; color: #666; margin-bottom: 25px; }
+        .description {
+            font-size: 16px;
+            line-height: 1.7;
+            color: #666;
+            margin-bottom: 25px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid #BDBDBD;
+        }
+        .section-title { font-size: 20px; font-weight: bold; margin-bottom: 15px; }
+        .allergens { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 30px; }
+        .allergen {
+            background: #FFF3E0;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 13px;
+            border: 1px solid #FFB74D;
+        }
+        .order-box {
+            background: #F5F5F5;
+            border: 1px solid #BDBDBD;
+            border-radius: 10px;
+            padding: 25px;
+        }
+        .quantity-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .quantity-label { font-size: 16px; }
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .qty-btn {
+            width: 40px;
+            height: 40px;
+            border: 1px solid #BDBDBD;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            background: #fff;
+        }
+        .qty-value { font-size: 22px; font-weight: bold; }
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #BDBDBD;
+        }
+        .btn-order {
+            width: 100%;
+            background: #9E9E9E;
+            color: #fff;
+            padding: 18px;
+            border-radius: 5px;
+            font-size: 18px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .conditions-mini {
+            margin-top: 20px;
+            font-size: 13px;
+            color: #666;
+        }
+        .conditions-mini p { margin-bottom: 5px; }
+        .full-section {
+            grid-column: 1 / -1;
+            padding: 40px 0;
+            border-top: 1px solid #BDBDBD;
+        }
+        .dishes-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 30px;
+        }
+        .dish-card {
+            border: 1px solid #BDBDBD;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .dish-image { height: 180px; }
+        .dish-content { padding: 20px; }
+        .dish-category {
+            font-size: 12px;
+            color: #666;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+        .dish-title { font-size: 20px; font-weight: bold; margin-bottom: 10px; }
+        .dish-desc { font-size: 14px; color: #666; margin-bottom: 12px; line-height: 1.5; }
+        .dish-allergens { display: flex; gap: 8px; }
+        .dish-allergen {
+            background: #FFF3E0;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+        }
+        .conditions-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 30px;
+        }
+        .condition-card {
+            text-align: center;
+            padding: 30px;
+            border: 1px solid #BDBDBD;
+            border-radius: 10px;
+        }
+        .condition-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin: 0 auto 15px;
+        }
+        .condition-title { font-size: 18px; font-weight: bold; margin-bottom: 10px; }
+        .condition-text { font-size: 14px; color: #666; }
+        .avis-section { margin-top: 30px; }
+        .avis-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+        .avis-score-box {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .avis-score { font-size: 28px; font-weight: bold; }
+        .stars { color: #666; font-size: 20px; }
+        .avis-count { font-size: 14px; color: #666; }
+        .avis-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+        .avis-card {
+            border: 1px solid #BDBDBD;
+            border-radius: 10px;
+            padding: 25px;
+        }
+        .avis-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+        .avis-author-box {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+        }
+        .avis-author { font-weight: bold; font-size: 16px; }
+        .avis-date { font-size: 12px; color: #666; }
+        .avis-text { font-size: 15px; font-style: italic; line-height: 1.6; }
+        .btn-link {
+            display: inline-block;
+            margin-top: 25px;
+            color: #666;
+            font-size: 14px;
+            text-decoration: underline;
+        }
+        .footer {
+            background: #E0E0E0;
+            padding: 50px 60px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+        .footer-col h4 { font-size: 18px; margin-bottom: 20px; }
+        .footer-col p { font-size: 14px; color: #666; margin-bottom: 8px; }
+        .footer-bottom {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #BDBDBD;
+            font-size: 12px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <span class="logo">Vite & Gourmand</span>
+        <nav class="nav">
+            <a href="#" class="nav-link">Accueil</a>
+            <a href="#" class="nav-link">Nos Menus</a>
+            <a href="#" class="nav-link">Contact</a>
+        </nav>
+        <div class="header-actions">
+            <span class="btn-outline">Connexion</span>
+            <span class="btn-primary">Mon Compte</span>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        Accueil &gt; Nos Menus &gt; Menu Noël Premium
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Gallery -->
+        <div class="gallery-section">
+            <div class="main-image placeholder">[Image principale du menu]</div>
+            <div class="thumbnails">
+                <div class="thumbnail placeholder active">[1]</div>
+                <div class="thumbnail placeholder">[2]</div>
+                <div class="thumbnail placeholder">[3]</div>
+                <div class="thumbnail placeholder">[4]</div>
+            </div>
+        </div>
+
+        <!-- Info -->
+        <div class="info-section">
+            <h1 class="menu-title">Menu Noël Premium</h1>
+            <div class="badges">
+                <span class="badge">Thème : Noël</span>
+                <span class="badge">Classique</span>
+            </div>
+            <div class="price">320 €</div>
+            <p class="price-info">Pour 8 personnes minimum</p>
+
+            <p class="description">Un menu festif et raffiné pour célébrer Noël en famille. Des produits nobles et une présentation soignée pour un moment inoubliable. Chaque plat est préparé avec soin par notre équipe de chefs expérimentés.</p>
+
+            <h3 class="section-title">Allergènes présents</h3>
+            <div class="allergens">
+                <span class="allergen">Gluten</span>
+                <span class="allergen">Lait</span>
+                <span class="allergen">Œufs</span>
+                <span class="allergen">Fruits à coque</span>
+            </div>
+
+            <div class="order-box">
+                <div class="quantity-row">
+                    <span class="quantity-label">Nombre de personnes</span>
+                    <div class="quantity-controls">
+                        <span class="qty-btn">-</span>
+                        <span class="qty-value">8</span>
+                        <span class="qty-btn">+</span>
+                    </div>
+                </div>
+                <div class="price-row">
+                    <span style="font-size: 18px;">Prix estimé</span>
+                    <span class="price">320 €</span>
+                </div>
+                <div class="btn-order">Commander ce menu</div>
+                <div class="conditions-mini">
+                    <p>* Délai de commande : 48h minimum</p>
+                    <p>* Livraison disponible à Bordeaux et environs</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Composition -->
+        <div class="full-section">
+            <h2 class="section-title" style="font-size: 28px;">Composition du menu</h2>
+            <div class="dishes-grid">
+                <div class="dish-card">
+                    <div class="dish-image placeholder">[Image]</div>
+                    <div class="dish-content">
+                        <div class="dish-category">Entrée</div>
+                        <h3 class="dish-title">Foie gras maison</h3>
+                        <p class="dish-desc">Foie gras de canard mi-cuit, accompagné d'un chutney de figues et pain d'épices toasté</p>
+                        <div class="dish-allergens">
+                            <span class="dish-allergen">Gluten</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dish-card">
+                    <div class="dish-image placeholder">[Image]</div>
+                    <div class="dish-content">
+                        <div class="dish-category">Plat</div>
+                        <h3 class="dish-title">Dinde aux marrons</h3>
+                        <p class="dish-desc">Dinde fermière rôtie, farce traditionnelle aux marrons et aux herbes de Provence</p>
+                        <div class="dish-allergens">
+                            <span class="dish-allergen">Œufs</span>
+                            <span class="dish-allergen">Fruits à coque</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dish-card">
+                    <div class="dish-image placeholder">[Image]</div>
+                    <div class="dish-content">
+                        <div class="dish-category">Dessert</div>
+                        <h3 class="dish-title">Bûche au chocolat</h3>
+                        <p class="dish-desc">Bûche traditionnelle au chocolat noir 70% et crème de marrons glacés</p>
+                        <div class="dish-allergens">
+                            <span class="dish-allergen">Lait</span>
+                            <span class="dish-allergen">Œufs</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Conditions -->
+        <div class="full-section">
+            <h2 class="section-title" style="font-size: 28px;">Conditions et informations</h2>
+            <div class="conditions-grid">
+                <div class="condition-card">
+                    <div class="condition-icon placeholder">[icon]</div>
+                    <h4 class="condition-title">Délai de commande</h4>
+                    <p class="condition-text">48 heures minimum avant la date de livraison souhaitée</p>
+                </div>
+                <div class="condition-card">
+                    <div class="condition-icon placeholder">[icon]</div>
+                    <h4 class="condition-title">Conservation</h4>
+                    <p class="condition-text">À conserver entre 0°C et 4°C jusqu'à la consommation</p>
+                </div>
+                <div class="condition-card">
+                    <div class="condition-icon placeholder">[icon]</div>
+                    <h4 class="condition-title">Livraison</h4>
+                    <p class="condition-text">5€ + 0,59€/km pour les livraisons hors Bordeaux</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Avis -->
+        <div class="full-section avis-section">
+            <div class="avis-header">
+                <h2 class="section-title" style="font-size: 28px; margin-bottom: 0;">Avis sur ce menu</h2>
+                <div class="avis-score-box">
+                    <span class="stars">★★★★★</span>
+                    <span class="avis-score">4.8/5</span>
+                    <span class="avis-count">(24 avis)</span>
+                </div>
+            </div>
+
+            <div class="avis-grid">
+                <div class="avis-card">
+                    <div class="avis-top">
+                        <div class="avis-author-box">
+                            <div class="avatar placeholder"></div>
+                            <div>
+                                <div class="avis-author">Marie D.</div>
+                                <div class="avis-date">Il y a 2 semaines</div>
+                            </div>
+                        </div>
+                        <span class="stars">★★★★★</span>
+                    </div>
+                    <p class="avis-text">"Excellent menu pour notre repas de Noël en famille. Les plats étaient délicieux et la présentation impeccable. Je recommande vivement !"</p>
+                </div>
+
+                <div class="avis-card">
+                    <div class="avis-top">
+                        <div class="avis-author-box">
+                            <div class="avatar placeholder"></div>
+                            <div>
+                                <div class="avis-author">Pierre L.</div>
+                                <div class="avis-date">Il y a 1 mois</div>
+                            </div>
+                        </div>
+                        <span class="stars">★★★★☆</span>
+                    </div>
+                    <p class="avis-text">"Très bon rapport qualité prix, livraison impeccable. Seul petit bémol : le dessert était un peu trop sucré à mon goût."</p>
+                </div>
+            </div>
+
+            <a href="#" class="btn-link">Voir tous les avis (24)</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-col">
+            <h4>Vite & Gourmand</h4>
+            <p>Traiteur d'exception à Bordeaux</p>
+        </div>
+        <div class="footer-col">
+            <h4>Horaires</h4>
+            <p>Lundi - Vendredi : 9h - 18h</p>
+            <p>Samedi : 9h - 12h</p>
+        </div>
+        <div class="footer-col">
+            <h4>Contact</h4>
+            <p>05 XX XX XX XX</p>
+            <p>contact@viteetgourmand.fr</p>
+        </div>
+        <div class="footer-bottom">
+            Mentions légales | CGV | Politique de confidentialité
+        </div>
+    </footer>
+</body>
+</html>

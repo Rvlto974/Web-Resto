@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=375, initial-scale=1.0">
+    <title>Wireframe - Liste Menus Mobile</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: Arial, sans-serif;
+            background: #fff;
+            color: #333;
+            width: 375px;
+            margin: 0 auto;
+            border: 1px solid #ccc;
+        }
+        .placeholder { background: #E0E0E0; display: flex; align-items: center; justify-content: center; color: #666; }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid #BDBDBD;
+        }
+        .menu-icon { font-size: 24px; }
+        .logo { font-weight: bold; font-size: 16px; }
+        .btn-outline {
+            border: 1px solid #9E9E9E;
+            padding: 8px 12px;
+            border-radius: 5px;
+            font-size: 12px;
+        }
+        .breadcrumb {
+            padding: 10px 15px;
+            font-size: 12px;
+            color: #666;
+            border-bottom: 1px solid #BDBDBD;
+        }
+        .page-header {
+            padding: 20px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .page-title { font-size: 24px; }
+        .filter-actions { display: flex; gap: 10px; }
+        .btn-filter {
+            border: 1px solid #9E9E9E;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .menu-list { padding: 0 15px 30px; }
+        .menu-card {
+            border: 1px solid #BDBDBD;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+        .menu-image {
+            height: 180px;
+            width: 100%;
+        }
+        .menu-content { padding: 15px; }
+        .menu-title { font-size: 18px; font-weight: bold; margin-bottom: 8px; }
+        .menu-meta { font-size: 12px; color: #666; margin-bottom: 5px; }
+        .menu-badges { display: flex; gap: 8px; margin: 10px 0; }
+        .badge {
+            background: #E0E0E0;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 11px;
+        }
+        .menu-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+        }
+        .menu-price { font-size: 20px; font-weight: bold; }
+        .btn-primary {
+            background: #9E9E9E;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 12px;
+        }
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            padding: 20px;
+        }
+        .page-num {
+            width: 35px;
+            height: 35px;
+            border: 1px solid #BDBDBD;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+        .page-num.active { background: #9E9E9E; color: #fff; border: none; }
+        .footer {
+            background: #E0E0E0;
+            padding: 30px 20px;
+            text-align: center;
+        }
+        .footer-title { font-weight: bold; margin-bottom: 15px; }
+        .footer-text { font-size: 12px; color: #666; margin-bottom: 5px; }
+        .footer-links {
+            font-size: 10px;
+            color: #666;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #BDBDBD;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <span class="menu-icon">☰</span>
+        <span class="logo">Vite & Gourmand</span>
+        <span class="btn-outline">Connexion</span>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        Accueil &gt; Nos Menus
+    </div>
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <h1 class="page-title">Nos Menus</h1>
+        <div class="filter-actions">
+            <span class="btn-filter">☰ Filtres</span>
+            <span class="btn-filter">Trier ▼</span>
+        </div>
+    </div>
+
+    <!-- Menu List -->
+    <div class="menu-list">
+        <!-- Menu 1 -->
+        <div class="menu-card">
+            <div class="menu-image placeholder">[Image Menu]</div>
+            <div class="menu-content">
+                <h3 class="menu-title">Menu Noël Premium</h3>
+                <p class="menu-meta">Thème : Noël</p>
+                <p class="menu-meta">Min. 8 personnes</p>
+                <div class="menu-badges">
+                    <span class="badge">Classique</span>
+                    <span class="badge">Festif</span>
+                </div>
+                <div class="menu-footer">
+                    <span class="menu-price">320 €</span>
+                    <span class="btn-primary">Voir le menu</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menu 2 -->
+        <div class="menu-card">
+            <div class="menu-image placeholder">[Image Menu]</div>
+            <div class="menu-content">
+                <h3 class="menu-title">Menu Printanier</h3>
+                <p class="menu-meta">Thème : Classique</p>
+                <p class="menu-meta">Min. 6 personnes</p>
+                <div class="menu-badges">
+                    <span class="badge">Végétarien</span>
+                    <span class="badge">Léger</span>
+                </div>
+                <div class="menu-footer">
+                    <span class="menu-price">250 €</span>
+                    <span class="btn-primary">Voir le menu</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menu 3 -->
+        <div class="menu-card">
+            <div class="menu-image placeholder">[Image Menu]</div>
+            <div class="menu-content">
+                <h3 class="menu-title">Menu Pâques Tradition</h3>
+                <p class="menu-meta">Thème : Pâques</p>
+                <p class="menu-meta">Min. 10 personnes</p>
+                <div class="menu-badges">
+                    <span class="badge">Classique</span>
+                </div>
+                <div class="menu-footer">
+                    <span class="menu-price">280 €</span>
+                    <span class="btn-primary">Voir le menu</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pagination -->
+    <div class="pagination">
+        <span class="page-num">&lt;</span>
+        <span class="page-num active">1</span>
+        <span class="page-num">2</span>
+        <span class="page-num">3</span>
+        <span class="page-num">&gt;</span>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-title">Vite & Gourmand</div>
+        <p class="footer-text">Traiteur Bordeaux</p>
+        <p class="footer-text">05 XX XX XX XX</p>
+        <div class="footer-links">
+            Mentions légales | CGV | RGPD
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1440, initial-scale=1.0">
+    <title>Wireframe - Accueil Desktop</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: Arial, sans-serif;
+            background: #fff;
+            color: #333;
+            width: 1440px;
+            margin: 0 auto;
+            border: 1px solid #ccc;
+        }
+        .placeholder { background: #E0E0E0; display: flex; align-items: center; justify-content: center; color: #666; }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 60px;
+            border-bottom: 1px solid #BDBDBD;
+        }
+        .logo { font-weight: bold; font-size: 24px; }
+        .nav { display: flex; gap: 40px; }
+        .nav-link { color: #333; text-decoration: none; font-size: 16px; }
+        .header-actions { display: flex; gap: 15px; }
+        .btn-outline {
+            border: 1px solid #9E9E9E;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        .btn-primary {
+            background: #9E9E9E;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 14px;
+            border: none;
+        }
+        .hero {
+            height: 500px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px;
+        }
+        .hero-title { font-size: 56px; margin-bottom: 20px; }
+        .hero-subtitle { font-size: 24px; color: #666; margin-bottom: 40px; }
+        .hero .btn-primary { padding: 15px 40px; font-size: 18px; }
+        .section { padding: 60px; }
+        .section-title {
+            font-size: 36px;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .card {
+            border: 1px solid #BDBDBD;
+            border-radius: 10px;
+            padding: 40px 30px;
+            text-align: center;
+        }
+        .card-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+        }
+        .card-title { font-size: 22px; font-weight: bold; margin-bottom: 15px; }
+        .card-text { font-size: 14px; color: #666; line-height: 1.6; }
+        .section-gray { background: #F5F5F5; }
+        .avis-container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .avis-card {
+            border: 1px solid #BDBDBD;
+            border-radius: 10px;
+            padding: 40px;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+        .avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        .avis-content { flex: 1; }
+        .avis-text { font-size: 18px; font-style: italic; margin-bottom: 15px; }
+        .stars { color: #666; font-size: 20px; }
+        .avis-author { font-size: 14px; color: #666; margin-top: 10px; }
+        .nav-arrows {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            border: 1px solid #BDBDBD;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #fff;
+            font-size: 20px;
+        }
+        .nav-prev { left: -60px; }
+        .nav-next { right: -60px; }
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 30px;
+        }
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #BDBDBD;
+        }
+        .dot.active { background: #666; }
+        .footer {
+            background: #E0E0E0;
+            padding: 50px 60px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+        .footer-col h4 { font-size: 18px; margin-bottom: 20px; }
+        .footer-col p { font-size: 14px; color: #666; margin-bottom: 8px; }
+        .footer-social {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        .social-icon {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+        }
+        .footer-bottom {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #BDBDBD;
+            font-size: 12px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <span class="logo">Vite & Gourmand</span>
+        <nav class="nav">
+            <a href="#" class="nav-link">Accueil</a>
+            <a href="#" class="nav-link">Nos Menus</a>
+            <a href="#" class="nav-link">Contact</a>
+        </nav>
+        <div class="header-actions">
+            <span class="btn-outline">Connexion</span>
+            <span class="btn-primary">Mon Compte</span>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero placeholder">
+        <h1 class="hero-title">Vite & Gourmand</h1>
+        <p class="hero-subtitle">Traiteur d'exception depuis 25 ans à Bordeaux</p>
+        <span class="btn-primary">Découvrir nos menus</span>
+    </section>
+
+    <!-- Pourquoi nous choisir -->
+    <section class="section">
+        <h2 class="section-title">Pourquoi nous choisir</h2>
+
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-icon placeholder">[icon]</div>
+                <h3 class="card-title">25 ans d'expérience</h3>
+                <p class="card-text">Une expertise reconnue dans l'art culinaire et le service traiteur haut de gamme</p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon placeholder">[icon]</div>
+                <h3 class="card-title">Produits locaux</h3>
+                <p class="card-text">Ingrédients frais et de saison, issus de producteurs locaux sélectionnés</p>
+            </div>
+
+            <div class="card">
+                <div class="card-icon placeholder">[icon]</div>
+                <h3 class="card-title">Livraison Bordeaux</h3>
+                <p class="card-text">Service de livraison professionnel dans Bordeaux et ses environs</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Avis clients -->
+    <section class="section section-gray">
+        <h2 class="section-title">Avis clients</h2>
+
+        <div class="avis-container">
+            <div class="nav-arrows nav-prev">&lt;</div>
+
+            <div class="avis-card">
+                <div class="avatar placeholder">[photo]</div>
+                <div class="avis-content">
+                    <p class="avis-text">"Excellent service, menus délicieux et livraison impeccable ! Je recommande vivement pour tous vos événements."</p>
+                    <div class="stars">★★★★★</div>
+                    <p class="avis-author">- Marie D.</p>
+                </div>
+            </div>
+
+            <div class="nav-arrows nav-next">&gt;</div>
+        </div>
+
+        <div class="pagination">
+            <span class="dot active"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-col">
+            <h4>Vite & Gourmand</h4>
+            <p>Traiteur d'exception à Bordeaux</p>
+            <div class="footer-social">
+                <div class="social-icon placeholder">[FB]</div>
+                <div class="social-icon placeholder">[IG]</div>
+            </div>
+        </div>
+
+        <div class="footer-col">
+            <h4>Horaires</h4>
+            <p>Lundi - Vendredi : 9h - 18h</p>
+            <p>Samedi : 9h - 12h</p>
+            <p>Dimanche : Fermé</p>
+        </div>
+
+        <div class="footer-col">
+            <h4>Contact</h4>
+            <p>05 XX XX XX XX</p>
+            <p>contact@viteetgourmand.fr</p>
+            <p>Bordeaux, France</p>
+        </div>
+
+        <div class="footer-bottom">
+            Mentions légales | CGV | Politique de confidentialité
+        </div>
+    </footer>
+</body>
+</html>

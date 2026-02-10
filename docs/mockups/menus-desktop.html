@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1440, initial-scale=1.0">
+    <title>Mockup - Liste Menus Desktop</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --vert-primaire: #2E7D32;
+            --vert-fonce: #1B5E20;
+            --orange: #FF8F00;
+            --rouge-noel: #C62828;
+            --violet-paques: #7B1FA2;
+            --bleu-event: #1565C0;
+            --texte: #333333;
+            --texte-light: #666666;
+            --fond-gris: #F5F5F5;
+            --blanc: #FFFFFF;
+        }
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: var(--fond-gris);
+            color: var(--texte);
+            width: 1440px;
+            margin: 0 auto;
+            border: 1px solid #ddd;
+        }
+        h1, h2, h3 { font-family: 'Playfair Display', serif; }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 60px;
+            background: var(--blanc);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+        }
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 28px;
+            color: var(--vert-primaire);
+        }
+        .nav { display: flex; gap: 40px; }
+        .nav-link {
+            color: var(--texte);
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+        }
+        .nav-link.active { color: var(--vert-primaire); border-bottom: 2px solid var(--vert-primaire); padding-bottom: 5px; }
+        .header-actions { display: flex; gap: 15px; }
+        .btn-outline {
+            border: 2px solid var(--vert-primaire);
+            color: var(--vert-primaire);
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        .btn-primary {
+            background: var(--vert-primaire);
+            color: var(--blanc);
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        .breadcrumb {
+            padding: 15px 60px;
+            font-size: 14px;
+            color: var(--texte-light);
+            background: var(--blanc);
+            border-bottom: 1px solid #eee;
+        }
+        .breadcrumb a { color: var(--vert-primaire); text-decoration: none; }
+        .main-content {
+            display: flex;
+            padding: 40px 60px;
+            gap: 40px;
+        }
+        .sidebar { width: 300px; flex-shrink: 0; }
+        .filter-box {
+            background: var(--blanc);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 20px;
+        }
+        .filter-title {
+            font-size: 22px;
+            color: var(--vert-primaire);
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--fond-gris);
+        }
+        .filter-group { margin-bottom: 25px; }
+        .filter-group h4 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--texte);
+        }
+        .filter-input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #eee;
+            border-radius: 10px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+        .filter-input:focus { border-color: var(--vert-primaire); outline: none; }
+        .checkbox-group { display: flex; flex-direction: column; gap: 10px; }
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        .checkbox {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .checkbox.checked {
+            background: var(--vert-primaire);
+            border-color: var(--vert-primaire);
+            color: var(--blanc);
+        }
+        .btn-apply {
+            width: 100%;
+            background: var(--vert-primaire);
+            color: var(--blanc);
+            padding: 14px;
+            border-radius: 30px;
+            font-size: 15px;
+            font-weight: 600;
+            text-align: center;
+            margin-top: 10px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .btn-apply:hover { background: var(--vert-fonce); }
+        .btn-reset {
+            width: 100%;
+            background: transparent;
+            color: var(--texte-light);
+            padding: 12px;
+            font-size: 14px;
+            text-align: center;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+        .content { flex: 1; }
+        .content-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        .page-title { font-size: 36px; color: var(--vert-primaire); }
+        .results-count { font-size: 15px; color: var(--texte-light); margin-top: 5px; }
+        .sort-select {
+            padding: 12px 20px;
+            border: 2px solid #eee;
+            border-radius: 10px;
+            font-size: 14px;
+            background: var(--blanc);
+        }
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+        .menu-card {
+            background: var(--blanc);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .menu-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.12);
+        }
+        .menu-image {
+            height: 180px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        .menu-image-1 { background-image: url('https://images.unsplash.com/photo-1576402187878-974f70c890a5?w=600'); }
+        .menu-image-2 { background-image: url('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600'); }
+        .menu-image-3 { background-image: url('https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=600'); }
+        .menu-image-4 { background-image: url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600'); }
+        .menu-image-5 { background-image: url('https://images.unsplash.com/photo-1467003909585-2f8a72700288?w=600'); }
+        .menu-image-6 { background-image: url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600'); }
+        .theme-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--blanc);
+        }
+        .theme-noel { background: var(--rouge-noel); }
+        .theme-classique { background: var(--vert-primaire); }
+        .theme-paques { background: var(--violet-paques); }
+        .theme-event { background: var(--bleu-event); }
+        .theme-saisonnier { background: var(--orange); }
+        .menu-content { padding: 20px; }
+        .menu-title {
+            font-size: 18px;
+            color: var(--vert-primaire);
+            margin-bottom: 10px;
+        }
+        .menu-meta { font-size: 13px; color: var(--texte-light); margin-bottom: 5px; }
+        .menu-badges { display: flex; gap: 8px; margin: 12px 0; flex-wrap: wrap; }
+        .badge {
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+        .badge-regime { background: #E8F5E9; color: var(--vert-primaire); }
+        .badge-vegan { background: #4CAF50; color: var(--blanc); }
+        .badge-vegetarien { background: #81C784; color: var(--blanc); }
+        .menu-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+        .menu-price { font-size: 22px; font-weight: 700; color: var(--orange); }
+        .btn-view {
+            background: var(--vert-primaire);
+            color: var(--blanc);
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 13px;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+        .btn-view:hover { background: var(--vert-fonce); }
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            padding: 40px 0;
+        }
+        .page-num {
+            width: 45px;
+            height: 45px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+            font-weight: 600;
+            background: var(--blanc);
+            border: 2px solid #ddd;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .page-num:hover { border-color: var(--vert-primaire); color: var(--vert-primaire); }
+        .page-num.active {
+            background: var(--vert-primaire);
+            border-color: var(--vert-primaire);
+            color: var(--blanc);
+        }
+        .footer {
+            background: var(--vert-fonce);
+            padding: 50px 60px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            color: var(--blanc);
+        }
+        .footer-col h4 { font-family: 'Playfair Display', serif; font-size: 20px; margin-bottom: 20px; }
+        .footer-col p { font-size: 14px; margin-bottom: 8px; opacity: 0.9; }
+        .footer-bottom {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            font-size: 13px;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <span class="logo">Vite & Gourmand</span>
+        <nav class="nav">
+            <a href="#" class="nav-link">Accueil</a>
+            <a href="#" class="nav-link active">Nos Menus</a>
+            <a href="#" class="nav-link">Contact</a>
+        </nav>
+        <div class="header-actions">
+            <span class="btn-outline">Connexion</span>
+            <span class="btn-primary">Mon Compte</span>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <a href="#">Accueil</a> › Nos Menus
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="filter-box">
+                <h3 class="filter-title">Filtres</h3>
+
+                <div class="filter-group">
+                    <h4>Prix maximum</h4>
+                    <input type="text" class="filter-input" placeholder="Ex: 300 €">
+                </div>
+
+                <div class="filter-group">
+                    <h4>Thème</h4>
+                    <div class="checkbox-group">
+                        <label class="checkbox-item"><span class="checkbox checked">✓</span> Noël</label>
+                        <label class="checkbox-item"><span class="checkbox"></span> Pâques</label>
+                        <label class="checkbox-item"><span class="checkbox checked">✓</span> Classique</label>
+                        <label class="checkbox-item"><span class="checkbox"></span> Événement</label>
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <h4>Régime alimentaire</h4>
+                    <div class="checkbox-group">
+                        <label class="checkbox-item"><span class="checkbox checked">✓</span> Classique</label>
+                        <label class="checkbox-item"><span class="checkbox"></span> Végétarien</label>
+                        <label class="checkbox-item"><span class="checkbox"></span> Vegan</label>
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <h4>Nombre de personnes min.</h4>
+                    <input type="number" class="filter-input" placeholder="Ex: 6">
+                </div>
+
+                <div class="btn-apply">Appliquer les filtres</div>
+                <div class="btn-reset">Réinitialiser</div>
+            </div>
+        </aside>
+
+        <!-- Content -->
+        <main class="content">
+            <div class="content-header">
+                <div>
+                    <h1 class="page-title">Nos Menus</h1>
+                    <p class="results-count">12 menus trouvés</p>
+                </div>
+                <select class="sort-select">
+                    <option>Trier par : Prix croissant</option>
+                    <option>Prix décroissant</option>
+                    <option>Popularité</option>
+                </select>
+            </div>
+
+            <div class="menu-grid">
+                <!-- Menu 1 -->
+                <div class="menu-card">
+                    <div class="menu-image menu-image-1">
+                        <span class="theme-badge theme-noel">🎄 Noël</span>
+                    </div>
+                    <div class="menu-content">
+                        <h3 class="menu-title">Menu Noël Premium</h3>
+                        <p class="menu-meta">👥 Min. 8 personnes</p>
+                        <div class="menu-badges">
+                            <span class="badge badge-regime">Classique</span>
+                        </div>
+                        <div class="menu-footer">
+                            <span class="menu-price">320 €</span>
+                            <span class="btn-view">Voir</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Menu 2 -->
+                <div class="menu-card">
+                    <div class="menu-image menu-image-2">
+                        <span class="theme-badge theme-classique">🍽️ Classique</span>
+                    </div>
+                    <div class="menu-content">
+                        <h3 class="menu-title">Menu Printanier</h3>
+                        <p class="menu-meta">👥 Min. 6 personnes</p>
+                        <div class="menu-badges">
+                            <span class="badge badge-vegetarien">🌿 Végétarien</span>
+                        </div>
+                        <div class="menu-footer">
+                            <span class="menu-price">250 €</span>
+                            <span class="btn-view">Voir</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Menu 3 -->
+                <div class="menu-card">
+                    <div class="menu-image menu-image-3">
+                        <span class="theme-badge theme-paques">🐰 Pâques</span>
+                    </div>
+                    <div class="menu-content">
+                        <h3 class="menu-title">Menu Pâques Tradition</h3>
+                        <p class="menu-meta">👥 Min. 10 personnes</p>
+                        <div class="menu-badges">
+                            <span class="badge badge-regime">Classique</span>
+                        </div>
+                        <div class="menu-footer">
+                            <span class="menu-price">280 €</span>
+                            <span class="btn-view">Voir</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Menu 4 -->
+                <div class="menu-card">
+                    <div class="menu-image menu-image-4">
+                        <span class="theme-badge theme-classique">🍽️ Classique</span>
+                    </div>
+                    <div class="menu-content">
+                        <h3 class="menu-title">Menu Végétal</h3>
+                        <p class="menu-meta">👥 Min. 4 personnes</p>
+                        <div class="menu-badges">
+                            <span class="badge badge-vegan">🌱 Vegan</span>
+                        </div>
+                        <div class="menu-footer">
+                            <span class="menu-price">200 €</span>
+                            <span class="btn-view">Voir</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Menu 5 -->
+                <div class="menu-card">
+                    <div class="menu-image menu-image-5">
+                        <span class="theme-badge theme-saisonnier">☀️ Été</span>
+                    </div>
+                    <div class="menu-content">
+                        <h3 class="menu-title">Menu Été Fraîcheur</h3>
+                        <p class="menu-meta">👥 Min. 8 personnes</p>
+                        <div class="menu-badges">
+                            <span class="badge badge-regime">Léger</span>
+                        </div>
+                        <div class="menu-footer">
+                            <span class="menu-price">290 €</span>
+                            <span class="btn-view">Voir</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Menu 6 -->
+                <div class="menu-card">
+                    <div class="menu-image menu-image-6">
+                        <span class="theme-badge theme-event">🎉 Événement</span>
+                    </div>
+                    <div class="menu-content">
+                        <h3 class="menu-title">Menu Prestige</h3>
+                        <p class="menu-meta">👥 Min. 12 personnes</p>
+                        <div class="menu-badges">
+                            <span class="badge badge-regime">Premium</span>
+                        </div>
+                        <div class="menu-footer">
+                            <span class="menu-price">450 €</span>
+                            <span class="btn-view">Voir</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pagination -->
+            <div class="pagination">
+                <span class="page-num">‹</span>
+                <span class="page-num active">1</span>
+                <span class="page-num">2</span>
+                <span class="page-num">3</span>
+                <span class="page-num">4</span>
+                <span class="page-num">5</span>
+                <span class="page-num">›</span>
+            </div>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-col">
+            <h4>Vite & Gourmand</h4>
+            <p>Traiteur d'exception à Bordeaux</p>
+        </div>
+        <div class="footer-col">
+            <h4>Horaires</h4>
+            <p>Lundi - Vendredi : 9h - 18h</p>
+            <p>Samedi : 9h - 12h</p>
+        </div>
+        <div class="footer-col">
+            <h4>Contact</h4>
+            <p>📞 05 XX XX XX XX</p>
+            <p>✉️ contact@viteetgourmand.fr</p>
+        </div>
+        <div class="footer-bottom">
+            Mentions légales | CGV | Politique de confidentialité | © 2025 Vite & Gourmand
+        </div>
+    </footer>
+</body>
+</html>

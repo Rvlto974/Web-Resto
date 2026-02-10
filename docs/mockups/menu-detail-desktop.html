@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1440, initial-scale=1.0">
+    <title>Mockup - Détail Menu Desktop</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --vert-primaire: #2E7D32;
+            --vert-fonce: #1B5E20;
+            --orange: #FF8F00;
+            --rouge-noel: #C62828;
+            --texte: #333333;
+            --texte-light: #666666;
+            --fond-gris: #F5F5F5;
+            --blanc: #FFFFFF;
+            --warning: #FFF3E0;
+            --warning-border: #FFB74D;
+        }
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: var(--fond-gris);
+            color: var(--texte);
+            width: 1440px;
+            margin: 0 auto;
+            border: 1px solid #ddd;
+        }
+        h1, h2, h3 { font-family: 'Playfair Display', serif; }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 60px;
+            background: var(--blanc);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+        }
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 28px;
+            color: var(--vert-primaire);
+        }
+        .nav { display: flex; gap: 40px; }
+        .nav-link {
+            color: var(--texte);
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+        }
+        .nav-link.active { color: var(--vert-primaire); }
+        .header-actions { display: flex; gap: 15px; }
+        .btn-outline {
+            border: 2px solid var(--vert-primaire);
+            color: var(--vert-primaire);
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        .btn-primary {
+            background: var(--vert-primaire);
+            color: var(--blanc);
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        .breadcrumb {
+            padding: 15px 60px;
+            font-size: 14px;
+            color: var(--texte-light);
+            background: var(--blanc);
+            border-bottom: 1px solid #eee;
+        }
+        .breadcrumb a { color: var(--vert-primaire); text-decoration: none; }
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            padding: 40px 60px;
+            background: var(--blanc);
+        }
+        .gallery-section {}
+        .main-image {
+            height: 450px;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            background: url('https://images.unsplash.com/photo-1576402187878-974f70c890a5?w=1000') center/cover;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+        }
+        .thumbnails {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+        .thumbnail {
+            height: 90px;
+            border-radius: 10px;
+            background-size: cover;
+            background-position: center;
+            cursor: pointer;
+            opacity: 0.7;
+            transition: all 0.3s;
+            border: 3px solid transparent;
+        }
+        .thumbnail:hover { opacity: 1; }
+        .thumbnail.active { opacity: 1; border-color: var(--vert-primaire); }
+        .thumb-1 { background-image: url('https://images.unsplash.com/photo-1576402187878-974f70c890a5?w=200'); }
+        .thumb-2 { background-image: url('https://images.unsplash.com/photo-1432139555190-58524dae6a55?w=200'); }
+        .thumb-3 { background-image: url('https://images.unsplash.com/photo-1606728035253-49e8a23146de?w=200'); }
+        .thumb-4 { background-image: url('https://images.unsplash.com/photo-1551024506-0bccd828d307?w=200'); }
+        .info-section {}
+        .menu-title {
+            font-size: 42px;
+            color: var(--vert-primaire);
+            margin-bottom: 20px;
+        }
+        .badges { display: flex; gap: 12px; margin-bottom: 25px; }
+        .badge {
+            padding: 8px 18px;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        .badge-theme { background: var(--rouge-noel); color: var(--blanc); }
+        .badge-regime { background: #E8F5E9; color: var(--vert-primaire); }
+        .price {
+            font-size: 42px;
+            font-weight: 700;
+            color: var(--orange);
+            margin-bottom: 5px;
+        }
+        .price-info { font-size: 16px; color: var(--texte-light); margin-bottom: 25px; }
+        .description {
+            font-size: 16px;
+            line-height: 1.8;
+            color: var(--texte-light);
+            margin-bottom: 30px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #eee;
+        }
+        .section-title {
+            font-size: 22px;
+            color: var(--vert-primaire);
+            margin-bottom: 15px;
+        }
+        .allergens { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 30px; }
+        .allergen {
+            background: var(--warning);
+            border: 1px solid var(--warning-border);
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-size: 13px;
+            font-weight: 500;
+        }
+        .order-box {
+            background: linear-gradient(135deg, var(--vert-primaire), var(--vert-fonce));
+            border-radius: 20px;
+            padding: 30px;
+            color: var(--blanc);
+        }
+        .quantity-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+        .quantity-label { font-size: 16px; }
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .qty-btn {
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            background: rgba(255,255,255,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .qty-btn:hover { background: rgba(255,255,255,0.3); }
+        .qty-value { font-size: 26px; font-weight: 700; }
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid rgba(255,255,255,0.3);
+        }
+        .price-label { font-size: 16px; opacity: 0.9; }
+        .price-value { font-size: 32px; font-weight: 700; }
+        .btn-order {
+            width: 100%;
+            background: var(--orange);
+            color: var(--blanc);
+            padding: 18px;
+            border-radius: 35px;
+            font-size: 18px;
+            font-weight: 700;
+            text-align: center;
+            cursor: pointer;
+            box-shadow: 0 6px 25px rgba(255,143,0,0.4);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .btn-order:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(255,143,0,0.5);
+        }
+        .conditions-mini {
+            margin-top: 20px;
+            font-size: 13px;
+            opacity: 0.85;
+        }
+        .conditions-mini p { margin-bottom: 5px; }
+        .full-section {
+            grid-column: 1 / -1;
+            padding: 50px 0;
+            border-top: 1px solid #eee;
+        }
+        .full-section-title {
+            font-size: 32px;
+            color: var(--vert-primaire);
+            margin-bottom: 35px;
+        }
+        .dishes-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        .dish-card {
+            background: var(--blanc);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+        }
+        .dish-card:hover { transform: translateY(-5px); }
+        .dish-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+        .dish-image-1 { background-image: url('https://images.unsplash.com/photo-1432139555190-58524dae6a55?w=500'); }
+        .dish-image-2 { background-image: url('https://images.unsplash.com/photo-1606728035253-49e8a23146de?w=500'); }
+        .dish-image-3 { background-image: url('https://images.unsplash.com/photo-1551024506-0bccd828d307?w=500'); }
+        .dish-content { padding: 25px; }
+        .dish-category {
+            font-size: 12px;
+            color: var(--orange);
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            margin-bottom: 8px;
+        }
+        .dish-title {
+            font-size: 22px;
+            color: var(--vert-primaire);
+            margin-bottom: 12px;
+        }
+        .dish-desc {
+            font-size: 14px;
+            color: var(--texte-light);
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        .dish-allergens { display: flex; gap: 8px; flex-wrap: wrap; }
+        .dish-allergen {
+            background: var(--warning);
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+        .conditions-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        .condition-card {
+            background: var(--blanc);
+            text-align: center;
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+        }
+        .condition-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #E8F5E9, #C8E6C9);
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+        }
+        .condition-title {
+            font-size: 18px;
+            color: var(--vert-primaire);
+            margin-bottom: 10px;
+        }
+        .condition-text { font-size: 14px; color: var(--texte-light); line-height: 1.5; }
+        .avis-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        .avis-score-box { display: flex; align-items: center; gap: 15px; }
+        .stars { color: var(--orange); font-size: 24px; }
+        .avis-score { font-size: 32px; font-weight: 700; color: var(--texte); }
+        .avis-count { font-size: 14px; color: var(--texte-light); }
+        .avis-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+        .avis-card {
+            background: var(--blanc);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.08);
+        }
+        .avis-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 18px;
+        }
+        .avis-author-box { display: flex; align-items: center; gap: 15px; }
+        .avatar {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            background-size: cover;
+            background-position: center;
+            border: 3px solid var(--vert-primaire);
+        }
+        .avatar-1 { background-image: url('https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100'); }
+        .avatar-2 { background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100'); }
+        .avis-author { font-weight: 700; font-size: 16px; color: var(--texte); }
+        .avis-date { font-size: 13px; color: var(--texte-light); }
+        .avis-stars { color: var(--orange); font-size: 18px; }
+        .avis-text {
+            font-size: 15px;
+            color: var(--texte-light);
+            font-style: italic;
+            line-height: 1.7;
+        }
+        .btn-link {
+            display: inline-block;
+            margin-top: 25px;
+            color: var(--vert-primaire);
+            font-size: 15px;
+            font-weight: 600;
+            text-decoration: none;
+        }
+        .btn-link:hover { text-decoration: underline; }
+        .footer {
+            background: var(--vert-fonce);
+            padding: 50px 60px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            color: var(--blanc);
+        }
+        .footer-col h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+        .footer-col p { font-size: 14px; margin-bottom: 8px; opacity: 0.9; }
+        .footer-bottom {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            font-size: 13px;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <span class="logo">Vite & Gourmand</span>
+        <nav class="nav">
+            <a href="#" class="nav-link">Accueil</a>
+            <a href="#" class="nav-link active">Nos Menus</a>
+            <a href="#" class="nav-link">Contact</a>
+        </nav>
+        <div class="header-actions">
+            <span class="btn-outline">Connexion</span>
+            <span class="btn-primary">Mon Compte</span>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <a href="#">Accueil</a> › <a href="#">Nos Menus</a> › Menu Noël Premium
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Gallery -->
+        <div class="gallery-section">
+            <div class="main-image"></div>
+            <div class="thumbnails">
+                <div class="thumbnail thumb-1 active"></div>
+                <div class="thumbnail thumb-2"></div>
+                <div class="thumbnail thumb-3"></div>
+                <div class="thumbnail thumb-4"></div>
+            </div>
+        </div>
+
+        <!-- Info -->
+        <div class="info-section">
+            <h1 class="menu-title">Menu Noël Premium</h1>
+            <div class="badges">
+                <span class="badge badge-theme">🎄 Noël</span>
+                <span class="badge badge-regime">Classique</span>
+            </div>
+            <div class="price">320 €</div>
+            <p class="price-info">Pour 8 personnes minimum</p>
+
+            <p class="description">Un menu festif et raffiné pour célébrer Noël en famille. Des produits nobles et une présentation soignée pour un moment inoubliable. Chaque plat est préparé avec soin par notre équipe de chefs expérimentés, garantissant une expérience culinaire exceptionnelle.</p>
+
+            <h3 class="section-title">Allergènes présents</h3>
+            <div class="allergens">
+                <span class="allergen">🌾 Gluten</span>
+                <span class="allergen">🥛 Lait</span>
+                <span class="allergen">🥚 Œufs</span>
+                <span class="allergen">🥜 Fruits à coque</span>
+            </div>
+
+            <div class="order-box">
+                <div class="quantity-row">
+                    <span class="quantity-label">Nombre de personnes</span>
+                    <div class="quantity-controls">
+                        <span class="qty-btn">−</span>
+                        <span class="qty-value">8</span>
+                        <span class="qty-btn">+</span>
+                    </div>
+                </div>
+                <div class="price-row">
+                    <span class="price-label">Prix estimé</span>
+                    <span class="price-value">320 €</span>
+                </div>
+                <div class="btn-order">🛒 Commander ce menu</div>
+                <div class="conditions-mini">
+                    <p>✓ Délai de commande : 48h minimum</p>
+                    <p>✓ Livraison disponible à Bordeaux et environs</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Composition -->
+        <div class="full-section">
+            <h2 class="full-section-title">Composition du menu</h2>
+            <div class="dishes-grid">
+                <div class="dish-card">
+                    <div class="dish-image dish-image-1"></div>
+                    <div class="dish-content">
+                        <div class="dish-category">Entrée</div>
+                        <h3 class="dish-title">Foie gras maison</h3>
+                        <p class="dish-desc">Foie gras de canard mi-cuit, accompagné d'un chutney de figues maison et de pain d'épices toasté</p>
+                        <div class="dish-allergens">
+                            <span class="dish-allergen">🌾 Gluten</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dish-card">
+                    <div class="dish-image dish-image-2"></div>
+                    <div class="dish-content">
+                        <div class="dish-category">Plat</div>
+                        <h3 class="dish-title">Dinde aux marrons</h3>
+                        <p class="dish-desc">Dinde fermière rôtie, farce traditionnelle aux marrons et aux herbes de Provence, jus de cuisson</p>
+                        <div class="dish-allergens">
+                            <span class="dish-allergen">🥚 Œufs</span>
+                            <span class="dish-allergen">🥜 Fruits à coque</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dish-card">
+                    <div class="dish-image dish-image-3"></div>
+                    <div class="dish-content">
+                        <div class="dish-category">Dessert</div>
+                        <h3 class="dish-title">Bûche au chocolat</h3>
+                        <p class="dish-desc">Bûche traditionnelle au chocolat noir 70%, mousse légère et cœur de crème de marrons glacés</p>
+                        <div class="dish-allergens">
+                            <span class="dish-allergen">🥛 Lait</span>
+                            <span class="dish-allergen">🥚 Œufs</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Conditions -->
+        <div class="full-section">
+            <h2 class="full-section-title">Conditions et informations</h2>
+            <div class="conditions-grid">
+                <div class="condition-card">
+                    <div class="condition-icon">⏱️</div>
+                    <h4 class="condition-title">Délai de commande</h4>
+                    <p class="condition-text">48 heures minimum avant la date de livraison souhaitée</p>
+                </div>
+                <div class="condition-card">
+                    <div class="condition-icon">❄️</div>
+                    <h4 class="condition-title">Conservation</h4>
+                    <p class="condition-text">À conserver entre 0°C et 4°C jusqu'à la consommation</p>
+                </div>
+                <div class="condition-card">
+                    <div class="condition-icon">🚚</div>
+                    <h4 class="condition-title">Livraison</h4>
+                    <p class="condition-text">5€ + 0,59€/km pour les livraisons hors Bordeaux</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Avis -->
+        <div class="full-section">
+            <div class="avis-header">
+                <h2 class="full-section-title" style="margin-bottom: 0;">Avis sur ce menu</h2>
+                <div class="avis-score-box">
+                    <span class="stars">★★★★★</span>
+                    <span class="avis-score">4.8/5</span>
+                    <span class="avis-count">(24 avis)</span>
+                </div>
+            </div>
+
+            <div class="avis-grid">
+                <div class="avis-card">
+                    <div class="avis-top">
+                        <div class="avis-author-box">
+                            <div class="avatar avatar-1"></div>
+                            <div>
+                                <div class="avis-author">Marie D.</div>
+                                <div class="avis-date">Il y a 2 semaines</div>
+                            </div>
+                        </div>
+                        <span class="avis-stars">★★★★★</span>
+                    </div>
+                    <p class="avis-text">"Excellent menu pour notre repas de Noël en famille. Les plats étaient délicieux et la présentation impeccable. Service de livraison très professionnel. Je recommande vivement !"</p>
+                </div>
+
+                <div class="avis-card">
+                    <div class="avis-top">
+                        <div class="avis-author-box">
+                            <div class="avatar avatar-2"></div>
+                            <div>
+                                <div class="avis-author">Pierre L.</div>
+                                <div class="avis-date">Il y a 1 mois</div>
+                            </div>
+                        </div>
+                        <span class="avis-stars">★★★★☆</span>
+                    </div>
+                    <p class="avis-text">"Très bon rapport qualité prix, livraison impeccable. Seul petit bémol : le dessert était un peu trop sucré à mon goût, mais mes invités ont adoré !"</p>
+                </div>
+            </div>
+
+            <a href="#" class="btn-link">Voir tous les avis (24) →</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-col">
+            <h4>Vite & Gourmand</h4>
+            <p>Traiteur d'exception à Bordeaux depuis 25 ans</p>
+        </div>
+        <div class="footer-col">
+            <h4>Horaires</h4>
+            <p>Lundi - Vendredi : 9h - 18h</p>
+            <p>Samedi : 9h - 12h</p>
+        </div>
+        <div class="footer-col">
+            <h4>Contact</h4>
+            <p>📞 05 XX XX XX XX</p>
+            <p>✉️ contact@viteetgourmand.fr</p>
+        </div>
+        <div class="footer-bottom">
+            Mentions légales | CGV | Politique de confidentialité | © 2025 Vite & Gourmand
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=375, initial-scale=1.0">
+    <title>Mockup - Liste Menus Mobile</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --vert-primaire: #2E7D32;
+            --vert-fonce: #1B5E20;
+            --orange: #FF8F00;
+            --rouge-noel: #C62828;
+            --violet-paques: #7B1FA2;
+            --bleu-event: #1565C0;
+            --texte: #333333;
+            --texte-light: #666666;
+            --fond-gris: #F5F5F5;
+            --blanc: #FFFFFF;
+        }
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: var(--fond-gris);
+            color: var(--texte);
+            width: 375px;
+            margin: 0 auto;
+            border: 1px solid #ddd;
+        }
+        h1, h2, h3 { font-family: 'Playfair Display', serif; }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background: var(--blanc);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .menu-icon { font-size: 24px; color: var(--vert-primaire); }
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 18px;
+            color: var(--vert-primaire);
+        }
+        .btn-outline {
+            border: 2px solid var(--vert-primaire);
+            color: var(--vert-primaire);
+            padding: 8px 15px;
+            border-radius: 25px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        .breadcrumb {
+            padding: 12px 15px;
+            font-size: 13px;
+            color: var(--texte-light);
+            background: var(--blanc);
+        }
+        .breadcrumb a { color: var(--vert-primaire); }
+        .page-header {
+            padding: 20px 15px;
+            background: var(--blanc);
+            border-bottom: 1px solid #eee;
+        }
+        .page-title {
+            font-size: 28px;
+            color: var(--vert-primaire);
+            margin-bottom: 15px;
+        }
+        .filter-actions { display: flex; gap: 10px; }
+        .btn-filter {
+            flex: 1;
+            padding: 12px;
+            border-radius: 25px;
+            font-size: 13px;
+            font-weight: 600;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .btn-filter-primary {
+            background: var(--vert-primaire);
+            color: var(--blanc);
+        }
+        .btn-filter-outline {
+            background: var(--blanc);
+            border: 2px solid var(--vert-primaire);
+            color: var(--vert-primaire);
+        }
+        .menu-list { padding: 15px; }
+        .menu-card {
+            background: var(--blanc);
+            border-radius: 15px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        .menu-image {
+            height: 180px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        .menu-image-1 { background-image: url('https://images.unsplash.com/photo-1576402187878-974f70c890a5?w=600'); }
+        .menu-image-2 { background-image: url('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600'); }
+        .menu-image-3 { background-image: url('https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=600'); }
+        .theme-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--blanc);
+        }
+        .theme-noel { background: var(--rouge-noel); }
+        .theme-classique { background: var(--vert-primaire); }
+        .theme-paques { background: var(--violet-paques); }
+        .menu-content { padding: 18px; }
+        .menu-title {
+            font-size: 20px;
+            color: var(--vert-primaire);
+            margin-bottom: 10px;
+        }
+        .menu-meta {
+            font-size: 13px;
+            color: var(--texte-light);
+            margin-bottom: 5px;
+        }
+        .menu-badges {
+            display: flex;
+            gap: 8px;
+            margin: 12px 0;
+            flex-wrap: wrap;
+        }
+        .badge {
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+        .badge-regime { background: #E8F5E9; color: var(--vert-primaire); }
+        .badge-vegan { background: #4CAF50; color: var(--blanc); }
+        .badge-vegetarien { background: #81C784; color: var(--blanc); }
+        .menu-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+        .menu-price {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--orange);
+        }
+        .btn-view {
+            background: var(--vert-primaire);
+            color: var(--blanc);
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            padding: 25px;
+            background: var(--blanc);
+        }
+        .page-num {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 600;
+            background: var(--blanc);
+            border: 2px solid #ddd;
+            color: var(--texte);
+        }
+        .page-num.active {
+            background: var(--vert-primaire);
+            border-color: var(--vert-primaire);
+            color: var(--blanc);
+        }
+        .footer {
+            background: var(--vert-fonce);
+            padding: 30px 20px;
+            text-align: center;
+            color: var(--blanc);
+        }
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        .footer-info { font-size: 13px; opacity: 0.9; margin-bottom: 5px; }
+        .footer-links {
+            font-size: 11px;
+            opacity: 0.7;
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <span class="menu-icon">☰</span>
+        <span class="logo">Vite & Gourmand</span>
+        <span class="btn-outline">Connexion</span>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <a href="#">Accueil</a> › Nos Menus
+    </div>
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <h1 class="page-title">Nos Menus</h1>
+        <div class="filter-actions">
+            <span class="btn-filter btn-filter-primary">☰ Filtres</span>
+            <span class="btn-filter btn-filter-outline">Trier ▼</span>
+        </div>
+    </div>
+
+    <!-- Menu List -->
+    <div class="menu-list">
+        <!-- Menu 1 -->
+        <div class="menu-card">
+            <div class="menu-image menu-image-1">
+                <span class="theme-badge theme-noel">🎄 Noël</span>
+            </div>
+            <div class="menu-content">
+                <h3 class="menu-title">Menu Noël Premium</h3>
+                <p class="menu-meta">👥 Min. 8 personnes</p>
+                <div class="menu-badges">
+                    <span class="badge badge-regime">Classique</span>
+                    <span class="badge badge-regime">Festif</span>
+                </div>
+                <div class="menu-footer">
+                    <span class="menu-price">320 €</span>
+                    <span class="btn-view">Voir le menu</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menu 2 -->
+        <div class="menu-card">
+            <div class="menu-image menu-image-2">
+                <span class="theme-badge theme-classique">🍽️ Classique</span>
+            </div>
+            <div class="menu-content">
+                <h3 class="menu-title">Menu Printanier</h3>
+                <p class="menu-meta">👥 Min. 6 personnes</p>
+                <div class="menu-badges">
+                    <span class="badge badge-vegetarien">🌿 Végétarien</span>
+                    <span class="badge badge-regime">Léger</span>
+                </div>
+                <div class="menu-footer">
+                    <span class="menu-price">250 €</span>
+                    <span class="btn-view">Voir le menu</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menu 3 -->
+        <div class="menu-card">
+            <div class="menu-image menu-image-3">
+                <span class="theme-badge theme-paques">🐰 Pâques</span>
+            </div>
+            <div class="menu-content">
+                <h3 class="menu-title">Menu Pâques Tradition</h3>
+                <p class="menu-meta">👥 Min. 10 personnes</p>
+                <div class="menu-badges">
+                    <span class="badge badge-regime">Classique</span>
+                </div>
+                <div class="menu-footer">
+                    <span class="menu-price">280 €</span>
+                    <span class="btn-view">Voir le menu</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pagination -->
+    <div class="pagination">
+        <span class="page-num">‹</span>
+        <span class="page-num active">1</span>
+        <span class="page-num">2</span>
+        <span class="page-num">3</span>
+        <span class="page-num">›</span>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-logo">Vite & Gourmand</div>
+        <p class="footer-info">📞 05 XX XX XX XX</p>
+        <p class="footer-info">📍 Bordeaux</p>
+        <div class="footer-links">
+            Mentions légales | CGV | RGPD
+        </div>
+    </footer>
+</body>
+</html>
