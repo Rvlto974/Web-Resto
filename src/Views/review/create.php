@@ -17,7 +17,7 @@ require_once __DIR__ . '/../../Core/Csrf.php';
             </nav>
 
             <div class="card shadow">
-                <div class="card-header" style="background-color: #2E7D32; color: white;">
+                <div class="card-header" style="background-color: #5DA99A; color: white;">
                     <h4 class="mb-0" style="font-family: 'Playfair Display', serif;">
                         <i class="fas fa-star me-2"></i>Laisser un avis
                     </h4>

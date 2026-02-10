@@ -15,7 +15,7 @@ require_once __DIR__ . '/../../../Core/Csrf.php';
     <div class="row justify-content-center">
         <div class="col-lg-6">
             <div class="card shadow">
-                <div class="card-header" style="background-color: #2E7D32; color: white;">
+                <div class="card-header" style="background-color: #5DA99A; color: white;">
                     <h4 class="mb-0">
                         <i class="fas fa-user-plus me-2"></i>Creer un employe
                     </h4>
@@ -67,7 +67,7 @@ require_once __DIR__ . '/../../../Core/Csrf.php';
                             <a href="/admin/employees" class="btn btn-outline-secondary">
                                 <i class="fas fa-arrow-left me-2"></i>Retour
                             </a>
-                            <button type="submit" class="btn" style="background-color: #2E7D32; color: white;">
+                            <button type="submit" class="btn" style="background-color: #5DA99A; color: white;">
                                 <i class="fas fa-save me-2"></i>Creer l'employe
                             </button>
                         </div>

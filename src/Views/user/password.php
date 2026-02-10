@@ -10,7 +10,7 @@
             </nav>
 
             <div class="card shadow">
-                <div class="card-header" style="background-color: #2E7D32; color: white;">
+                <div class="card-header" style="background-color: #5DA99A; color: white;">
                     <h4 class="mb-0" style="font-family: 'Playfair Display', serif;">
                         <i class="fas fa-key me-2"></i>Changer mon mot de passe
                     </h4>
@@ -63,7 +63,7 @@
                             <a href="/user/profile" class="btn btn-outline-secondary">
                                 <i class="fas fa-arrow-left me-2"></i>Retour au profil
                             </a>
-                            <button type="submit" class="btn" style="background-color: #2E7D32; color: white;">
+                            <button type="submit" class="btn" style="background-color: #5DA99A; color: white;">
                                 <i class="fas fa-save me-2"></i>Changer le mot de passe
                             </button>
                         </div>

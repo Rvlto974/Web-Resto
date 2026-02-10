@@ -81,7 +81,7 @@ class EmailService {
     <table width="100%" cellpadding="0" cellspacing="0" style="max-width: 600px; margin: 0 auto; background-color: #ffffff;">
         <!-- Header -->
         <tr>
-            <td style="background-color: #2E7D32; padding: 20px; text-align: center;">
+            <td style="background-color: #5DA99A; padding: 20px; text-align: center;">
                 <h1 style="color: #ffffff; margin: 0; font-family: Georgia, serif;">
                     Vite & Gourmand
                 </h1>
@@ -123,7 +123,7 @@ class EmailService {
      */
     public static function sendWelcome($user) {
         $content = '
-            <h2 style="color: #2E7D32; margin-top: 0;">Bienvenue ' . htmlspecialchars($user['first_name']) . ' !</h2>
+            <h2 style="color: #5DA99A; margin-top: 0;">Bienvenue ' . htmlspecialchars($user['first_name']) . ' !</h2>
 
             <p>Nous sommes ravis de vous compter parmi nos clients.</p>
 
@@ -164,7 +164,7 @@ class EmailService {
         $deliveryTime = date('H:i', strtotime($order['delivery_time']));
 
         $content = '
-            <h2 style="color: #2E7D32; margin-top: 0;">Confirmation de commande</h2>
+            <h2 style="color: #5DA99A; margin-top: 0;">Confirmation de commande</h2>
 
             <p>Bonjour ' . htmlspecialchars($order['customer_first_name']) . ',</p>
 
@@ -202,7 +202,7 @@ class EmailService {
             </p>
 
             <p style="text-align: center; margin: 30px 0;">
-                <a href="' . self::$config['site_url'] . '/order/show/' . $order['id'] . '" style="display: inline-block; background-color: #2E7D32; color: #fff; padding: 12px 30px; text-decoration: none; border-radius: 5px; font-weight: bold;">
+                <a href="' . self::$config['site_url'] . '/order/show/' . $order['id'] . '" style="display: inline-block; background-color: #5DA99A; color: #fff; padding: 12px 30px; text-decoration: none; border-radius: 5px; font-weight: bold;">
                     Voir ma commande
                 </a>
             </p>
@@ -226,7 +226,7 @@ class EmailService {
      */
     public static function sendEmployeeCreated($employee, $tempPassword) {
         $content = '
-            <h2 style="color: #2E7D32; margin-top: 0;">Bienvenue dans l\'equipe !</h2>
+            <h2 style="color: #5DA99A; margin-top: 0;">Bienvenue dans l\'equipe !</h2>
 
             <p>Bonjour ' . htmlspecialchars($employee['first_name']) . ',</p>
 
@@ -248,7 +248,7 @@ class EmailService {
             </p>
 
             <p style="text-align: center; margin: 30px 0;">
-                <a href="' . self::$config['site_url'] . '/user/login" style="display: inline-block; background-color: #2E7D32; color: #fff; padding: 12px 30px; text-decoration: none; border-radius: 5px; font-weight: bold;">
+                <a href="' . self::$config['site_url'] . '/user/login" style="display: inline-block; background-color: #5DA99A; color: #fff; padding: 12px 30px; text-decoration: none; border-radius: 5px; font-weight: bold;">
                     Se connecter
                 </a>
             </p>
@@ -316,7 +316,7 @@ class EmailService {
      */
     public static function sendReviewInvitation($order) {
         $content = '
-            <h2 style="color: #2E7D32; margin-top: 0;">Votre avis nous interesse !</h2>
+            <h2 style="color: #5DA99A; margin-top: 0;">Votre avis nous interesse !</h2>
 
             <p>Bonjour ' . htmlspecialchars($order['customer_first_name']) . ',</p>
 
@@ -360,7 +360,7 @@ class EmailService {
         $resetUrl = self::$config['site_url'] . '/user/reset-password/' . $token;
 
         $content = '
-            <h2 style="color: #2E7D32; margin-top: 0;">Reinitialisation de mot de passe</h2>
+            <h2 style="color: #5DA99A; margin-top: 0;">Reinitialisation de mot de passe</h2>
 
             <p>Bonjour ' . htmlspecialchars($user['first_name']) . ',</p>
 
@@ -370,7 +370,7 @@ class EmailService {
             </p>
 
             <p style="text-align: center; margin: 30px 0;">
-                <a href="' . htmlspecialchars($resetUrl) . '" style="display: inline-block; background-color: #2E7D32; color: #fff; padding: 12px 30px; text-decoration: none; border-radius: 5px; font-weight: bold;">
+                <a href="' . htmlspecialchars($resetUrl) . '" style="display: inline-block; background-color: #5DA99A; color: #fff; padding: 12px 30px; text-decoration: none; border-radius: 5px; font-weight: bold;">
                     Reinitialiser mon mot de passe
                 </a>
             </p>
@@ -412,7 +412,7 @@ class EmailService {
         $statusLabel = $statusLabels[$newStatus] ?? $newStatus;
 
         $content = '
-            <h2 style="color: #2E7D32; margin-top: 0;">Mise a jour de votre commande</h2>
+            <h2 style="color: #5DA99A; margin-top: 0;">Mise a jour de votre commande</h2>
 
             <p>Bonjour ' . htmlspecialchars($order['customer_first_name']) . ',</p>
 
@@ -422,7 +422,7 @@ class EmailService {
             </p>
 
             <p style="text-align: center; margin: 30px 0;">
-                <a href="' . self::$config['site_url'] . '/order/show/' . $order['id'] . '" style="display: inline-block; background-color: #2E7D32; color: #fff; padding: 12px 30px; text-decoration: none; border-radius: 5px; font-weight: bold;">
+                <a href="' . self::$config['site_url'] . '/order/show/' . $order['id'] . '" style="display: inline-block; background-color: #5DA99A; color: #fff; padding: 12px 30px; text-decoration: none; border-radius: 5px; font-weight: bold;">
                     Voir ma commande
                 </a>
             </p>

@@ -6,6 +6,7 @@ class Model {
         if (self::$pdo === null) {
             try {
                 self::$pdo = new PDO(DB_DSN, DB_USER, DB_PASS, DB_OPTIONS);
+                self::$pdo->exec("SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci");
             } catch (PDOException $e) {
                 error_log("Erreur de connexion : " . $e->getMessage());
                 die("Erreur de connexion à la base de données.");

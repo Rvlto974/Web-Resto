@@ -24,7 +24,7 @@ require_once __DIR__ . '/../../Core/Csrf.php';
                          id="mainImage" style="height: 400px; object-fit: cover;">
                 <?php else: ?>
                     <div class="card-img-top d-flex align-items-center justify-content-center"
-                         style="height: 400px; background: linear-gradient(135deg, #2E7D32, #4CAF50);">
+                         style="height: 400px; background: linear-gradient(135deg, #5DA99A, #7DBFB2);">
                         <i class="fas fa-utensils fa-5x text-white"></i>
                     </div>
                 <?php endif; ?>
@@ -54,7 +54,7 @@ require_once __DIR__ . '/../../Core/Csrf.php';
             <div class="card shadow h-100">
                 <div class="card-body">
                     <!-- Titre et badges -->
-                    <h1 class="mb-3" style="font-family: 'Playfair Display', serif; color: #2E7D32;">
+                    <h1 class="mb-3" style="font-family: 'Playfair Display', serif; color: #5DA99A;">
                         <?php echo htmlspecialchars($menu['title']); ?>
                     </h1>
 
@@ -112,7 +112,7 @@ require_once __DIR__ . '/../../Core/Csrf.php';
 
                     <!-- Description -->
                     <div class="mb-4">
-                        <h5><i class="fas fa-info-circle me-2" style="color: #2E7D32;"></i>Description</h5>
+                        <h5><i class="fas fa-info-circle me-2" style="color: #5DA99A;"></i>Description</h5>
                         <p><?php echo nl2br(htmlspecialchars($menu['description'])); ?></p>
                     </div>
 
@@ -157,7 +157,7 @@ require_once __DIR__ . '/../../Core/Csrf.php';
 
     <!-- Composition du menu -->
     <div class="card shadow mb-4">
-        <div class="card-header" style="background-color: #2E7D32; color: white;">
+        <div class="card-header" style="background-color: #5DA99A; color: white;">
             <h4 class="mb-0" style="font-family: 'Playfair Display', serif;">
                 <i class="fas fa-list-alt me-2"></i>Composition du menu
             </h4>
@@ -167,7 +167,7 @@ require_once __DIR__ . '/../../Core/Csrf.php';
                 <?php foreach ($categoryLabels as $catKey => $catLabel): ?>
                     <?php if (!empty($dishesByCategory[$catKey])): ?>
                         <div class="col-md-4 mb-4">
-                            <h5 class="border-bottom pb-2" style="color: #2E7D32;">
+                            <h5 class="border-bottom pb-2" style="color: #5DA99A;">
                                 <i class="fas fa-<?php echo $catKey === 'starter' ? 'seedling' : ($catKey === 'main' ? 'drumstick-bite' : ($catKey === 'dessert' ? 'ice-cream' : 'glass-cheers')); ?> me-2"></i>
                                 <?php echo $catLabel; ?>
                             </h5>
@@ -197,7 +197,7 @@ require_once __DIR__ . '/../../Core/Csrf.php';
     <!-- Conditions et informations -->
     <div class="card shadow mb-4">
         <div class="card-header">
-            <h4 class="mb-0" style="font-family: 'Playfair Display', serif; color: #2E7D32;">
+            <h4 class="mb-0" style="font-family: 'Playfair Display', serif; color: #5DA99A;">
                 <i class="fas fa-clipboard-list me-2"></i>Conditions et informations
             </h4>
         </div>
@@ -205,8 +205,8 @@ require_once __DIR__ . '/../../Core/Csrf.php';
             <div class="row">
                 <div class="col-md-4 mb-3">
                     <div class="d-flex align-items-center">
-                        <div class="rounded-circle p-3 me-3" style="background-color: #E8F5E9;">
-                            <i class="fas fa-clock fa-lg" style="color: #2E7D32;"></i>
+                        <div class="rounded-circle p-3 me-3" style="background-color: #E0F5F1;">
+                            <i class="fas fa-clock fa-lg" style="color: #5DA99A;"></i>
                         </div>
                         <div>
                             <h6 class="mb-0">Delai de commande</h6>
@@ -243,7 +243,7 @@ require_once __DIR__ . '/../../Core/Csrf.php';
     <!-- Avis clients -->
     <div class="card shadow">
         <div class="card-header d-flex justify-content-between align-items-center">
-            <h4 class="mb-0" style="font-family: 'Playfair Display', serif; color: #2E7D32;">
+            <h4 class="mb-0" style="font-family: 'Playfair Display', serif; color: #5DA99A;">
                 <i class="fas fa-comments me-2"></i>Avis clients
             </h4>
             <?php if ($rating['count'] > 0): ?>
@@ -265,7 +265,7 @@ require_once __DIR__ . '/../../Core/Csrf.php';
                             <div>
                                 <div class="d-flex align-items-center mb-2">
                                     <div class="rounded-circle d-flex align-items-center justify-content-center me-2"
-                                         style="width: 40px; height: 40px; background-color: #2E7D32; color: white;">
+                                         style="width: 40px; height: 40px; background-color: #5DA99A; color: white;">
                                         <?php echo strtoupper(substr($review['first_name'], 0, 1)); ?>
                                     </div>
                                     <div>
@@ -300,7 +300,7 @@ require_once __DIR__ . '/../../Core/Csrf.php';
     border: 2px solid transparent;
 }
 .thumbnail-img:hover, .thumbnail-img.active {
-    border-color: #2E7D32;
+    border-color: #5DA99A;
 }
 </style>
 

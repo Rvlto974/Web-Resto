@@ -3,7 +3,7 @@ require_once __DIR__ . '/../../Core/Auth.php';
 ?>
 
 <div class="container py-5">
-    <h1 class="mb-4" style="font-family: 'Playfair Display', serif; color: #2E7D32;">
+    <h1 class="mb-4" style="font-family: 'Playfair Display', serif; color: #5DA99A;">
         <i class="fas fa-history me-2"></i>Mes commandes
     </h1>
 
@@ -13,7 +13,7 @@ require_once __DIR__ . '/../../Core/Auth.php';
                 <i class="fas fa-shopping-bag fa-4x text-muted mb-4"></i>
                 <h4>Aucune commande</h4>
                 <p class="text-muted mb-4">Vous n'avez pas encore passe de commande.</p>
-                <a href="/menu" class="btn btn-lg" style="background-color: #2E7D32; color: white;">
+                <a href="/menu" class="btn btn-lg" style="background-color: #5DA99A; color: white;">
                     <i class="fas fa-utensils me-2"></i>Decouvrir nos menus
                 </a>
             </div>
@@ -22,7 +22,7 @@ require_once __DIR__ . '/../../Core/Auth.php';
         <div class="card shadow">
             <div class="table-responsive">
                 <table class="table table-hover mb-0">
-                    <thead style="background-color: #2E7D32; color: white;">
+                    <thead style="background-color: #5DA99A; color: white;">
                         <tr>
                             <th scope="col">Commande</th>
                             <th scope="col">Menu</th>
@@ -53,7 +53,7 @@ require_once __DIR__ . '/../../Core/Auth.php';
                                     </div>
                                 </td>
                                 <td>
-                                    <i class="fas fa-calendar me-1" style="color: #2E7D32;"></i>
+                                    <i class="fas fa-calendar me-1" style="color: #5DA99A;"></i>
                                     <?php echo date('d/m/Y', strtotime($order['delivery_date'])); ?>
                                     <br>
                                     <small class="text-muted"><?php echo date('H:i', strtotime($order['delivery_time'])); ?></small>

@@ -5,10 +5,10 @@ require_once __DIR__ . '/../../../Core/Csrf.php';
 
 <div class="container-fluid py-4">
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h1 style="font-family: 'Playfair Display', serif; color: #2E7D32;">
+        <h1 style="font-family: 'Playfair Display', serif; color: #5DA99A;">
             <i class="fas fa-users-cog me-2"></i>Gestion des employes
         </h1>
-        <a href="/admin/employee/create" class="btn" style="background-color: #2E7D32; color: white;">
+        <a href="/admin/employee/create" class="btn" style="background-color: #5DA99A; color: white;">
             <i class="fas fa-plus me-2"></i>Nouvel employe
         </a>
     </div>
@@ -20,7 +20,7 @@ require_once __DIR__ . '/../../../Core/Csrf.php';
             <?php else: ?>
                 <div class="table-responsive">
                     <table class="table table-hover mb-0">
-                        <thead style="background-color: #2E7D32; color: white;">
+                        <thead style="background-color: #5DA99A; color: white;">
                             <tr>
                                 <th>Employe</th>
                                 <th>Email</th>
@@ -37,7 +37,7 @@ require_once __DIR__ . '/../../../Core/Csrf.php';
                                     <td>
                                         <div class="d-flex align-items-center">
                                             <div class="rounded-circle d-flex align-items-center justify-content-center me-3"
-                                                 style="width: 40px; height: 40px; background-color: <?php echo $employee['role'] === 'admin' ? '#dc3545' : '#2E7D32'; ?>; color: white;">
+                                                 style="width: 40px; height: 40px; background-color: <?php echo $employee['role'] === 'admin' ? '#dc3545' : '#5DA99A'; ?>; color: white;">
                                                 <?php echo strtoupper(substr($employee['first_name'], 0, 1) . substr($employee['last_name'], 0, 1)); ?>
                                             </div>
                                             <div>

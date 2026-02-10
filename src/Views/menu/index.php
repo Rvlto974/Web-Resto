@@ -11,7 +11,7 @@
         <!-- Sidebar Filtres (Desktop) -->
         <div class="col-lg-3 mb-4">
             <div class="card shadow-sm">
-                <div class="card-header" style="background-color: #2E7D32; color: white;">
+                <div class="card-header" style="background-color: #5DA99A; color: white;">
                     <h5 class="mb-0"><i class="fas fa-filter me-2"></i>Filtres</h5>
                 </div>
                 <div class="card-body">
@@ -88,7 +88,7 @@
                         </div>
 
                         <div class="d-grid gap-2">
-                            <button type="submit" class="btn" style="background-color: #2E7D32; color: white;">
+                            <button type="submit" class="btn" style="background-color: #5DA99A; color: white;">
                                 <i class="fas fa-search me-2"></i>Filtrer
                             </button>
                             <a href="/menu" class="btn btn-outline-secondary">
@@ -103,7 +103,7 @@
         <!-- Liste des menus -->
         <div class="col-lg-9">
             <div class="d-flex justify-content-between align-items-center mb-4">
-                <h1 style="font-family: 'Playfair Display', serif; color: #2E7D32;">
+                <h1 style="font-family: 'Playfair Display', serif; color: #5DA99A;">
                     <i class="fas fa-utensils me-2"></i>Nos Menus
                 </h1>
                 <span class="badge bg-secondary fs-6"><?php echo count($menus); ?> menu(s)</span>
@@ -128,7 +128,7 @@
                                              style="height: 180px; object-fit: cover;">
                                     <?php else: ?>
                                         <div class="card-img-top d-flex align-items-center justify-content-center"
-                                             style="height: 180px; background: linear-gradient(135deg, #2E7D32, #4CAF50);">
+                                             style="height: 180px; background: linear-gradient(135deg, #5DA99A, #7DBFB2);">
                                             <i class="fas fa-utensils fa-3x text-white"></i>
                                         </div>
                                     <?php endif; ?>
@@ -181,7 +181,7 @@
                                 </div>
 
                                 <div class="card-footer bg-white border-top-0">
-                                    <a href="/menu/show/<?php echo $menu['id']; ?>" class="btn w-100" style="background-color: #2E7D32; color: white;">
+                                    <a href="/menu/show/<?php echo $menu['id']; ?>" class="btn w-100" style="background-color: #5DA99A; color: white;">
                                         <i class="fas fa-eye me-2"></i>Voir le menu
                                     </a>
                                 </div>

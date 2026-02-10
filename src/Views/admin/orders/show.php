@@ -16,7 +16,7 @@ require_once __DIR__ . '/../../../Core/Csrf.php';
         <!-- Details de la commande -->
         <div class="col-lg-8 mb-4">
             <div class="card shadow">
-                <div class="card-header d-flex justify-content-between align-items-center" style="background-color: #2E7D32; color: white;">
+                <div class="card-header d-flex justify-content-between align-items-center" style="background-color: #5DA99A; color: white;">
                     <h4 class="mb-0">
                         <i class="fas fa-receipt me-2"></i>Commande <?php echo htmlspecialchars($order['order_number']); ?>
                     </h4>
@@ -162,7 +162,7 @@ require_once __DIR__ . '/../../../Core/Csrf.php';
                             <textarea class="form-control" id="admin_notes" name="admin_notes" rows="3"><?php echo htmlspecialchars($order['admin_notes'] ?? ''); ?></textarea>
                         </div>
 
-                        <button type="submit" class="btn w-100" style="background-color: #2E7D32; color: white;">
+                        <button type="submit" class="btn w-100" style="background-color: #5DA99A; color: white;">
                             <i class="fas fa-save me-2"></i>Enregistrer
                         </button>
                     </form>
@@ -188,7 +188,7 @@ require_once __DIR__ . '/../../../Core/Csrf.php';
                     <div class="timeline-small">
                         <div class="d-flex mb-3">
                             <div class="rounded-circle me-3 d-flex align-items-center justify-content-center flex-shrink-0"
-                                 style="width: 32px; height: 32px; background-color: #2E7D32;">
+                                 style="width: 32px; height: 32px; background-color: #5DA99A;">
                                 <i class="fas fa-plus text-white" style="font-size: 12px;"></i>
                             </div>
                             <div>
@@ -211,7 +211,7 @@ require_once __DIR__ . '/../../../Core/Csrf.php';
                         <?php if ($order['equipment_returned']): ?>
                             <div class="d-flex mb-3">
                                 <div class="rounded-circle me-3 d-flex align-items-center justify-content-center flex-shrink-0"
-                                     style="width: 32px; height: 32px; background-color: #4CAF50;">
+                                     style="width: 32px; height: 32px; background-color: #7DBFB2;">
                                     <i class="fas fa-check text-white" style="font-size: 12px;"></i>
                                 </div>
                                 <div>

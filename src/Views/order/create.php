@@ -18,7 +18,7 @@ require_once __DIR__ . '/../../Core/Csrf.php';
         <!-- Formulaire de commande -->
         <div class="col-lg-8 mb-4">
             <div class="card shadow">
-                <div class="card-header" style="background-color: #2E7D32; color: white;">
+                <div class="card-header" style="background-color: #5DA99A; color: white;">
                     <h4 class="mb-0" style="font-family: 'Playfair Display', serif;">
                         <i class="fas fa-shopping-cart me-2"></i>Formulaire de commande
                     </h4>
@@ -31,7 +31,7 @@ require_once __DIR__ . '/../../Core/Csrf.php';
 
                         <!-- Nombre de personnes -->
                         <div class="mb-4">
-                            <h5 class="border-bottom pb-2" style="color: #2E7D32;">
+                            <h5 class="border-bottom pb-2" style="color: #5DA99A;">
                                 <i class="fas fa-users me-2"></i>Nombre de personnes
                             </h5>
                             <div class="row">
@@ -53,7 +53,7 @@ require_once __DIR__ . '/../../Core/Csrf.php';
 
                         <!-- Informations de contact -->
                         <div class="mb-4">
-                            <h5 class="border-bottom pb-2" style="color: #2E7D32;">
+                            <h5 class="border-bottom pb-2" style="color: #5DA99A;">
                                 <i class="fas fa-user me-2"></i>Vos informations
                             </h5>
                             <div class="row g-3">
@@ -87,7 +87,7 @@ require_once __DIR__ . '/../../Core/Csrf.php';
 
                         <!-- Adresse de livraison -->
                         <div class="mb-4">
-                            <h5 class="border-bottom pb-2" style="color: #2E7D32;">
+                            <h5 class="border-bottom pb-2" style="color: #5DA99A;">
                                 <i class="fas fa-truck me-2"></i>Adresse de livraison
                             </h5>
                             <div class="row g-3">
@@ -122,7 +122,7 @@ require_once __DIR__ . '/../../Core/Csrf.php';
 
                         <!-- Date et heure de livraison -->
                         <div class="mb-4">
-                            <h5 class="border-bottom pb-2" style="color: #2E7D32;">
+                            <h5 class="border-bottom pb-2" style="color: #5DA99A;">
                                 <i class="fas fa-calendar-alt me-2"></i>Date et heure de livraison
                             </h5>
                             <div class="row g-3">
@@ -149,7 +149,7 @@ require_once __DIR__ . '/../../Core/Csrf.php';
 
                         <!-- Notes -->
                         <div class="mb-4">
-                            <h5 class="border-bottom pb-2" style="color: #2E7D32;">
+                            <h5 class="border-bottom pb-2" style="color: #5DA99A;">
                                 <i class="fas fa-comment me-2"></i>Instructions supplementaires
                             </h5>
                             <textarea class="form-control" id="customer_notes" name="customer_notes"
@@ -184,7 +184,7 @@ require_once __DIR__ . '/../../Core/Csrf.php';
                                  alt="<?php echo htmlspecialchars($menu['title']); ?>">
                         <?php else: ?>
                             <div class="rounded me-3 d-flex align-items-center justify-content-center"
-                                 style="width: 80px; height: 60px; background-color: #2E7D32;">
+                                 style="width: 80px; height: 60px; background-color: #5DA99A;">
                                 <i class="fas fa-utensils text-white"></i>
                             </div>
                         <?php endif; ?>

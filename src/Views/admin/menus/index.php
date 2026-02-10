@@ -5,10 +5,10 @@ require_once __DIR__ . '/../../../Core/Csrf.php';
 
 <div class="container-fluid py-4">
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h1 style="font-family: 'Playfair Display', serif; color: #2E7D32;">
+        <h1 style="font-family: 'Playfair Display', serif; color: #5DA99A;">
             <i class="fas fa-utensils me-2"></i>Gestion des menus
         </h1>
-        <a href="/admin/menu/create" class="btn" style="background-color: #2E7D32; color: white;">
+        <a href="/admin/menu/create" class="btn" style="background-color: #5DA99A; color: white;">
             <i class="fas fa-plus me-2"></i>Nouveau menu
         </a>
     </div>
@@ -20,7 +20,7 @@ require_once __DIR__ . '/../../../Core/Csrf.php';
             <?php else: ?>
                 <div class="table-responsive">
                     <table class="table table-hover mb-0">
-                        <thead style="background-color: #2E7D32; color: white;">
+                        <thead style="background-color: #5DA99A; color: white;">
                             <tr>
                                 <th>Menu</th>
                                 <th>Theme / Regime</th>
@@ -42,8 +42,8 @@ require_once __DIR__ . '/../../../Core/Csrf.php';
                                                      class="rounded me-3" style="width: 60px; height: 45px; object-fit: cover;">
                                             <?php else: ?>
                                                 <div class="rounded me-3 d-flex align-items-center justify-content-center"
-                                                     style="width: 60px; height: 45px; background-color: #E8F5E9;">
-                                                    <i class="fas fa-utensils" style="color: #2E7D32;"></i>
+                                                     style="width: 60px; height: 45px; background-color: #E0F5F1;">
+                                                    <i class="fas fa-utensils" style="color: #5DA99A;"></i>
                                                 </div>
                                             <?php endif; ?>
                                             <div>

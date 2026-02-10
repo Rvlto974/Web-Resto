@@ -2,7 +2,7 @@
     <div class="row justify-content-center">
         <div class="col-lg-5 col-md-7">
             <div class="card shadow">
-                <div class="card-header text-center" style="background-color: #2E7D32; color: white;">
+                <div class="card-header text-center" style="background-color: #5DA99A; color: white;">
                     <h2 class="mb-0" style="font-family: 'Playfair Display', serif;">
                         <i class="fas fa-sign-in-alt me-2"></i>Connexion
                     </h2>
@@ -44,12 +44,12 @@
                                 <input type="checkbox" class="form-check-input" id="remember" name="remember">
                                 <label class="form-check-label" for="remember">Se souvenir de moi</label>
                             </div>
-                            <a href="/user/forgot-password" class="text-decoration-none" style="color: #2E7D32;">
+                            <a href="/user/forgot-password" class="text-decoration-none" style="color: #5DA99A;">
                                 Mot de passe oublie ?
                             </a>
                         </div>
 
-                        <button type="submit" class="btn btn-lg w-100" style="background-color: #2E7D32; color: white;">
+                        <button type="submit" class="btn btn-lg w-100" style="background-color: #5DA99A; color: white;">
                             <i class="fas fa-sign-in-alt me-2"></i>Se connecter
                         </button>
                     </form>
@@ -66,7 +66,7 @@
             <!-- Info box -->
             <div class="card mt-4 border-0" style="background-color: #F5F5F5;">
                 <div class="card-body text-center">
-                    <h5 style="color: #2E7D32;"><i class="fas fa-info-circle me-2"></i>Premiere visite ?</h5>
+                    <h5 style="color: #5DA99A;"><i class="fas fa-info-circle me-2"></i>Premiere visite ?</h5>
                     <p class="mb-0">
                         Creez votre compte pour commander nos delicieux menus et profiter de nos services de traiteur.
                     </p>

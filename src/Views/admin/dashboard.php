@@ -4,7 +4,7 @@ require_once __DIR__ . '/../../Core/Auth.php';
 
 <div class="container-fluid py-4">
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h1 style="font-family: 'Playfair Display', serif; color: #2E7D32;">
+        <h1 style="font-family: 'Playfair Display', serif; color: #5DA99A;">
             <i class="fas fa-tachometer-alt me-2"></i>Tableau de bord
         </h1>
         <span class="badge bg-primary fs-6">
@@ -16,15 +16,15 @@ require_once __DIR__ . '/../../Core/Auth.php';
     <div class="row g-4 mb-4">
         <!-- Commandes du jour -->
         <div class="col-xl-3 col-md-6">
-            <div class="card shadow h-100" style="border-left: 4px solid #2E7D32;">
+            <div class="card shadow h-100" style="border-left: 4px solid #5DA99A;">
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
                             <h6 class="text-muted text-uppercase small mb-1">Commandes aujourd'hui</h6>
                             <h2 class="mb-0"><?php echo $todayStats['count']; ?></h2>
                         </div>
-                        <div class="rounded-circle p-3" style="background-color: #E8F5E9;">
-                            <i class="fas fa-shopping-cart fa-2x" style="color: #2E7D32;"></i>
+                        <div class="rounded-circle p-3" style="background-color: #E0F5F1;">
+                            <i class="fas fa-shopping-cart fa-2x" style="color: #5DA99A;"></i>
                         </div>
                     </div>
                 </div>
@@ -120,7 +120,7 @@ require_once __DIR__ . '/../../Core/Auth.php';
         <!-- Raccourcis -->
         <div class="col-lg-4">
             <div class="card shadow h-100">
-                <div class="card-header" style="background-color: #2E7D32; color: white;">
+                <div class="card-header" style="background-color: #5DA99A; color: white;">
                     <h5 class="mb-0"><i class="fas fa-bolt me-2"></i>Raccourcis</h5>
                 </div>
                 <div class="card-body">
@@ -156,7 +156,7 @@ require_once __DIR__ . '/../../Core/Auth.php';
         <!-- Commandes recentes -->
         <div class="col-lg-8">
             <div class="card shadow h-100">
-                <div class="card-header d-flex justify-content-between align-items-center" style="background-color: #2E7D32; color: white;">
+                <div class="card-header d-flex justify-content-between align-items-center" style="background-color: #5DA99A; color: white;">
                     <h5 class="mb-0"><i class="fas fa-list me-2"></i>Commandes recentes</h5>
                     <a href="/admin/orders" class="btn btn-sm btn-light">Voir tout</a>
                 </div>

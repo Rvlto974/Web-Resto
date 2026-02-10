@@ -1,82 +1,283 @@
-﻿<section class="hero-section">
-    <div class="container text-center text-white py-5">
-        <h1 class="display-3 fw-bold mb-3">Vite & Gourmand</h1>
-        <p class="lead mb-4">Traiteur professionnel à Bordeaux depuis 25 ans</p>
-        <p class="fs-5 mb-4">Julie et José vous proposent des menus d'exception</p>
-        <a href="/menus" class="btn btn-success btn-lg me-3">
-            <i class="fas fa-book-open"></i> Découvrir nos menus
-        </a>
-    </div>
+<style>
+    .hero {
+        height: 600px;
+        background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)),
+                    url('https://images.unsplash.com/photo-1555244162-803834f70033?w=1600') center/cover;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: var(--blanc);
+    }
+    .hero-title {
+        font-size: 72px;
+        margin-bottom: 20px;
+        text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+        color: #fff;
+    }
+    .hero-subtitle {
+        font-size: 26px;
+        margin-bottom: 40px;
+        font-weight: 300;
+        opacity: 0.95;
+    }
+    .hero .btn-primary {
+        background: var(--orange);
+        padding: 18px 45px;
+        font-size: 18px;
+        box-shadow: 0 6px 25px rgba(255,143,0,0.4);
+        color: #fff;
+        border-radius: 30px;
+        text-decoration: none;
+        font-weight: 600;
+        display: inline-block;
+        transition: background 0.3s;
+    }
+    .hero .btn-primary:hover { background: var(--orange-hover); color: #fff; }
+    .section { padding: 80px 60px; }
+    .section-gray { background: var(--fond-gris); }
+    .section-title {
+        font-size: 42px;
+        text-align: center;
+        margin-bottom: 60px;
+        color: var(--vert-primaire);
+    }
+    .cards-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 40px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    .card {
+        background: var(--blanc);
+        border-radius: 20px;
+        padding: 45px 35px;
+        text-align: center;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        transition: transform 0.3s, box-shadow 0.3s;
+        border: none;
+    }
+    .card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 50px rgba(0,0,0,0.12);
+    }
+    .card-icon {
+        width: 90px;
+        height: 90px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--vert-primaire), var(--vert-fonce));
+        margin: 0 auto 25px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--blanc);
+        font-size: 36px;
+    }
+    .card-title {
+        font-size: 24px;
+        color: var(--vert-primaire);
+        margin-bottom: 15px;
+    }
+    .card-text {
+        font-size: 16px;
+        color: var(--texte-light);
+        line-height: 1.7;
+    }
+    .avis-container {
+        max-width: 900px;
+        margin: 0 auto;
+        position: relative;
+    }
+    .avis-card {
+        background: var(--blanc);
+        border-radius: 20px;
+        padding: 50px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        display: flex;
+        align-items: center;
+        gap: 40px;
+    }
+    .avatar {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        background: url('https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150') center/cover;
+        flex-shrink: 0;
+        border: 4px solid var(--vert-primaire);
+    }
+    .avis-content { flex: 1; }
+    .avis-text {
+        font-size: 20px;
+        font-style: italic;
+        color: var(--texte-light);
+        margin-bottom: 20px;
+        line-height: 1.7;
+    }
+    .stars { color: var(--orange); font-size: 24px; }
+    .avis-author {
+        font-weight: 700;
+        color: var(--texte);
+        font-size: 18px;
+        margin-top: 10px;
+    }
+    .nav-arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 55px;
+        height: 55px;
+        border-radius: 50%;
+        background: var(--blanc);
+        box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        color: var(--vert-primaire);
+        cursor: pointer;
+        transition: all 0.3s;
+        border: none;
+    }
+    .nav-arrow:hover {
+        background: var(--vert-primaire);
+        color: var(--blanc);
+    }
+    .nav-prev { left: -80px; }
+    .nav-next { right: -80px; }
+    .pagination {
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        margin-top: 35px;
+    }
+    .dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: #BDBDBD;
+        cursor: pointer;
+        transition: background 0.3s;
+    }
+    .dot.active { background: var(--vert-primaire); }
+    .footer {
+        background: var(--vert-fonce);
+        padding: 60px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 50px;
+        color: var(--blanc);
+        text-align: center;
+    }
+    .footer-col h4 {
+        font-family: 'Playfair Display', serif;
+        font-size: 22px;
+        margin-bottom: 25px;
+        color: #fff;
+    }
+    .footer-col p {
+        font-size: 15px;
+        margin-bottom: 10px;
+        opacity: 0.9;
+    }
+    .footer-social {
+        display: flex;
+        gap: 15px;
+        margin-top: 20px;
+        justify-content: center;
+    }
+    .social-icon {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.15);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        transition: background 0.3s;
+        color: #fff;
+        text-decoration: none;
+    }
+    .social-icon:hover { background: var(--orange); color: #fff; }
+    .footer-bottom {
+        grid-column: 1 / -1;
+        text-align: center;
+        padding-top: 35px;
+        border-top: 1px solid rgba(255,255,255,0.2);
+        font-size: 14px;
+        opacity: 0.8;
+    }
+    .footer-bottom a { color: var(--blanc); margin: 0 10px; text-decoration: none; }
+    .footer-bottom a:hover { color: var(--orange); }
+
+    @media (max-width: 992px) {
+        .cards-grid { grid-template-columns: 1fr; padding: 0 20px; }
+        .hero-title { font-size: 42px; }
+        .hero-subtitle { font-size: 18px; }
+        .section { padding: 50px 20px; }
+        .section-title { font-size: 32px; }
+        .avis-card { flex-direction: column; text-align: center; }
+        .nav-arrow { display: none; }
+        .footer { grid-template-columns: 1fr; padding: 40px 20px; }
+    }
+</style>
+
+<!-- Hero -->
+<section class="hero">
+    <h1 class="hero-title">Vite & Gourmand</h1>
+    <p class="hero-subtitle">Traiteur d'exception depuis 25 ans a Bordeaux</p>
+    <a href="/menu" class="btn-primary">Decouvrir nos menus</a>
 </section>
-<section class="py-5 bg-light">
-    <div class="container">
-        <h2 class="text-center mb-5">Pourquoi choisir Vite & Gourmand ?</h2>
-        <div class="row g-4">
-            <div class="col-md-4">
-                <div class="card h-100 text-center border-0 shadow-sm">
-                    <div class="card-body">
-                        <i class="fas fa-award fa-3x text-primary mb-3"></i>
-                        <h5>25 ans d'expertise</h5>
-                        <p>Une expérience reconnue dans le service traiteur.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card h-100 text-center border-0 shadow-sm">
-                    <div class="card-body">
-                        <i class="fas fa-leaf fa-3x text-success mb-3"></i>
-                        <h
-@"
-<section class="hero-section">
-    <div class="container text-center text-white py-5">
-        <h1 class="display-3 fw-bold mb-3">Vite & Gourmand</h1>
-        <p class="lead mb-4">Traiteur professionnel à Bordeaux depuis 25 ans</p>
-        <p class="fs-5 mb-4">Julie et José vous proposent des menus d'exception</p>
-        <a href="/menus" class="btn btn-success btn-lg me-3">
-            <i class="fas fa-book-open"></i> Découvrir nos menus
-        </a>
-    </div>
-</section>
-<section class="py-5 bg-light">
-    <div class="container">
-        <h2 class="text-center mb-5">Pourquoi choisir Vite & Gourmand ?</h2>
-        <div class="row g-4">
-            <div class="col-md-4">
-                <div class="card h-100 text-center border-0 shadow-sm">
-                    <div class="card-body">
-                        <i class="fas fa-award fa-3x text-primary mb-3"></i>
-                        <h5>25 ans d'expertise</h5>
-                        <p>Une expérience reconnue dans le service traiteur.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card h-100 text-center border-0 shadow-sm">
-                    <div class="card-body">
-                        <i class="fas fa-leaf fa-3x text-success mb-3"></i>
-                        <h5>Produits frais et locaux</h5>
-                        <p>Circuits courts et produits de saison.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card h-100 text-center border-0 shadow-sm">
-                    <div class="card-body">
-                        <i class="fas fa-truck fa-3x text-warning mb-3"></i>
-                        <h5>Livraison régionale</h5>
-                        <p>Service de livraison à Bordeaux et environs.</p>
-                    </div>
-                </div>
-            </div>
+
+<!-- Pourquoi nous choisir -->
+<section class="section section-gray">
+    <h2 class="section-title">Pourquoi nous choisir</h2>
+
+    <div class="cards-grid">
+        <div class="card">
+            <div class="card-icon">🏆</div>
+            <h3 class="card-title">25 ans d'experience</h3>
+            <p class="card-text">Une expertise reconnue dans l'art culinaire et le service traiteur haut de gamme depuis 1999</p>
+        </div>
+
+        <div class="card">
+            <div class="card-icon">🌿</div>
+            <h3 class="card-title">Produits locaux</h3>
+            <p class="card-text">Ingredients frais et de saison, issus de producteurs locaux rigoureusement selectionnes</p>
+        </div>
+
+        <div class="card">
+            <div class="card-icon">🚚</div>
+            <h3 class="card-title">Livraison Bordeaux</h3>
+            <p class="card-text">Service de livraison professionnel et ponctuel dans Bordeaux et ses environs</p>
         </div>
     </div>
 </section>
-<section class="py-5 bg-primary text-white text-center">
-    <div class="container">
-        <h2 class="mb-3">Prêt à commander ?</h2>
-        <p class="lead mb-4">Découvrez nos menus et passez commande</p>
-        <a href="/menus" class="btn btn-light btn-lg me-3">
-            <i class="fas fa-book-open"></i> Voir nos menus
-        </a>
+
+<!-- Avis clients -->
+<section class="section">
+    <h2 class="section-title">Avis clients</h2>
+
+    <div class="avis-container">
+        <div class="nav-arrow nav-prev">‹</div>
+
+        <div class="avis-card">
+            <div class="avatar"></div>
+            <div class="avis-content">
+                <p class="avis-text">"Excellent service, menus delicieux et livraison impeccable ! Nous avons fait appel a Vite & Gourmand pour notre mariage et tous nos invites ont ete enchantes. Je recommande vivement !"</p>
+                <div class="stars">★★★★★</div>
+                <p class="avis-author">Marie D. - Mariage, Decembre 2024</p>
+            </div>
+        </div>
+
+        <div class="nav-arrow nav-next">›</div>
+    </div>
+
+    <div class="pagination">
+        <span class="dot active"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
     </div>
 </section>

@@ -2,7 +2,7 @@
     <div class="row justify-content-center">
         <div class="col-lg-5 col-md-7">
             <div class="card shadow">
-                <div class="card-header text-center" style="background-color: #2E7D32; color: white;">
+                <div class="card-header text-center" style="background-color: #5DA99A; color: white;">
                     <h4 class="mb-0" style="font-family: 'Playfair Display', serif;">
                         <i class="fas fa-key me-2"></i>Nouveau mot de passe
                     </h4>
@@ -48,7 +48,7 @@
                             <input type="password" class="form-control" id="password_confirm" name="password_confirm" required>
                         </div>
 
-                        <button type="submit" class="btn btn-lg w-100" style="background-color: #2E7D32; color: white;">
+                        <button type="submit" class="btn btn-lg w-100" style="background-color: #5DA99A; color: white;">
                             <i class="fas fa-save me-2"></i>Reinitialiser le mot de passe
                         </button>
                     </form>
@@ -56,7 +56,7 @@
                     <hr class="my-4">
 
                     <div class="text-center">
-                        <a href="/user/login" class="text-decoration-none" style="color: #2E7D32;">
+                        <a href="/user/login" class="text-decoration-none" style="color: #5DA99A;">
                             <i class="fas fa-arrow-left me-2"></i>Retour a la connexion
                         </a>
                     </div>

@@ -1,5 +1,5 @@
 <div class="container py-5">
-    <h1 class="mb-4" style="font-family: 'Playfair Display', serif; color: #2E7D32;">
+    <h1 class="mb-4" style="font-family: 'Playfair Display', serif; color: #5DA99A;">
         <i class="fas fa-shield-alt me-2"></i>Politique de Confidentialite
     </h1>
 
@@ -10,7 +10,7 @@
 
     <div class="card shadow mb-4">
         <div class="card-body">
-            <h2 class="h4 mb-3" style="color: #2E7D32;">1. Introduction</h2>
+            <h2 class="h4 mb-3" style="color: #5DA99A;">1. Introduction</h2>
             <p>
                 Vite & Gourmand s'engage a proteger la vie privee de ses utilisateurs. Cette politique de
                 confidentialite explique comment nous collectons, utilisons et protegeons vos donnees personnelles
@@ -21,7 +21,7 @@
 
     <div class="card shadow mb-4">
         <div class="card-body">
-            <h2 class="h4 mb-3" style="color: #2E7D32;">2. Donnees collectees</h2>
+            <h2 class="h4 mb-3" style="color: #5DA99A;">2. Donnees collectees</h2>
             <p>Nous collectons les donnees suivantes :</p>
             <ul>
                 <li><strong>Donnees d'identification :</strong> nom, prenom, email, telephone</li>
@@ -34,7 +34,7 @@
 
     <div class="card shadow mb-4">
         <div class="card-body">
-            <h2 class="h4 mb-3" style="color: #2E7D32;">3. Finalites du traitement</h2>
+            <h2 class="h4 mb-3" style="color: #5DA99A;">3. Finalites du traitement</h2>
             <p>Vos donnees sont utilisees pour :</p>
             <ul>
                 <li>Gerer votre compte utilisateur</li>
@@ -48,7 +48,7 @@
 
     <div class="card shadow mb-4">
         <div class="card-body">
-            <h2 class="h4 mb-3" style="color: #2E7D32;">4. Base legale</h2>
+            <h2 class="h4 mb-3" style="color: #5DA99A;">4. Base legale</h2>
             <p>Le traitement de vos donnees repose sur :</p>
             <ul>
                 <li><strong>L'execution du contrat :</strong> pour traiter vos commandes</li>
@@ -61,7 +61,7 @@
 
     <div class="card shadow mb-4">
         <div class="card-body">
-            <h2 class="h4 mb-3" style="color: #2E7D32;">5. Duree de conservation</h2>
+            <h2 class="h4 mb-3" style="color: #5DA99A;">5. Duree de conservation</h2>
             <table class="table table-bordered">
                 <thead>
                     <tr>
@@ -93,7 +93,7 @@
 
     <div class="card shadow mb-4">
         <div class="card-body">
-            <h2 class="h4 mb-3" style="color: #2E7D32;">6. Vos droits</h2>
+            <h2 class="h4 mb-3" style="color: #5DA99A;">6. Vos droits</h2>
             <p>Conformement au RGPD, vous disposez des droits suivants :</p>
             <ul>
                 <li><strong>Droit d'acces :</strong> obtenir une copie de vos donnees</li>
@@ -112,7 +112,7 @@
 
     <div class="card shadow mb-4">
         <div class="card-body">
-            <h2 class="h4 mb-3" style="color: #2E7D32;">7. Securite</h2>
+            <h2 class="h4 mb-3" style="color: #5DA99A;">7. Securite</h2>
             <p>
                 Nous mettons en oeuvre des mesures de securite appropriees pour proteger vos donnees :
             </p>
@@ -128,7 +128,7 @@
 
     <div class="card shadow mb-4">
         <div class="card-body">
-            <h2 class="h4 mb-3" style="color: #2E7D32;">8. Partage des donnees</h2>
+            <h2 class="h4 mb-3" style="color: #5DA99A;">8. Partage des donnees</h2>
             <p>
                 Vos donnees ne sont jamais vendues. Elles peuvent etre partagees avec :
             </p>
@@ -142,7 +142,7 @@
 
     <div class="card shadow mb-4">
         <div class="card-body">
-            <h2 class="h4 mb-3" style="color: #2E7D32;">9. Cookies</h2>
+            <h2 class="h4 mb-3" style="color: #5DA99A;">9. Cookies</h2>
             <p>
                 Ce site utilise uniquement des cookies techniques necessaires au fonctionnement :
             </p>
@@ -159,7 +159,7 @@
 
     <div class="card shadow">
         <div class="card-body">
-            <h2 class="h4 mb-3" style="color: #2E7D32;">10. Contact</h2>
+            <h2 class="h4 mb-3" style="color: #5DA99A;">10. Contact</h2>
             <p>
                 Pour toute question concernant cette politique de confidentialite ou vos donnees personnelles :
             </p>

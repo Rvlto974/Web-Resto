@@ -3,16 +3,16 @@ require_once __DIR__ . '/../../../Core/Auth.php';
 ?>
 
 <div class="container-fluid py-4">
-    <h1 class="mb-4" style="font-family: 'Playfair Display', serif; color: #2E7D32;">
+    <h1 class="mb-4" style="font-family: 'Playfair Display', serif; color: #5DA99A;">
         <i class="fas fa-chart-bar me-2"></i>Statistiques
     </h1>
 
     <!-- Stats du jour -->
     <div class="row g-4 mb-4">
         <div class="col-md-4">
-            <div class="card shadow text-center" style="border-top: 4px solid #2E7D32;">
+            <div class="card shadow text-center" style="border-top: 4px solid #5DA99A;">
                 <div class="card-body">
-                    <i class="fas fa-shopping-cart fa-2x mb-3" style="color: #2E7D32;"></i>
+                    <i class="fas fa-shopping-cart fa-2x mb-3" style="color: #5DA99A;"></i>
                     <h3><?php echo $todayStats['count']; ?></h3>
                     <p class="text-muted mb-0">Commandes aujourd'hui</p>
                 </div>
@@ -42,7 +42,7 @@ require_once __DIR__ . '/../../../Core/Auth.php';
     <div class="row g-4 mb-4">
         <div class="col-lg-6">
             <div class="card shadow h-100">
-                <div class="card-header" style="background-color: #2E7D32; color: white;">
+                <div class="card-header" style="background-color: #5DA99A; color: white;">
                     <h5 class="mb-0"><i class="fas fa-list-ol me-2"></i>Commandes par statut</h5>
                 </div>
                 <div class="card-body">
@@ -74,7 +74,7 @@ require_once __DIR__ . '/../../../Core/Auth.php';
 
         <div class="col-lg-6">
             <div class="card shadow h-100">
-                <div class="card-header" style="background-color: #2E7D32; color: white;">
+                <div class="card-header" style="background-color: #5DA99A; color: white;">
                     <h5 class="mb-0"><i class="fas fa-chart-pie me-2"></i>Visualisation</h5>
                 </div>
                 <div class="card-body d-flex align-items-center justify-content-center">

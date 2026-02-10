@@ -8,7 +8,7 @@ require_once __DIR__ . '/../../Core/Csrf.php';
         <!-- Formulaire de contact -->
         <div class="col-lg-7 mb-4">
             <div class="card shadow">
-                <div class="card-header" style="background-color: #2E7D32; color: white;">
+                <div class="card-header" style="background-color: #5DA99A; color: white;">
                     <h4 class="mb-0" style="font-family: 'Playfair Display', serif;">
                         <i class="fas fa-envelope me-2"></i>Nous contacter
                     </h4>
@@ -86,8 +86,8 @@ require_once __DIR__ . '/../../Core/Csrf.php';
                 <div class="card-body">
                     <div class="mb-4">
                         <div class="d-flex align-items-start mb-3">
-                            <div class="rounded-circle p-2 me-3 flex-shrink-0" style="background-color: #E8F5E9;">
-                                <i class="fas fa-map-marker-alt" style="color: #2E7D32;"></i>
+                            <div class="rounded-circle p-2 me-3 flex-shrink-0" style="background-color: #E0F5F1;">
+                                <i class="fas fa-map-marker-alt" style="color: #5DA99A;"></i>
                             </div>
                             <div>
                                 <strong>Adresse</strong>
@@ -100,8 +100,8 @@ require_once __DIR__ . '/../../Core/Csrf.php';
                         </div>
 
                         <div class="d-flex align-items-start mb-3">
-                            <div class="rounded-circle p-2 me-3 flex-shrink-0" style="background-color: #E8F5E9;">
-                                <i class="fas fa-phone" style="color: #2E7D32;"></i>
+                            <div class="rounded-circle p-2 me-3 flex-shrink-0" style="background-color: #E0F5F1;">
+                                <i class="fas fa-phone" style="color: #5DA99A;"></i>
                             </div>
                             <div>
                                 <strong>Telephone</strong>
@@ -112,8 +112,8 @@ require_once __DIR__ . '/../../Core/Csrf.php';
                         </div>
 
                         <div class="d-flex align-items-start mb-3">
-                            <div class="rounded-circle p-2 me-3 flex-shrink-0" style="background-color: #E8F5E9;">
-                                <i class="fas fa-envelope" style="color: #2E7D32;"></i>
+                            <div class="rounded-circle p-2 me-3 flex-shrink-0" style="background-color: #E0F5F1;">
+                                <i class="fas fa-envelope" style="color: #5DA99A;"></i>
                             </div>
                             <div>
                                 <strong>Email</strong>

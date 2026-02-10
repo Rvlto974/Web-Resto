@@ -3,7 +3,7 @@ require_once __DIR__ . '/../../../Core/Auth.php';
 ?>
 
 <div class="container-fluid py-4">
-    <h1 class="mb-4" style="font-family: 'Playfair Display', serif; color: #2E7D32;">
+    <h1 class="mb-4" style="font-family: 'Playfair Display', serif; color: #5DA99A;">
         <i class="fas fa-shopping-cart me-2"></i>Gestion des commandes
     </h1>
 
@@ -33,7 +33,7 @@ require_once __DIR__ . '/../../../Core/Auth.php';
                            value="<?php echo $filters['date_to'] ?? ''; ?>">
                 </div>
                 <div class="col-md-3 d-flex align-items-end">
-                    <button type="submit" class="btn me-2" style="background-color: #2E7D32; color: white;">
+                    <button type="submit" class="btn me-2" style="background-color: #5DA99A; color: white;">
                         <i class="fas fa-search me-1"></i>Filtrer
                     </button>
                     <a href="/admin/orders" class="btn btn-outline-secondary">
@@ -52,7 +52,7 @@ require_once __DIR__ . '/../../../Core/Auth.php';
             <?php else: ?>
                 <div class="table-responsive">
                     <table class="table table-hover mb-0">
-                        <thead style="background-color: #2E7D32; color: white;">
+                        <thead style="background-color: #5DA99A; color: white;">
                             <tr>
                                 <th>Commande</th>
                                 <th>Client</th>

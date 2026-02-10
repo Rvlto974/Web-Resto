@@ -13,7 +13,7 @@ $isEdit = !empty($menu);
         </ol>
     </nav>
 
-    <h1 class="mb-4" style="font-family: 'Playfair Display', serif; color: #2E7D32;">
+    <h1 class="mb-4" style="font-family: 'Playfair Display', serif; color: #5DA99A;">
         <i class="fas fa-<?php echo $isEdit ? 'edit' : 'plus'; ?> me-2"></i>
         <?php echo $isEdit ? 'Modifier le menu' : 'Creer un menu'; ?>
     </h1>
@@ -26,7 +26,7 @@ $isEdit = !empty($menu);
                 <div class="row">
                     <!-- Informations de base -->
                     <div class="col-lg-8">
-                        <h5 class="border-bottom pb-2 mb-3" style="color: #2E7D32;">
+                        <h5 class="border-bottom pb-2 mb-3" style="color: #5DA99A;">
                             <i class="fas fa-info-circle me-2"></i>Informations generales
                         </h5>
 
@@ -79,7 +79,7 @@ $isEdit = !empty($menu);
 
                     <!-- Tarification et disponibilite -->
                     <div class="col-lg-4">
-                        <h5 class="border-bottom pb-2 mb-3" style="color: #2E7D32;">
+                        <h5 class="border-bottom pb-2 mb-3" style="color: #5DA99A;">
                             <i class="fas fa-euro-sign me-2"></i>Tarification
                         </h5>
 
@@ -114,7 +114,7 @@ $isEdit = !empty($menu);
 
                         <hr>
 
-                        <h5 class="border-bottom pb-2 mb-3" style="color: #2E7D32;">
+                        <h5 class="border-bottom pb-2 mb-3" style="color: #5DA99A;">
                             <i class="fas fa-cog me-2"></i>Disponibilite
                         </h5>
 
@@ -146,7 +146,7 @@ $isEdit = !empty($menu);
                     <a href="/admin/menus" class="btn btn-outline-secondary">
                         <i class="fas fa-arrow-left me-2"></i>Retour
                     </a>
-                    <button type="submit" class="btn" style="background-color: #2E7D32; color: white;">
+                    <button type="submit" class="btn" style="background-color: #5DA99A; color: white;">
                         <i class="fas fa-save me-2"></i><?php echo $isEdit ? 'Enregistrer les modifications' : 'Creer le menu'; ?>
                     </button>
                 </div>

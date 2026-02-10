@@ -2,7 +2,7 @@
     <div class="row justify-content-center">
         <div class="col-lg-6 col-md-8">
             <div class="card shadow">
-                <div class="card-header text-center" style="background-color: #2E7D32; color: white;">
+                <div class="card-header text-center" style="background-color: #5DA99A; color: white;">
                     <h2 class="mb-0" style="font-family: 'Playfair Display', serif;">
                         <i class="fas fa-user-plus me-2"></i>Inscription
                     </h2>
@@ -103,7 +103,7 @@
                             </label>
                         </div>
 
-                        <button type="submit" class="btn btn-lg w-100" style="background-color: #2E7D32; color: white;">
+                        <button type="submit" class="btn btn-lg w-100" style="background-color: #5DA99A; color: white;">
                             <i class="fas fa-user-plus me-2"></i>Creer mon compte
                         </button>
                     </form>
@@ -112,7 +112,7 @@
 
                     <p class="text-center mb-0">
                         Deja inscrit ?
-                        <a href="/user/login" style="color: #2E7D32; font-weight: 600;">Connectez-vous</a>
+                        <a href="/user/login" style="color: #5DA99A; font-weight: 600;">Connectez-vous</a>
                     </p>
                 </div>
             </div>

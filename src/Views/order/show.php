@@ -17,7 +17,7 @@ require_once __DIR__ . '/../../Core/Csrf.php';
         <!-- Details de la commande -->
         <div class="col-lg-8 mb-4">
             <div class="card shadow">
-                <div class="card-header d-flex justify-content-between align-items-center" style="background-color: #2E7D32; color: white;">
+                <div class="card-header d-flex justify-content-between align-items-center" style="background-color: #5DA99A; color: white;">
                     <h4 class="mb-0">
                         <i class="fas fa-receipt me-2"></i>Commande <?php echo htmlspecialchars($order['order_number']); ?>
                     </h4>
@@ -38,7 +38,7 @@ require_once __DIR__ . '/../../Core/Csrf.php';
                                  alt="<?php echo htmlspecialchars($order['menu_title']); ?>">
                         <?php else: ?>
                             <div class="rounded me-3 d-flex align-items-center justify-content-center"
-                                 style="width: 100px; height: 75px; background-color: #2E7D32;">
+                                 style="width: 100px; height: 75px; background-color: #5DA99A;">
                                 <i class="fas fa-utensils fa-2x text-white"></i>
                             </div>
                         <?php endif; ?>
@@ -54,7 +54,7 @@ require_once __DIR__ . '/../../Core/Csrf.php';
                     </div>
 
                     <!-- Livraison -->
-                    <h5 class="border-bottom pb-2 mb-3" style="color: #2E7D32;">
+                    <h5 class="border-bottom pb-2 mb-3" style="color: #5DA99A;">
                         <i class="fas fa-truck me-2"></i>Livraison
                     </h5>
                     <div class="row mb-4">
@@ -82,7 +82,7 @@ require_once __DIR__ . '/../../Core/Csrf.php';
                     </div>
 
                     <!-- Contact -->
-                    <h5 class="border-bottom pb-2 mb-3" style="color: #2E7D32;">
+                    <h5 class="border-bottom pb-2 mb-3" style="color: #5DA99A;">
                         <i class="fas fa-user me-2"></i>Contact
                     </h5>
                     <div class="row mb-4">
@@ -102,14 +102,14 @@ require_once __DIR__ . '/../../Core/Csrf.php';
 
                     <!-- Notes -->
                     <?php if ($order['customer_notes']): ?>
-                        <h5 class="border-bottom pb-2 mb-3" style="color: #2E7D32;">
+                        <h5 class="border-bottom pb-2 mb-3" style="color: #5DA99A;">
                             <i class="fas fa-comment me-2"></i>Notes du client
                         </h5>
                         <p class="mb-4"><?php echo nl2br(htmlspecialchars($order['customer_notes'])); ?></p>
                     <?php endif; ?>
 
                     <?php if ($isEmployee && $order['admin_notes']): ?>
-                        <h5 class="border-bottom pb-2 mb-3" style="color: #2E7D32;">
+                        <h5 class="border-bottom pb-2 mb-3" style="color: #5DA99A;">
                             <i class="fas fa-clipboard me-2"></i>Notes internes
                         </h5>
                         <p class="mb-4"><?php echo nl2br(htmlspecialchars($order['admin_notes'])); ?></p>
@@ -190,7 +190,7 @@ require_once __DIR__ . '/../../Core/Csrf.php';
                     <div class="timeline-small">
                         <div class="d-flex align-items-center mb-2">
                             <div class="rounded-circle me-2 d-flex align-items-center justify-content-center"
-                                 style="width: 24px; height: 24px; background-color: #2E7D32;">
+                                 style="width: 24px; height: 24px; background-color: #5DA99A;">
                                 <i class="fas fa-check text-white" style="font-size: 10px;"></i>
                             </div>
                             <small>Commande passee le <?php echo date('d/m/Y a H:i', strtotime($order['created_at'])); ?></small>
@@ -198,7 +198,7 @@ require_once __DIR__ . '/../../Core/Csrf.php';
                         <?php if ($order['status'] !== 'pending' && $order['status'] !== 'cancelled'): ?>
                             <div class="d-flex align-items-center mb-2">
                                 <div class="rounded-circle me-2 d-flex align-items-center justify-content-center"
-                                     style="width: 24px; height: 24px; background-color: #2E7D32;">
+                                     style="width: 24px; height: 24px; background-color: #5DA99A;">
                                     <i class="fas fa-check text-white" style="font-size: 10px;"></i>
                                 </div>
                                 <small>Commande acceptee</small>
@@ -207,7 +207,7 @@ require_once __DIR__ . '/../../Core/Csrf.php';
                         <?php if (in_array($order['status'], ['preparing', 'delivering', 'delivered', 'waiting_return', 'completed'])): ?>
                             <div class="d-flex align-items-center mb-2">
                                 <div class="rounded-circle me-2 d-flex align-items-center justify-content-center"
-                                     style="width: 24px; height: 24px; background-color: #2E7D32;">
+                                     style="width: 24px; height: 24px; background-color: #5DA99A;">
                                     <i class="fas fa-check text-white" style="font-size: 10px;"></i>
                                 </div>
                                 <small>En preparation</small>
@@ -216,7 +216,7 @@ require_once __DIR__ . '/../../Core/Csrf.php';
                         <?php if (in_array($order['status'], ['delivered', 'waiting_return', 'completed'])): ?>
                             <div class="d-flex align-items-center mb-2">
                                 <div class="rounded-circle me-2 d-flex align-items-center justify-content-center"
-                                     style="width: 24px; height: 24px; background-color: #2E7D32;">
+                                     style="width: 24px; height: 24px; background-color: #5DA99A;">
                                     <i class="fas fa-check text-white" style="font-size: 10px;"></i>
                                 </div>
                                 <small>Livree</small>
@@ -225,7 +225,7 @@ require_once __DIR__ . '/../../Core/Csrf.php';
                         <?php if ($order['status'] === 'completed'): ?>
                             <div class="d-flex align-items-center mb-2">
                                 <div class="rounded-circle me-2 d-flex align-items-center justify-content-center"
-                                     style="width: 24px; height: 24px; background-color: #2E7D32;">
+                                     style="width: 24px; height: 24px; background-color: #5DA99A;">
                                     <i class="fas fa-check text-white" style="font-size: 10px;"></i>
                                 </div>
                                 <small>Terminee</small>

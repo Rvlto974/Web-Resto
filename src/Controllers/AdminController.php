@@ -20,6 +20,13 @@ class AdminController extends Controller {
     }
 
     /**
+     * Point d'entree par defaut - redirige vers le tableau de bord
+     */
+    public function index() {
+        $this->redirect('/admin/dashboard');
+    }
+
+    /**
      * Tableau de bord
      */
     public function dashboard() {

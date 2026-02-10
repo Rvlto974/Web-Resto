@@ -9,11 +9,11 @@ require_once __DIR__ . '/../../Core/Auth.php';
             <div class="text-center mb-5">
                 <div class="mb-4">
                     <div class="rounded-circle d-inline-flex align-items-center justify-content-center"
-                         style="width: 100px; height: 100px; background-color: #E8F5E9;">
-                        <i class="fas fa-check fa-3x" style="color: #2E7D32;"></i>
+                         style="width: 100px; height: 100px; background-color: #E0F5F1;">
+                        <i class="fas fa-check fa-3x" style="color: #5DA99A;"></i>
                     </div>
                 </div>
-                <h1 style="font-family: 'Playfair Display', serif; color: #2E7D32;">
+                <h1 style="font-family: 'Playfair Display', serif; color: #5DA99A;">
                     Commande confirmee !
                 </h1>
                 <p class="lead text-muted">
@@ -23,7 +23,7 @@ require_once __DIR__ . '/../../Core/Auth.php';
 
             <!-- Details de la commande -->
             <div class="card shadow mb-4">
-                <div class="card-header" style="background-color: #2E7D32; color: white;">
+                <div class="card-header" style="background-color: #5DA99A; color: white;">
                     <h4 class="mb-0">
                         <i class="fas fa-receipt me-2"></i>Details de la commande
                     </h4>
@@ -64,7 +64,7 @@ require_once __DIR__ . '/../../Core/Auth.php';
                     <div class="row mb-3">
                         <div class="col-sm-4 text-muted">Livraison le</div>
                         <div class="col-sm-8">
-                            <i class="fas fa-calendar me-2" style="color: #2E7D32;"></i>
+                            <i class="fas fa-calendar me-2" style="color: #5DA99A;"></i>
                             <?php echo date('d/m/Y', strtotime($order['delivery_date'])); ?>
                             a <?php echo date('H:i', strtotime($order['delivery_time'])); ?>
                         </div>
@@ -72,7 +72,7 @@ require_once __DIR__ . '/../../Core/Auth.php';
                     <div class="row mb-3">
                         <div class="col-sm-4 text-muted">Adresse de livraison</div>
                         <div class="col-sm-8">
-                            <i class="fas fa-map-marker-alt me-2" style="color: #2E7D32;"></i>
+                            <i class="fas fa-map-marker-alt me-2" style="color: #5DA99A;"></i>
                             <?php echo htmlspecialchars($order['delivery_address']); ?><br>
                             <?php echo htmlspecialchars($order['delivery_postal_code'] . ' ' . $order['delivery_city']); ?>
                             <?php if ($order['delivery_location']): ?>
@@ -113,7 +113,7 @@ require_once __DIR__ . '/../../Core/Auth.php';
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-6 mb-3 mb-md-0">
-                            <h6><i class="fas fa-user me-2" style="color: #2E7D32;"></i>Contact</h6>
+                            <h6><i class="fas fa-user me-2" style="color: #5DA99A;"></i>Contact</h6>
                             <p class="mb-0">
                                 <?php echo htmlspecialchars($order['customer_first_name'] . ' ' . $order['customer_last_name']); ?><br>
                                 <?php echo htmlspecialchars($order['customer_email']); ?><br>
@@ -122,7 +122,7 @@ require_once __DIR__ . '/../../Core/Auth.php';
                         </div>
                         <?php if ($order['customer_notes']): ?>
                             <div class="col-md-6">
-                                <h6><i class="fas fa-comment me-2" style="color: #2E7D32;"></i>Notes</h6>
+                                <h6><i class="fas fa-comment me-2" style="color: #5DA99A;"></i>Notes</h6>
                                 <p class="mb-0"><?php echo nl2br(htmlspecialchars($order['customer_notes'])); ?></p>
                             </div>
                         <?php endif; ?>
@@ -135,7 +135,7 @@ require_once __DIR__ . '/../../Core/Auth.php';
                 <a href="/order/history" class="btn btn-outline-primary btn-lg">
                     <i class="fas fa-list me-2"></i>Voir mes commandes
                 </a>
-                <a href="/menu" class="btn btn-lg" style="background-color: #2E7D32; color: white;">
+                <a href="/menu" class="btn btn-lg" style="background-color: #5DA99A; color: white;">
                     <i class="fas fa-utensils me-2"></i>Continuer mes achats
                 </a>
             </div>

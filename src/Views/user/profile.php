@@ -3,7 +3,7 @@
         <!-- Sidebar -->
         <div class="col-lg-3 mb-4">
             <div class="card shadow-sm">
-                <div class="card-header text-center" style="background-color: #2E7D32; color: white;">
+                <div class="card-header text-center" style="background-color: #5DA99A; color: white;">
                     <i class="fas fa-user-circle fa-3x mb-2"></i>
                     <h5 class="mb-0"><?php echo htmlspecialchars($user['first_name'] . ' ' . $user['last_name']); ?></h5>
                     <small><?php echo htmlspecialchars($user['email']); ?></small>
@@ -31,7 +31,7 @@
         <div class="col-lg-9">
             <div class="card shadow">
                 <div class="card-header">
-                    <h4 class="mb-0" style="font-family: 'Playfair Display', serif; color: #2E7D32;">
+                    <h4 class="mb-0" style="font-family: 'Playfair Display', serif; color: #5DA99A;">
                         <i class="fas fa-user-edit me-2"></i>Modifier mon profil
                     </h4>
                 </div>
@@ -106,7 +106,7 @@
                             <a href="/user/password" class="btn btn-outline-secondary">
                                 <i class="fas fa-key me-2"></i>Changer mot de passe
                             </a>
-                            <button type="submit" class="btn" style="background-color: #2E7D32; color: white;">
+                            <button type="submit" class="btn" style="background-color: #5DA99A; color: white;">
                                 <i class="fas fa-save me-2"></i>Enregistrer les modifications
                             </button>
                         </div>

@@ -2,7 +2,7 @@
     <div class="row justify-content-center">
         <div class="col-lg-5 col-md-7">
             <div class="card shadow">
-                <div class="card-header text-center" style="background-color: #2E7D32; color: white;">
+                <div class="card-header text-center" style="background-color: #5DA99A; color: white;">
                     <h4 class="mb-0" style="font-family: 'Playfair Display', serif;">
                         <i class="fas fa-unlock-alt me-2"></i>Mot de passe oublie
                     </h4>
@@ -18,7 +18,7 @@
                             <small>Pensez a verifier vos spams si vous ne recevez pas l'email.</small>
                         </div>
                         <div class="text-center">
-                            <a href="/user/login" class="btn" style="background-color: #2E7D32; color: white;">
+                            <a href="/user/login" class="btn" style="background-color: #5DA99A; color: white;">
                                 <i class="fas fa-sign-in-alt me-2"></i>Retour a la connexion
                             </a>
                         </div>
@@ -50,7 +50,7 @@
                                 </div>
                             </div>
 
-                            <button type="submit" class="btn btn-lg w-100" style="background-color: #2E7D32; color: white;">
+                            <button type="submit" class="btn btn-lg w-100" style="background-color: #5DA99A; color: white;">
                                 <i class="fas fa-paper-plane me-2"></i>Envoyer le lien
                             </button>
                         </form>
@@ -58,7 +58,7 @@
                         <hr class="my-4">
 
                         <div class="text-center">
-                            <a href="/user/login" class="text-decoration-none" style="color: #2E7D32;">
+                            <a href="/user/login" class="text-decoration-none" style="color: #5DA99A;">
                                 <i class="fas fa-arrow-left me-2"></i>Retour a la connexion
                             </a>
                         </div>

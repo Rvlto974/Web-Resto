@@ -1,5 +1,5 @@
 <div class="container py-5">
-    <h1 class="mb-4" style="font-family: 'Playfair Display', serif; color: #2E7D32;">
+    <h1 class="mb-4" style="font-family: 'Playfair Display', serif; color: #5DA99A;">
         <i class="fas fa-file-contract me-2"></i>Conditions Generales de Vente
     </h1>
 
@@ -10,7 +10,7 @@
 
     <div class="card shadow mb-4">
         <div class="card-body">
-            <h2 class="h4 mb-3" style="color: #2E7D32;">Article 1 - Objet</h2>
+            <h2 class="h4 mb-3" style="color: #5DA99A;">Article 1 - Objet</h2>
             <p>
                 Les presentes Conditions Generales de Vente (CGV) regissent les ventes de prestations traiteur
                 par la societe Vite & Gourmand SARL, ci-apres denommee "le Traiteur", a ses clients professionnels
@@ -24,7 +24,7 @@
 
     <div class="card shadow mb-4">
         <div class="card-body">
-            <h2 class="h4 mb-3" style="color: #2E7D32;">Article 2 - Commandes</h2>
+            <h2 class="h4 mb-3" style="color: #5DA99A;">Article 2 - Commandes</h2>
             <h3 class="h5">2.1 Passation de commande</h3>
             <p>
                 Les commandes peuvent etre passees via notre site internet, par telephone ou par email.
@@ -45,7 +45,7 @@
 
     <div class="card shadow mb-4">
         <div class="card-body">
-            <h2 class="h4 mb-3" style="color: #2E7D32;">Article 3 - Tarifs</h2>
+            <h2 class="h4 mb-3" style="color: #5DA99A;">Article 3 - Tarifs</h2>
             <h3 class="h5">3.1 Prix</h3>
             <p>
                 Les prix sont indiques en euros TTC sur notre site internet. Ils comprennent le prix du menu
@@ -66,7 +66,7 @@
 
     <div class="card shadow mb-4">
         <div class="card-body">
-            <h2 class="h4 mb-3" style="color: #2E7D32;">Article 4 - Paiement</h2>
+            <h2 class="h4 mb-3" style="color: #5DA99A;">Article 4 - Paiement</h2>
             <p>
                 Le paiement s'effectue a la livraison. Nous acceptons les moyens de paiement suivants :
             </p>
@@ -83,7 +83,7 @@
 
     <div class="card shadow mb-4">
         <div class="card-body">
-            <h2 class="h4 mb-3" style="color: #2E7D32;">Article 5 - Livraison</h2>
+            <h2 class="h4 mb-3" style="color: #5DA99A;">Article 5 - Livraison</h2>
             <h3 class="h5">5.1 Horaires</h3>
             <p>
                 Les livraisons sont effectuees du lundi au dimanche, entre 8h00 et 20h00.
@@ -100,7 +100,7 @@
 
     <div class="card shadow mb-4">
         <div class="card-body">
-            <h2 class="h4 mb-3" style="color: #2E7D32;">Article 6 - Conservation des aliments</h2>
+            <h2 class="h4 mb-3" style="color: #5DA99A;">Article 6 - Conservation des aliments</h2>
             <p>
                 Les produits livres doivent etre conserves entre 0 et 4 degres C jusqu'a leur consommation.
                 Ils doivent etre consommes dans les 24 heures suivant la livraison.
@@ -113,7 +113,7 @@
 
     <div class="card shadow mb-4">
         <div class="card-body">
-            <h2 class="h4 mb-3" style="color: #2E7D32;">Article 7 - Allergenes</h2>
+            <h2 class="h4 mb-3" style="color: #5DA99A;">Article 7 - Allergenes</h2>
             <p>
                 La liste des allergenes presents dans chaque menu est disponible sur notre site internet.
                 Il appartient au Client de nous signaler toute allergie ou intolerance alimentaire lors de la commande.
@@ -123,7 +123,7 @@
 
     <div class="card shadow mb-4">
         <div class="card-body">
-            <h2 class="h4 mb-3" style="color: #2E7D32;">Article 8 - Reclamations</h2>
+            <h2 class="h4 mb-3" style="color: #5DA99A;">Article 8 - Reclamations</h2>
             <p>
                 Toute reclamation doit etre formulee par ecrit dans les 24 heures suivant la livraison,
                 a l'adresse contact@viteetgourmand.fr.
@@ -133,7 +133,7 @@
 
     <div class="card shadow">
         <div class="card-body">
-            <h2 class="h4 mb-3" style="color: #2E7D32;">Article 9 - Droit applicable</h2>
+            <h2 class="h4 mb-3" style="color: #5DA99A;">Article 9 - Droit applicable</h2>
             <p>
                 Les presentes CGV sont soumises au droit francais. En cas de litige, les tribunaux de Bordeaux
                 seront seuls competents.
