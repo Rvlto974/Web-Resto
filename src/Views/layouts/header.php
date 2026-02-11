@@ -143,16 +143,16 @@ $flashMessages = Auth::getAllFlash();
                 <?php if (Auth::isEmployee()): ?>
                     <a href="/admin" class="btn-outline">Administration</a>
                 <?php endif; ?>
-                <div class="dropdown-custom">
-                    <span class="btn-primary-header" id="userDropdownBtn" style="cursor: pointer;">
+                <div class="dropdown">
+                    <button class="btn-primary-header dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <?php echo htmlspecialchars($currentUser['first_name'], ENT_QUOTES, 'UTF-8'); ?>
-                    </span>
-                    <div class="dropdown-menu-custom" id="userDropdownMenu">
-                        <a href="/order/history"><i class="fas fa-history me-2"></i>Mes commandes</a>
-                        <a href="/user/profile"><i class="fas fa-user me-2"></i>Mon profil</a>
-                        <hr>
-                        <a href="/user/logout" style="color: #dc3545;"><i class="fas fa-sign-out-alt me-2"></i>Deconnexion</a>
-                    </div>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item" href="/order/history"><i class="fas fa-history me-2"></i>Mes commandes</a></li>
+                        <li><a class="dropdown-item" href="/user/profile"><i class="fas fa-user me-2"></i>Mon profil</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item text-danger" href="/user/logout"><i class="fas fa-sign-out-alt me-2"></i>Deconnexion</a></li>
+                    </ul>
                 </div>
             <?php else: ?>
                 <a href="/user/login" class="btn-outline">Connexion</a>

@@ -52,6 +52,47 @@ class MenuController extends Controller {
     }
 
     /**
+     * API - Filtrer les menus (Ajax)
+     */
+    public function filter() {
+        // Recuperer les filtres depuis la requete
+        $filters = [
+            'theme' => $_GET['theme'] ?? null,
+            'dietary_type' => $_GET['dietary_type'] ?? null,
+            'max_price' => $_GET['max_price'] ?? null,
+            'min_price' => $_GET['min_price'] ?? null,
+            'min_people' => $_GET['min_people'] ?? null,
+            'sort' => $_GET['sort'] ?? 'created_at',
+            'order' => $_GET['order'] ?? 'DESC'
+        ];
+
+        // Nettoyer les filtres vides
+        $filters = array_filter($filters, function($value) {
+            return $value !== null && $value !== '';
+        });
+
+        // Recuperer les menus
+        $menus = Menu::search($filters);
+
+        // Ajouter la note moyenne et les labels
+        $themeLabels = Menu::getThemeLabels();
+        $dietaryTypeLabels = Menu::getDietaryTypeLabels();
+
+        foreach ($menus as &$menu) {
+            $menu['rating'] = Menu::getAverageRating($menu['id']);
+            $menu['theme_label'] = $themeLabels[$menu['theme']] ?? $menu['theme'];
+            $menu['dietary_type_label'] = $dietaryTypeLabels[$menu['dietary_type']] ?? $menu['dietary_type'];
+        }
+
+        // Retourner en JSON
+        $this->json([
+            'success' => true,
+            'count' => count($menus),
+            'menus' => $menus
+        ]);
+    }
+
+    /**
      * Detail d'un menu
      * @param int $id
      */

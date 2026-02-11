@@ -39,21 +39,5 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/assets/js/app.js"></script>
-    <script>
-    // Dropdown utilisateur (backup inline)
-    document.addEventListener('DOMContentLoaded', function() {
-        var btn = document.getElementById('userDropdownBtn');
-        var menu = document.getElementById('userDropdownMenu');
-        if (btn && menu) {
-            btn.onclick = function(e) {
-                e.stopPropagation();
-                menu.classList.toggle('show');
-            };
-            document.onclick = function() {
-                menu.classList.remove('show');
-            };
-        }
-    });
-    </script>
 </body>
 </html>

@@ -8,24 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 5000);
     });
 
-    // Dropdown utilisateur
-    const dropdownBtn = document.getElementById('userDropdownBtn');
-    const dropdownMenu = document.getElementById('userDropdownMenu');
-
-    if (dropdownBtn && dropdownMenu) {
-        dropdownBtn.addEventListener('click', function(e) {
-            e.stopPropagation();
-            dropdownMenu.classList.toggle('show');
-        });
-
-        document.addEventListener('click', function() {
-            dropdownMenu.classList.remove('show');
-        });
-
-        dropdownMenu.addEventListener('click', function(e) {
-            e.stopPropagation();
-        });
-    }
+    // Dropdown utilisateur - gere par Bootstrap
 
     // Menu mobile
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
