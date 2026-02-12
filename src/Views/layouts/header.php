@@ -129,6 +129,75 @@ $cartCount = Cart::count();
 
         /* Flash messages */
         .flash-container { padding: 0 60px; margin-top: 20px; }
+
+        /* Mobile menu button */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--vert-primaire);
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        /* Mobile navigation */
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: 70px;
+            left: 0;
+            right: 0;
+            background: var(--blanc);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            z-index: 999;
+        }
+        .mobile-nav.show { display: block; }
+        .mobile-nav a {
+            display: block;
+            padding: 15px 20px;
+            color: var(--texte);
+            text-decoration: none;
+            font-size: 16px;
+            border-radius: 8px;
+        }
+        .mobile-nav a:hover { background: var(--fond-gris); }
+        .mobile-nav-divider {
+            height: 1px;
+            background: #eee;
+            margin: 10px 0;
+        }
+
+        /* Responsive header */
+        @media (max-width: 992px) {
+            .header {
+                padding: 15px 20px;
+            }
+            .nav {
+                display: none;
+            }
+            .header-actions .btn-outline,
+            .header-actions .btn-primary-header,
+            .header-actions .dropdown {
+                display: none;
+            }
+            .mobile-menu-btn {
+                display: block;
+            }
+            .flash-container {
+                padding: 0 20px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .logo {
+                font-size: 22px;
+            }
+            .cart-icon {
+                font-size: 20px !important;
+            }
+        }
     </style>
 </head>
 <body>
@@ -170,8 +239,43 @@ $cartCount = Cart::count();
                 <a href="/user/login" class="btn-outline">Connexion</a>
                 <a href="/user/register" class="btn-primary-header">S'inscrire</a>
             <?php endif; ?>
+
+            <!-- Mobile menu button -->
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Menu">
+                <i class="fas fa-bars" id="menuIcon"></i>
+            </button>
         </div>
     </header>
+
+    <!-- Mobile Navigation -->
+    <nav class="mobile-nav" id="mobileNav">
+        <a href="/"><i class="fas fa-home me-2"></i>Accueil</a>
+        <a href="/menu"><i class="fas fa-utensils me-2"></i>Nos Menus</a>
+        <a href="/cart"><i class="fas fa-shopping-cart me-2"></i>Panier <?php if ($cartCount > 0): ?>(<?php echo $cartCount; ?>)<?php endif; ?></a>
+        <a href="/contact"><i class="fas fa-envelope me-2"></i>Contact</a>
+        <div class="mobile-nav-divider"></div>
+        <?php if (Auth::check()): ?>
+            <?php if (Auth::isEmployee()): ?>
+                <a href="/admin"><i class="fas fa-cog me-2"></i>Administration</a>
+            <?php endif; ?>
+            <a href="/order/history"><i class="fas fa-history me-2"></i>Mes commandes</a>
+            <a href="/user/profile"><i class="fas fa-user me-2"></i>Mon profil</a>
+            <a href="/user/logout" style="color: #dc3545;"><i class="fas fa-sign-out-alt me-2"></i>Deconnexion</a>
+        <?php else: ?>
+            <a href="/user/login"><i class="fas fa-sign-in-alt me-2"></i>Connexion</a>
+            <a href="/user/register"><i class="fas fa-user-plus me-2"></i>S'inscrire</a>
+        <?php endif; ?>
+    </nav>
+
+    <script>
+        function toggleMobileMenu() {
+            const nav = document.getElementById('mobileNav');
+            const icon = document.getElementById('menuIcon');
+            nav.classList.toggle('show');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        }
+    </script>
 
     <!-- Messages Flash -->
     <?php if (!empty($flashMessages)): ?>

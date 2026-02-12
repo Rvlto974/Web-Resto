@@ -8,8 +8,16 @@
     </nav>
 
     <div class="row">
-        <!-- Sidebar Filtres (Desktop) -->
-        <div class="col-lg-3 mb-4">
+        <!-- Bouton filtres mobile -->
+        <div class="col-12">
+            <button class="btn mobile-filter-btn" style="background-color: #5DA99A; color: white;" onclick="toggleFilters()">
+                <i class="fas fa-filter me-2"></i>Filtres
+                <i class="fas fa-chevron-down ms-2" id="filterArrow"></i>
+            </button>
+        </div>
+
+        <!-- Sidebar Filtres -->
+        <div class="col-lg-3 mb-4 filter-sidebar" id="filterSidebar">
             <div class="card shadow-sm">
                 <div class="card-header" style="background-color: #5DA99A; color: white;">
                     <h5 class="mb-0"><i class="fas fa-filter me-2"></i>Filtres</h5>
@@ -213,9 +221,37 @@
     font-weight: 700;
     font-size: 1.1rem;
 }
+
+/* Mobile filter toggle */
+.mobile-filter-btn {
+    display: none;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+@media (max-width: 991px) {
+    .mobile-filter-btn {
+        display: block;
+    }
+    .filter-sidebar {
+        display: none;
+    }
+    .filter-sidebar.show {
+        display: block;
+    }
+}
 </style>
 
 <script>
+// Toggle filters on mobile
+function toggleFilters() {
+    const sidebar = document.getElementById('filterSidebar');
+    const arrow = document.getElementById('filterArrow');
+    sidebar.classList.toggle('show');
+    arrow.classList.toggle('fa-chevron-down');
+    arrow.classList.toggle('fa-chevron-up');
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     const loader = document.getElementById('loader');
     const menusContainer = document.getElementById('menusContainer');

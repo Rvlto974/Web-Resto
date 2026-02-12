@@ -133,14 +133,14 @@ INSERT INTO dish_allergens (dish_id, allergen_id) VALUES
 -- =====================================================
 -- COMMANDES DE TEST
 -- =====================================================
-INSERT INTO orders (user_id, menu_id, quantity, total_price, delivery_address, delivery_city, delivery_postal_code, delivery_date, delivery_time, status, notes, created_at) VALUES
-(3, 1, 8, 320.00, '789 Rue des Fleurs', 'Bordeaux', '33000', '2026-02-15', '12:00:00', 'delivered', 'Merci de livrer avant midi', '2026-01-15 10:30:00'),
-(3, 2, 10, 350.00, '789 Rue des Fleurs', 'Bordeaux', '33000', '2026-04-01', '13:00:00', 'pending', 'Menu pour Paques', '2026-02-08 14:20:00'),
-(4, 4, 12, 540.00, '12 Place de la Bourse', 'Bordeaux', '33000', '2026-03-20', '19:00:00', 'confirmed', 'Evenement professionnel', '2026-02-05 09:15:00');
+INSERT INTO orders (order_number, user_id, menu_id, number_of_people, customer_first_name, customer_last_name, customer_email, customer_phone, delivery_address, delivery_city, delivery_postal_code, delivery_date, delivery_time, base_price, total_price, status, customer_notes, created_at) VALUES
+('CMD-2026-0001', 3, 1, 8, 'Marie', 'Dupont', 'marie.dupont@email.com', '0612345678', '789 Rue des Fleurs', 'Bordeaux', '33000', '2026-02-15', '12:00:00', 320.00, 320.00, 'delivered', 'Merci de livrer avant midi', '2026-01-15 10:30:00'),
+('CMD-2026-0002', 3, 2, 10, 'Marie', 'Dupont', 'marie.dupont@email.com', '0612345678', '789 Rue des Fleurs', 'Bordeaux', '33000', '2026-04-01', '13:00:00', 350.00, 350.00, 'pending', 'Menu pour Paques', '2026-02-08 14:20:00'),
+('CMD-2026-0003', 4, 4, 12, 'Pierre', 'Martin', 'pierre.martin@email.com', '0698765432', '12 Place de la Bourse', 'Bordeaux', '33000', '2026-03-20', '19:00:00', 540.00, 540.00, 'pending', 'Evenement professionnel', '2026-02-05 09:15:00');
 
 -- =====================================================
 -- AVIS DE TEST
 -- =====================================================
-INSERT INTO reviews (user_id, menu_id, order_id, rating, comment, status, created_at) VALUES
-(3, 1, 1, 5, 'Excellent menu pour notre repas de Noel en famille. Tout etait parfait, de lentree au dessert. Le foie gras etait exceptionnel !', 'approved', '2026-01-20 15:30:00'),
-(4, 4, 3, 4, 'Tres bon menu prestige, presentation soignee. Service de livraison impeccable. Je recommande !', 'approved', '2026-02-06 11:00:00');
+INSERT INTO reviews (user_id, menu_id, order_id, rating, comment, is_approved, created_at) VALUES
+(3, 1, 1, 5, 'Excellent menu pour notre repas de Noel en famille. Tout etait parfait, de lentree au dessert. Le foie gras etait exceptionnel !', TRUE, '2026-01-20 15:30:00'),
+(4, 4, 3, 4, 'Tres bon menu prestige, presentation soignee. Service de livraison impeccable. Je recommande !', TRUE, '2026-02-06 11:00:00');

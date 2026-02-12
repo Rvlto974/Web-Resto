@@ -222,6 +222,22 @@
         .nav-arrow { display: none; }
         .footer { grid-template-columns: 1fr; padding: 40px 20px; }
     }
+
+    @media (max-width: 576px) {
+        .hero { height: 400px; }
+        .hero-title { font-size: 32px; }
+        .hero-subtitle { font-size: 16px; margin-bottom: 25px; }
+        .hero .btn-primary { padding: 14px 30px; font-size: 16px; }
+        .section { padding: 40px 15px; }
+        .section-title { font-size: 26px; margin-bottom: 40px; }
+        .card { padding: 30px 20px; }
+        .card-icon { width: 70px; height: 70px; font-size: 28px; }
+        .card-title { font-size: 20px; }
+        .card-text { font-size: 14px; }
+        .avis-card { padding: 25px 20px; }
+        .avis-text { font-size: 16px; }
+        .avatar { width: 80px; height: 80px; }
+    }
 </style>
 
 <!-- Hero -->
