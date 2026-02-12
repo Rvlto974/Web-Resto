@@ -1,0 +1,63 @@
+# Dockerfile pour Fly.io - Vite & Gourmand
+FROM php:8.2-apache
+
+LABEL maintainer="Vite et Gourmand Team"
+
+# Installer les dépendances système
+RUN apt-get update && apt-get install -y \
+    git \
+    curl \
+    libpng-dev \
+    libonig-dev \
+    libxml2-dev \
+    libzip-dev \
+    zip \
+    unzip \
+    libssl-dev \
+    pkg-config \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+# Installer les extensions PHP
+RUN docker-php-ext-install \
+    pdo \
+    pdo_mysql \
+    mysqli \
+    mbstring \
+    exif \
+    pcntl \
+    bcmath \
+    gd \
+    zip
+
+# Installer MongoDB extension
+RUN pecl install mongodb \
+    && docker-php-ext-enable mongodb
+
+# Activer les modules Apache
+RUN a2enmod rewrite headers
+
+# Configurer Apache pour le port 8080 (Fly.io)
+RUN sed -i 's/80/8080/g' /etc/apache2/sites-available/000-default.conf /etc/apache2/ports.conf
+
+# Configurer Apache pour pointer vers /var/www/html/public
+ENV APACHE_DOCUMENT_ROOT /var/www/html/public
+
+RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
+RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
+
+# Configurer les permissions
+RUN chown -R www-data:www-data /var/www/html \
+    && chmod -R 755 /var/www/html
+
+# Copier les fichiers de l'application
+COPY . /var/www/html
+
+# Définir le répertoire de travail
+WORKDIR /var/www/html
+
+# Exposer le port 8080
+EXPOSE 8080
+
+# Démarrer Apache
+CMD ["apache2-foreground"]

@@ -133,22 +133,50 @@ require_once __DIR__ . '/../../Core/Csrf.php';
                         </div>
                     <?php endif; ?>
 
-                    <!-- Bouton Commander -->
-                    <?php if (Auth::check()): ?>
-                        <?php if ($menu['stock_quantity'] > 0): ?>
-                            <a href="/order/create/<?php echo $menu['id']; ?>" class="btn btn-lg w-100" style="background-color: #FF8F00; color: white;">
-                                <i class="fas fa-shopping-cart me-2"></i>Commander ce menu
-                            </a>
-                        <?php else: ?>
-                            <button class="btn btn-lg w-100 btn-secondary" disabled>
-                                <i class="fas fa-times-circle me-2"></i>Rupture de stock
-                            </button>
-                        <?php endif; ?>
+                    <!-- Ajouter au panier -->
+                    <?php if ($menu['stock_quantity'] > 0): ?>
+                        <form method="POST" action="/cart/add" class="mb-3" id="addToCartForm">
+                            <?php echo Csrf::getInputField(); ?>
+                            <input type="hidden" name="menu_id" value="<?php echo $menu['id']; ?>">
+
+                            <div class="row g-2 mb-3">
+                                <div class="col-6">
+                                    <label for="number_of_people" class="form-label small">Nombre de personnes</label>
+                                    <select class="form-select" id="number_of_people" name="number_of_people">
+                                        <?php for ($i = $menu['min_people']; $i <= $menu['min_people'] + 20; $i++): ?>
+                                            <option value="<?php echo $i; ?>"><?php echo $i; ?> personnes</option>
+                                        <?php endfor; ?>
+                                    </select>
+                                </div>
+                                <div class="col-6">
+                                    <label for="quantity" class="form-label small">Quantite</label>
+                                    <select class="form-select" id="quantity" name="quantity">
+                                        <?php for ($i = 1; $i <= 5; $i++): ?>
+                                            <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+                                        <?php endfor; ?>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="d-grid gap-2">
+                                <button type="submit" class="btn btn-lg" style="background-color: #5DA99A; color: white;">
+                                    <i class="fas fa-cart-plus me-2"></i>Ajouter au panier
+                                </button>
+                                <?php if (Auth::check()): ?>
+                                    <a href="/order/create/<?php echo $menu['id']; ?>" class="btn btn-lg" style="background-color: #FF8F00; color: white;">
+                                        <i class="fas fa-bolt me-2"></i>Commander directement
+                                    </a>
+                                <?php else: ?>
+                                    <a href="/user/login" class="btn btn-lg btn-outline-secondary">
+                                        <i class="fas fa-sign-in-alt me-2"></i>Se connecter pour commander
+                                    </a>
+                                <?php endif; ?>
+                            </div>
+                        </form>
                     <?php else: ?>
-                        <div class="alert alert-info mb-0">
-                            <i class="fas fa-info-circle me-2"></i>
-                            <a href="/user/login" class="alert-link">Connectez-vous</a> pour commander ce menu.
-                        </div>
+                        <button class="btn btn-lg w-100 btn-secondary" disabled>
+                            <i class="fas fa-times-circle me-2"></i>Rupture de stock
+                        </button>
                     <?php endif; ?>
                 </div>
             </div>

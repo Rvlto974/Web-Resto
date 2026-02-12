@@ -3,6 +3,7 @@ require_once __DIR__ . '/../Views/core/Controller.php';
 require_once __DIR__ . '/../Core/Auth.php';
 require_once __DIR__ . '/../Core/Csrf.php';
 require_once __DIR__ . '/../Models/User.php';
+require_once __DIR__ . '/../Services/EmailService.php';
 
 /**
  * UserController - Gestion de l'authentification et du profil
@@ -89,7 +90,11 @@ class UserController extends Controller {
                     ]);
 
                     if ($userId) {
-                        // TODO: Envoyer email de bienvenue
+                        // Envoyer email de bienvenue
+                        $newUser = User::findById($userId);
+                        if ($newUser) {
+                            EmailService::sendWelcome($newUser);
+                        }
                         Auth::setFlash('success', 'Votre compte a ete cree avec succes ! Vous pouvez maintenant vous connecter.');
                         $this->redirect('/user/login');
                     } else {

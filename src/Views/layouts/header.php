@@ -1,8 +1,10 @@
 <?php
 require_once __DIR__ . '/../../Core/Auth.php';
+require_once __DIR__ . '/../../Models/Cart.php';
 Auth::init();
 $currentUser = Auth::user();
 $flashMessages = Auth::getAllFlash();
+$cartCount = Cart::count();
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -139,6 +141,16 @@ $flashMessages = Auth::getAllFlash();
             <a href="/contact" class="nav-link">Contact</a>
         </nav>
         <div class="header-actions">
+            <!-- Panier -->
+            <a href="/cart" class="cart-icon position-relative" style="color: var(--vert-primaire); font-size: 22px; margin-right: 10px;">
+                <i class="fas fa-shopping-cart"></i>
+                <?php if ($cartCount > 0): ?>
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill" style="background-color: #FF8F00; font-size: 10px;">
+                        <?php echo $cartCount > 9 ? '9+' : $cartCount; ?>
+                    </span>
+                <?php endif; ?>
+            </a>
+
             <?php if (Auth::check()): ?>
                 <?php if (Auth::isEmployee()): ?>
                     <a href="/admin" class="btn-outline">Administration</a>

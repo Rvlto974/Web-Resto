@@ -4,6 +4,8 @@ require_once __DIR__ . '/../Core/Auth.php';
 require_once __DIR__ . '/../Core/Csrf.php';
 require_once __DIR__ . '/../Models/Order.php';
 require_once __DIR__ . '/../Models/Menu.php';
+require_once __DIR__ . '/../Models/Cart.php';
+require_once __DIR__ . '/../Services/EmailService.php';
 
 /**
  * OrderController - Gestion des commandes clients
@@ -193,7 +195,11 @@ class OrderController extends Controller {
         // Decrementer le stock
         Menu::decrementStock($menuId);
 
-        // TODO: Envoyer email de confirmation
+        // Envoyer email de confirmation
+        $order = Order::findById($orderId);
+        if ($order) {
+            EmailService::sendOrderConfirmation($order);
+        }
 
         Auth::setFlash('success', 'Votre commande a ete enregistree avec succes !');
         $this->redirect("/order/confirmation/{$orderId}");
@@ -314,5 +320,143 @@ class OrderController extends Controller {
         }
 
         $this->redirect('/order/history');
+    }
+
+    /**
+     * Enregistrement d'une commande depuis le panier
+     */
+    public function storeFromCart() {
+        Auth::requireAuth();
+
+        if (!$this->isPost()) {
+            $this->redirect('/cart');
+        }
+
+        // Verification CSRF
+        if (!Csrf::validateRequest()) {
+            Auth::setFlash('error', 'Token de securite invalide. Veuillez reessayer.');
+            $this->redirect('/cart/checkout');
+        }
+
+        // Verifier que le panier n'est pas vide
+        if (Cart::isEmpty()) {
+            Auth::setFlash('error', 'Votre panier est vide.');
+            $this->redirect('/menu');
+        }
+
+        // Verifier le stock
+        $stockValidation = Cart::validateStock();
+        if (!$stockValidation['valid']) {
+            foreach ($stockValidation['errors'] as $error) {
+                Auth::setFlash('error', $error);
+            }
+            $this->redirect('/cart');
+        }
+
+        $user = Auth::user();
+        $errors = [];
+
+        // Validation des donnees client
+        $customerFirstName = trim($_POST['customer_first_name'] ?? '');
+        $customerLastName = trim($_POST['customer_last_name'] ?? '');
+        $customerEmail = trim($_POST['customer_email'] ?? '');
+        $customerPhone = trim($_POST['customer_phone'] ?? '');
+
+        if (empty($customerFirstName) || empty($customerLastName)) {
+            $errors[] = "Le nom et prenom sont obligatoires.";
+        }
+
+        if (empty($customerEmail) || !filter_var($customerEmail, FILTER_VALIDATE_EMAIL)) {
+            $errors[] = "L'email est invalide.";
+        }
+
+        if (empty($customerPhone) || !preg_match('/^[0-9]{10}$/', $customerPhone)) {
+            $errors[] = "Le telephone doit contenir 10 chiffres.";
+        }
+
+        // Validation de l'adresse
+        $deliveryAddress = trim($_POST['delivery_address'] ?? '');
+        $deliveryCity = trim($_POST['delivery_city'] ?? '');
+        $deliveryPostalCode = trim($_POST['delivery_postal_code'] ?? '');
+
+        if (empty($deliveryAddress) || empty($deliveryCity) || empty($deliveryPostalCode)) {
+            $errors[] = "L'adresse de livraison complete est obligatoire.";
+        }
+
+        if (!preg_match('/^[0-9]{5}$/', $deliveryPostalCode)) {
+            $errors[] = "Le code postal doit contenir 5 chiffres.";
+        }
+
+        // Validation de la date/heure
+        $deliveryDate = $_POST['delivery_date'] ?? '';
+        $deliveryTime = $_POST['delivery_time'] ?? '';
+
+        if (empty($deliveryDate)) {
+            $errors[] = "La date de livraison est obligatoire.";
+        } else {
+            $minDeliveryDate = Cart::getMinDeliveryDate();
+            if ($deliveryDate < $minDeliveryDate) {
+                $errors[] = "La date de livraison doit etre au minimum le " . date('d/m/Y', strtotime($minDeliveryDate));
+            }
+        }
+
+        if (empty($deliveryTime)) {
+            $errors[] = "L'heure de livraison est obligatoire.";
+        }
+
+        // Si erreurs, retour au formulaire
+        if (!empty($errors)) {
+            Auth::setFlash('error', implode('<br>', $errors));
+            $this->redirect('/cart/checkout');
+        }
+
+        // Methode de paiement
+        $paymentMethod = $_POST['payment_method'] ?? 'cash';
+        if (!in_array($paymentMethod, ['cash', 'stripe'])) {
+            $paymentMethod = 'cash';
+        }
+
+        // Calculer les totaux du panier
+        $distanceKm = (float)($_POST['distance_km'] ?? 0);
+        $cartTotals = Cart::calculateTotals($deliveryPostalCode, $distanceKm);
+
+        // Preparer les donnees de livraison
+        $deliveryData = [
+            'user_id' => $user['id'],
+            'customer_first_name' => $customerFirstName,
+            'customer_last_name' => $customerLastName,
+            'customer_email' => $customerEmail,
+            'customer_phone' => $customerPhone,
+            'delivery_address' => $deliveryAddress,
+            'delivery_city' => $deliveryCity,
+            'delivery_postal_code' => $deliveryPostalCode,
+            'delivery_date' => $deliveryDate,
+            'delivery_time' => $deliveryTime,
+            'delivery_location' => trim($_POST['delivery_location'] ?? ''),
+            'customer_notes' => trim($_POST['customer_notes'] ?? '')
+        ];
+
+        // Creer la commande
+        $orderId = Order::createFromCart($cartTotals, $deliveryData, $paymentMethod);
+
+        if (!$orderId) {
+            Auth::setFlash('error', 'Erreur lors de la creation de la commande.');
+            $this->redirect('/cart/checkout');
+        }
+
+        // Vider le panier
+        Cart::clear();
+
+        // Si paiement Stripe, rediriger vers Stripe
+        if ($paymentMethod === 'stripe') {
+            $this->redirect('/payment/createSession/' . $orderId);
+        }
+
+        // Paiement a la livraison : envoyer email et afficher confirmation
+        $order = Order::findById($orderId);
+        EmailService::sendOrderConfirmation($order);
+
+        Auth::setFlash('success', 'Votre commande a ete enregistree avec succes !');
+        $this->redirect('/order/confirmation/' . $orderId);
     }
 }

@@ -304,7 +304,7 @@ docker-compose up -d
 
 ## Auteur
 
-Projet réalisé par **[Votre Nom]** dans le cadre du titre professionnel Développeur Web et Web Mobile.
+Projet réalisé par **[Mathieu Jacquet]** dans le cadre du titre professionnel Développeur Web et Web Mobile.
 
 ---
 

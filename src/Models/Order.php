@@ -35,7 +35,7 @@ class Order extends Model {
             "SELECT o.*, m.title as menu_title, m.main_image_url as menu_image,
                     u.first_name as user_first_name, u.last_name as user_last_name
              FROM orders o
-             INNER JOIN menus m ON o.menu_id = m.id
+             LEFT JOIN menus m ON o.menu_id = m.id
              INNER JOIN users u ON o.user_id = u.id
              WHERE o.id = ?",
             [$id]
@@ -51,7 +51,7 @@ class Order extends Model {
         return self::queryOne(
             "SELECT o.*, m.title as menu_title, m.main_image_url as menu_image
              FROM orders o
-             INNER JOIN menus m ON o.menu_id = m.id
+             LEFT JOIN menus m ON o.menu_id = m.id
              WHERE o.order_number = ?",
             [$orderNumber]
         );
@@ -67,7 +67,7 @@ class Order extends Model {
         return self::query(
             "SELECT o.*, m.title as menu_title, m.main_image_url as menu_image
              FROM orders o
-             INNER JOIN menus m ON o.menu_id = m.id
+             LEFT JOIN menus m ON o.menu_id = m.id
              WHERE o.user_id = ?
              ORDER BY o.created_at DESC
              LIMIT ?",
@@ -84,7 +84,7 @@ class Order extends Model {
         $sql = "SELECT o.*, m.title as menu_title,
                        u.first_name as user_first_name, u.last_name as user_last_name, u.email as user_email
                 FROM orders o
-                INNER JOIN menus m ON o.menu_id = m.id
+                LEFT JOIN menus m ON o.menu_id = m.id
                 INNER JOIN users u ON o.user_id = u.id
                 WHERE 1=1";
         $params = [];
@@ -131,7 +131,7 @@ class Order extends Model {
             "SELECT o.*, m.title as menu_title,
                     u.first_name as user_first_name, u.last_name as user_last_name
              FROM orders o
-             INNER JOIN menus m ON o.menu_id = m.id
+             LEFT JOIN menus m ON o.menu_id = m.id
              INNER JOIN users u ON o.user_id = u.id
              WHERE o.status = ?
              ORDER BY o.delivery_date ASC, o.delivery_time ASC",
@@ -148,7 +148,7 @@ class Order extends Model {
             "SELECT o.*, m.title as menu_title,
                     u.first_name as user_first_name, u.last_name as user_last_name, u.email as user_email
              FROM orders o
-             INNER JOIN menus m ON o.menu_id = m.id
+             LEFT JOIN menus m ON o.menu_id = m.id
              INNER JOIN users u ON o.user_id = u.id
              WHERE o.status = 'waiting_return' AND o.equipment_returned = 0
              ORDER BY o.delivery_date ASC"
@@ -455,5 +455,166 @@ class Order extends Model {
             self::STATUS_COMPLETED
         ];
         return in_array($order['status'], $reviewableStatuses);
+    }
+
+    // ============================================
+    // METHODES POUR PANIER ET PAIEMENT STRIPE
+    // ============================================
+
+    /**
+     * Trouve une commande par son ID de session Stripe
+     * @param string $sessionId
+     * @return array|null
+     */
+    public static function findByStripeSession($sessionId) {
+        return self::queryOne(
+            "SELECT o.*, u.first_name as user_first_name, u.last_name as user_last_name
+             FROM orders o
+             INNER JOIN users u ON o.user_id = u.id
+             WHERE o.stripe_session_id = ?",
+            [$sessionId]
+        );
+    }
+
+    /**
+     * Met a jour l'ID de session Stripe
+     * @param int $id
+     * @param string $sessionId
+     * @return bool
+     */
+    public static function updateStripeSession($id, $sessionId) {
+        return self::execute(
+            "UPDATE orders SET stripe_session_id = ?, updated_at = NOW() WHERE id = ?",
+            [$sessionId, $id]
+        );
+    }
+
+    /**
+     * Met a jour le statut de paiement
+     * @param int $id
+     * @param string $status (pending, paid, failed, refunded)
+     * @param string|null $paymentIntentId
+     * @return bool
+     */
+    public static function updatePaymentStatus($id, $status, $paymentIntentId = null) {
+        $allowedStatuses = ['pending', 'paid', 'failed', 'refunded'];
+        if (!in_array($status, $allowedStatuses)) {
+            return false;
+        }
+
+        $sql = "UPDATE orders SET payment_status = ?, updated_at = NOW()";
+        $params = [$status];
+
+        if ($paymentIntentId) {
+            $sql .= ", stripe_payment_intent_id = ?";
+            $params[] = $paymentIntentId;
+        }
+
+        if ($status === 'paid') {
+            $sql .= ", paid_at = NOW()";
+        }
+
+        $sql .= " WHERE id = ?";
+        $params[] = $id;
+
+        return self::execute($sql, $params);
+    }
+
+    /**
+     * Cree une commande a partir du panier
+     * @param array $cartData Donnees du panier (items, subtotal, delivery_fee, total)
+     * @param array $deliveryData Donnees de livraison
+     * @param string $paymentMethod (cash ou stripe)
+     * @return int|false L'ID de la commande ou false
+     */
+    public static function createFromCart($cartData, $deliveryData, $paymentMethod = 'cash') {
+        require_once __DIR__ . '/OrderItem.php';
+        require_once __DIR__ . '/Menu.php';
+
+        $orderNumber = self::generateOrderNumber();
+
+        // Pour les commandes multi-menus, menu_id peut etre NULL
+        $menuId = null;
+        $numberOfPeople = 0;
+
+        // Si un seul menu, on garde la compatibilite
+        if (count($cartData['items']) === 1) {
+            $menuId = $cartData['items'][0]['menu_id'];
+            $numberOfPeople = $cartData['items'][0]['number_of_people'];
+        } else {
+            // Calcul du nombre total de personnes pour multi-menus
+            foreach ($cartData['items'] as $item) {
+                $numberOfPeople += $item['number_of_people'] * $item['quantity'];
+            }
+        }
+
+        $sql = "INSERT INTO orders (
+            order_number, user_id, menu_id, number_of_people,
+            customer_first_name, customer_last_name, customer_email, customer_phone,
+            delivery_address, delivery_city, delivery_postal_code,
+            delivery_date, delivery_time, delivery_location,
+            base_price, discount_amount, delivery_fee, total_price,
+            payment_method, payment_status,
+            status, customer_notes, created_at
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())";
+
+        $result = self::execute($sql, [
+            $orderNumber,
+            $deliveryData['user_id'],
+            $menuId,
+            $numberOfPeople,
+            $deliveryData['customer_first_name'],
+            $deliveryData['customer_last_name'],
+            $deliveryData['customer_email'],
+            $deliveryData['customer_phone'],
+            $deliveryData['delivery_address'],
+            $deliveryData['delivery_city'],
+            $deliveryData['delivery_postal_code'],
+            $deliveryData['delivery_date'],
+            $deliveryData['delivery_time'],
+            $deliveryData['delivery_location'] ?? null,
+            $cartData['subtotal'],
+            $cartData['total_discount'] ?? 0,
+            $cartData['delivery_fee'],
+            $cartData['total'],
+            $paymentMethod,
+            $paymentMethod === 'stripe' ? 'pending' : 'pending',
+            self::STATUS_PENDING,
+            $deliveryData['customer_notes'] ?? null
+        ]);
+
+        if (!$result) {
+            return false;
+        }
+
+        $orderId = self::lastInsertId();
+
+        // Creer les articles de commande
+        foreach ($cartData['items'] as $item) {
+            OrderItem::create([
+                'order_id' => $orderId,
+                'menu_id' => $item['menu_id'],
+                'quantity' => $item['quantity'],
+                'number_of_people' => $item['number_of_people'],
+                'unit_price' => $item['unit_price'],
+                'subtotal' => $item['subtotal'],
+                'menu_title' => $item['menu']['title']
+            ]);
+
+            // Decrementer le stock
+            Menu::decrementStock($item['menu_id'], $item['quantity']);
+        }
+
+        return $orderId;
+    }
+
+    /**
+     * Recupere les articles d'une commande
+     * @param int $orderId
+     * @return array
+     */
+    public static function getItems($orderId) {
+        require_once __DIR__ . '/OrderItem.php';
+        return OrderItem::findByOrder($orderId);
     }
 }

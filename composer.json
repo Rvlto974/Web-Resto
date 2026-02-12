@@ -1,0 +1,17 @@
+{
+    "name": "vite-et-gourmand/app-resto",
+    "description": "Application de traiteur Vite & Gourmand",
+    "type": "project",
+    "require": {
+        "php": ">=8.0",
+        "stripe/stripe-php": "^13.0"
+    },
+    "autoload": {
+        "classmap": [
+            "src/"
+        ]
+    },
+    "config": {
+        "optimize-autoloader": true
+    }
+}

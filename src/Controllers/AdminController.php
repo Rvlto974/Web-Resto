@@ -6,6 +6,7 @@ require_once __DIR__ . '/../Models/Menu.php';
 require_once __DIR__ . '/../Models/Order.php';
 require_once __DIR__ . '/../Models/Review.php';
 require_once __DIR__ . '/../Models/User.php';
+require_once __DIR__ . '/../Services/EmailService.php';
 
 /**
  * AdminController - Gestion de l'espace administration
@@ -339,7 +340,17 @@ class AdminController extends Controller {
 
         if ($result) {
             Auth::setFlash('success', 'Statut mis a jour.');
-            // TODO: Envoyer email au client
+
+            // Envoyer email au client
+            $order = Order::findById($id);
+            if ($order) {
+                EmailService::sendOrderStatusUpdate($order, $status);
+
+                // Envoyer invitation a laisser un avis si commande livree
+                if ($status === Order::STATUS_DELIVERED) {
+                    EmailService::sendReviewInvitation($order);
+                }
+            }
         } else {
             Auth::setFlash('error', 'Erreur lors de la mise a jour.');
         }
