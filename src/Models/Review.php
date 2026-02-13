@@ -18,7 +18,7 @@ class Review extends Model {
              FROM reviews r
              INNER JOIN users u ON r.user_id = u.id
              INNER JOIN menus m ON r.menu_id = m.id
-             INNER JOIN orders o ON r.order_id = o.id
+             LEFT JOIN orders o ON r.order_id = o.id
              WHERE r.id = ?",
             [$id]
         );
@@ -56,7 +56,7 @@ class Review extends Model {
             "SELECT r.*, m.title as menu_title, m.main_image_url as menu_image, o.order_number
              FROM reviews r
              INNER JOIN menus m ON r.menu_id = m.id
-             INNER JOIN orders o ON r.order_id = o.id
+             LEFT JOIN orders o ON r.order_id = o.id
              WHERE r.user_id = ?
              ORDER BY r.created_at DESC",
             [$userId]
@@ -92,7 +92,7 @@ class Review extends Model {
                 FROM reviews r
                 INNER JOIN users u ON r.user_id = u.id
                 INNER JOIN menus m ON r.menu_id = m.id
-                INNER JOIN orders o ON r.order_id = o.id
+                LEFT JOIN orders o ON r.order_id = o.id
                 LEFT JOIN users a ON r.approved_by = a.id
                 WHERE 1=1";
         $params = [];
