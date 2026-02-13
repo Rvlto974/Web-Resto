@@ -14,7 +14,7 @@ if (!isset($_GET['key']) || $_GET['key'] !== $secretKey) {
 }
 
 try {
-    $pdo = getDbConnection();
+    $pdo = new PDO(DB_DSN, DB_USER, DB_PASSWORD, DB_OPTIONS);
 
     echo "<h2>Migration des avis</h2>";
     echo "<pre>";
