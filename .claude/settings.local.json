@@ -8,7 +8,9 @@
       "Bash(docker ps:*)",
       "Bash(docker exec:*)",
       "Bash(docker run --rm mysql:8.0 mysql -h trolley.proxy.rlwy.net -P 35422 -u root -pZnQdCEytKAiDUNTMysRTEHxLvfzZJBkn vite_et_gourmand -e \"SHOW TABLES;\")",
-      "Bash(fly secrets set:*)"
+      "Bash(fly secrets set:*)",
+      "Bash(fly deploy:*)",
+      "Bash(curl:*)"
     ]
   }
 }

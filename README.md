@@ -218,6 +218,9 @@ Web-Resto/
 
 ## Documentation
 
+### Dossier technique (DWWM)
+- **Dossier complet** : `docs/DOSSIER-TECHNIQUE.md`
+
 ### UML
 - **Cas d'utilisation** : `docs/uml/cas-utilisation.md`
 - **MCD** : `docs/uml/mcd.md`
@@ -230,6 +233,9 @@ Web-Resto/
 
 ### Charte graphique
 - `docs/charte-graphique.html`
+
+### Manuel utilisateur
+- `docs/manuel-utilisateur.html`
 
 ---
 
@@ -298,7 +304,7 @@ docker-compose up -d
 ## Liens
 
 - **Dépôt GitHub** : https://github.com/Rvlto974/Web-Resto
-- **Application déployée** : *(à venir)*
+- **Application déployée** : https://vite-gourmand-resto.fly.dev/
 
 ---
 
