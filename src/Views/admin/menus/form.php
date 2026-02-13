@@ -20,7 +20,7 @@ $isEdit = !empty($menu);
 
     <div class="card shadow">
         <div class="card-body">
-            <form action="<?php echo $isEdit ? '/admin/menuUpdate/' . $menu['id'] : '/admin/menuStore'; ?>" method="POST">
+            <form action="<?php echo $isEdit ? '/admin/menuUpdate/' . $menu['id'] : '/admin/menuStore'; ?>" method="POST" enctype="multipart/form-data">
                 <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrfToken); ?>">
 
                 <div class="row">
@@ -65,10 +65,18 @@ $isEdit = !empty($menu);
                         </div>
 
                         <div class="mb-3">
-                            <label for="main_image_url" class="form-label">URL de l'image principale</label>
-                            <input type="url" class="form-control" id="main_image_url" name="main_image_url"
-                                   value="<?php echo htmlspecialchars($menu['main_image_url'] ?? ''); ?>"
-                                   placeholder="https://...">
+                            <label for="main_image" class="form-label">Image principale</label>
+                            <?php if ($isEdit && !empty($menu['main_image_url'])): ?>
+                                <div class="mb-2">
+                                    <img src="<?php echo htmlspecialchars($menu['main_image_url']); ?>"
+                                         alt="Image actuelle" class="img-thumbnail" style="max-height: 150px;">
+                                    <br><small class="text-muted">Image actuelle</small>
+                                </div>
+                            <?php endif; ?>
+                            <input type="file" class="form-control" id="main_image" name="main_image"
+                                   accept="image/jpeg,image/png,image/webp">
+                            <small class="text-muted">Formats acceptes : JPG, PNG, WebP (max 2 Mo)</small>
+                            <input type="hidden" name="current_image_url" value="<?php echo htmlspecialchars($menu['main_image_url'] ?? ''); ?>">
                         </div>
 
                         <div class="mb-3">

@@ -254,6 +254,14 @@ class AdminController extends Controller {
      * @return array
      */
     private function prepareMenuData($data) {
+        // Gerer l'upload d'image
+        $imageUrl = $this->handleImageUpload();
+
+        // Si pas de nouvelle image, garder l'ancienne
+        if (!$imageUrl && !empty($data['current_image_url'])) {
+            $imageUrl = $data['current_image_url'];
+        }
+
         return [
             'title' => trim($data['title']),
             'description' => trim($data['description']),
@@ -267,8 +275,60 @@ class AdminController extends Controller {
             'is_available' => isset($data['is_available']) ? 1 : 0,
             'min_order_delay_days' => (int)($data['min_order_delay_days'] ?? 3),
             'storage_instructions' => trim($data['storage_instructions'] ?? ''),
-            'main_image_url' => trim($data['main_image_url'] ?? '')
+            'main_image_url' => $imageUrl
         ];
+    }
+
+    /**
+     * Gere l'upload d'une image de menu
+     * @return string|null URL de l'image ou null
+     */
+    private function handleImageUpload() {
+        if (!isset($_FILES['main_image']) || $_FILES['main_image']['error'] !== UPLOAD_ERR_OK) {
+            return null;
+        }
+
+        $file = $_FILES['main_image'];
+
+        // Verifier le type MIME
+        $allowedTypes = ['image/jpeg', 'image/png', 'image/webp'];
+        $finfo = new finfo(FILEINFO_MIME_TYPE);
+        $mimeType = $finfo->file($file['tmp_name']);
+
+        if (!in_array($mimeType, $allowedTypes)) {
+            Auth::setFlash('error', 'Type de fichier non autorise. Utilisez JPG, PNG ou WebP.');
+            return null;
+        }
+
+        // Verifier la taille (max 2 Mo)
+        if ($file['size'] > 2 * 1024 * 1024) {
+            Auth::setFlash('error', 'L\'image ne doit pas depasser 2 Mo.');
+            return null;
+        }
+
+        // Creer le dossier uploads si necessaire
+        $uploadDir = __DIR__ . '/../../public/uploads/menus/';
+        if (!is_dir($uploadDir)) {
+            mkdir($uploadDir, 0755, true);
+        }
+
+        // Generer un nom unique
+        $extension = match($mimeType) {
+            'image/jpeg' => 'jpg',
+            'image/png' => 'png',
+            'image/webp' => 'webp',
+            default => 'jpg'
+        };
+        $filename = 'menu_' . uniqid() . '_' . time() . '.' . $extension;
+
+        // Deplacer le fichier
+        $destination = $uploadDir . $filename;
+        if (move_uploaded_file($file['tmp_name'], $destination)) {
+            return '/uploads/menus/' . $filename;
+        }
+
+        Auth::setFlash('error', 'Erreur lors de l\'upload de l\'image.');
+        return null;
     }
 
     // ==================== GESTION DES COMMANDES ====================
