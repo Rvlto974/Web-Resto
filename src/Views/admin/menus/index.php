@@ -8,7 +8,7 @@ require_once __DIR__ . '/../../../Core/Csrf.php';
         <h1 style="font-family: 'Playfair Display', serif; color: #5DA99A;">
             <i class="fas fa-utensils me-2"></i>Gestion des menus
         </h1>
-        <a href="/admin/menu/create" class="btn" style="background-color: #5DA99A; color: white;">
+        <a href="/admin/menuCreate" class="btn" style="background-color: #5DA99A; color: white;">
             <i class="fas fa-plus me-2"></i>Nouveau menu
         </a>
     </div>
@@ -94,11 +94,11 @@ require_once __DIR__ . '/../../../Core/Csrf.php';
                                             <a href="/menu/show/<?php echo $menu['id']; ?>" class="btn btn-sm btn-outline-primary" target="_blank" title="Voir">
                                                 <i class="fas fa-eye"></i>
                                             </a>
-                                            <a href="/admin/menu/edit/<?php echo $menu['id']; ?>" class="btn btn-sm btn-outline-warning" title="Modifier">
+                                            <a href="/admin/menuEdit/<?php echo $menu['id']; ?>" class="btn btn-sm btn-outline-warning" title="Modifier">
                                                 <i class="fas fa-edit"></i>
                                             </a>
                                             <?php if ($menu['is_available']): ?>
-                                                <form action="/admin/menu/delete/<?php echo $menu['id']; ?>" method="POST" class="d-inline"
+                                                <form action="/admin/menuDelete/<?php echo $menu['id']; ?>" method="POST" class="d-inline"
                                                       onsubmit="return confirm('Desactiver ce menu ?');">
                                                     <input type="hidden" name="csrf_token" value="<?php echo Csrf::getToken(); ?>">
                                                     <button type="submit" class="btn btn-sm btn-outline-danger" title="Desactiver">

@@ -116,7 +116,7 @@ class AdminController extends Controller {
 
         if (!empty($errors)) {
             Auth::setFlash('error', implode('<br>', $errors));
-            $this->redirect('/admin/menu/create');
+            $this->redirect('/admin/menuCreate');
         }
 
         $menuData = $this->prepareMenuData($_POST);
@@ -181,7 +181,7 @@ class AdminController extends Controller {
 
         if (!empty($errors)) {
             Auth::setFlash('error', implode('<br>', $errors));
-            $this->redirect('/admin/menu/edit/' . $id);
+            $this->redirect('/admin/menuEdit/' . $id);
         }
 
         $menuData = $this->prepareMenuData($_POST);

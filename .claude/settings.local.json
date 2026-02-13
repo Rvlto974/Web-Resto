@@ -10,7 +10,10 @@
       "Bash(docker run --rm mysql:8.0 mysql -h trolley.proxy.rlwy.net -P 35422 -u root -pZnQdCEytKAiDUNTMysRTEHxLvfzZJBkn vite_et_gourmand -e \"SHOW TABLES;\")",
       "Bash(fly secrets set:*)",
       "Bash(fly deploy:*)",
-      "Bash(curl:*)"
+      "Bash(curl:*)",
+      "Bash(fly ssh console:*)",
+      "Bash(fly apps list:*)",
+      "Bash(fly apps destroy:*)"
     ]
   }
 }

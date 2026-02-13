@@ -20,7 +20,7 @@ $isEdit = !empty($menu);
 
     <div class="card shadow">
         <div class="card-body">
-            <form action="<?php echo $isEdit ? '/admin/menu/update/' . $menu['id'] : '/admin/menu/store'; ?>" method="POST">
+            <form action="<?php echo $isEdit ? '/admin/menuUpdate/' . $menu['id'] : '/admin/menuStore'; ?>" method="POST">
                 <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrfToken); ?>">
 
                 <div class="row">
