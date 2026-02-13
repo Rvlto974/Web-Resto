@@ -137,19 +137,33 @@ class Review extends Model {
     }
 
     /**
+     * Verifie si un avis existe deja pour un menu par un utilisateur
+     * @param int $menuId
+     * @param int $userId
+     * @return bool
+     */
+    public static function existsForMenu($menuId, $userId) {
+        $result = self::queryOne(
+            "SELECT id FROM reviews WHERE menu_id = ? AND user_id = ?",
+            [$menuId, $userId]
+        );
+        return $result !== false;
+    }
+
+    /**
      * Cree un nouvel avis
      * @param array $data
      * @return int|false
      */
     public static function create($data) {
-        // Verifier qu'un avis n'existe pas deja
-        if (self::existsForOrder($data['order_id'], $data['user_id'])) {
+        // Verifier qu'un avis n'existe pas deja pour ce menu
+        if (self::existsForMenu($data['menu_id'], $data['user_id'])) {
             return false;
         }
 
         $sql = "INSERT INTO reviews (
             user_id, order_id, menu_id, rating, comment, is_approved, created_at
-        ) VALUES (?, ?, ?, ?, ?, 0, NOW())";
+        ) VALUES (?, ?, ?, ?, ?, 1, NOW())";
 
         $result = self::execute($sql, [
             $data['user_id'],

@@ -281,6 +281,43 @@ require_once __DIR__ . '/../../Core/Csrf.php';
             <?php endif; ?>
         </div>
         <div class="card-body">
+            <!-- Formulaire pour laisser un avis -->
+            <?php if (Auth::check()): ?>
+                <div class="mb-4 p-3 rounded" style="background-color: #F5F5F5;">
+                    <h5 class="mb-3"><i class="fas fa-pen me-2" style="color: #5DA99A;"></i>Laisser un avis</h5>
+                    <form action="/review/store" method="POST">
+                        <?php echo Csrf::getInputField(); ?>
+                        <input type="hidden" name="menu_id" value="<?php echo $menu['id']; ?>">
+
+                        <div class="mb-3">
+                            <label class="form-label">Votre note</label>
+                            <div class="star-rating">
+                                <?php for ($i = 5; $i >= 1; $i--): ?>
+                                    <input type="radio" id="star<?php echo $i; ?>" name="rating" value="<?php echo $i; ?>" required>
+                                    <label for="star<?php echo $i; ?>" title="<?php echo $i; ?> etoile<?php echo $i > 1 ? 's' : ''; ?>">
+                                        <i class="fas fa-star"></i>
+                                    </label>
+                                <?php endfor; ?>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="comment" class="form-label">Votre commentaire</label>
+                            <textarea class="form-control" id="comment" name="comment" rows="3"
+                                      placeholder="Partagez votre experience avec ce menu..."></textarea>
+                        </div>
+
+                        <button type="submit" class="btn" style="background-color: #5DA99A; color: white;">
+                            <i class="fas fa-paper-plane me-2"></i>Publier mon avis
+                        </button>
+                    </form>
+                </div>
+            <?php else: ?>
+                <div class="alert alert-info mb-4">
+                    <i class="fas fa-info-circle me-2"></i>
+                    <a href="/user/login">Connectez-vous</a> pour laisser un avis sur ce menu.
+                </div>
+            <?php endif; ?>
             <?php if (empty($reviews)): ?>
                 <p class="text-muted text-center py-4">
                     <i class="fas fa-comment-slash fa-2x mb-3 d-block"></i>
@@ -329,6 +366,27 @@ require_once __DIR__ . '/../../Core/Csrf.php';
 }
 .thumbnail-img:hover, .thumbnail-img.active {
     border-color: #5DA99A;
+}
+/* Star rating */
+.star-rating {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+}
+.star-rating input {
+    display: none;
+}
+.star-rating label {
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: #ddd;
+    padding: 0 2px;
+    transition: color 0.2s;
+}
+.star-rating label:hover,
+.star-rating label:hover ~ label,
+.star-rating input:checked ~ label {
+    color: #ffc107;
 }
 </style>
 
