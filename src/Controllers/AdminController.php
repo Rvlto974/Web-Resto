@@ -415,7 +415,7 @@ class AdminController extends Controller {
             Auth::setFlash('error', 'Erreur lors de la mise a jour.');
         }
 
-        $this->redirect('/admin/order/show/' . $id);
+        $this->redirect('/admin/orderShow/' . $id);
     }
 
     /**
@@ -440,7 +440,7 @@ class AdminController extends Controller {
             Auth::setFlash('error', 'Erreur lors de la mise a jour.');
         }
 
-        $this->redirect('/admin/order/show/' . $id);
+        $this->redirect('/admin/orderShow/' . $id);
     }
 
     // ==================== GESTION DES AVIS ====================

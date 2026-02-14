@@ -143,7 +143,7 @@ require_once __DIR__ . '/../../../Core/Csrf.php';
                     <h5 class="mb-0"><i class="fas fa-cog me-2"></i>Gestion</h5>
                 </div>
                 <div class="card-body">
-                    <form action="/admin/order/update-status/<?php echo $order['id']; ?>" method="POST">
+                    <form action="/admin/orderUpdateStatus/<?php echo $order['id']; ?>" method="POST">
                         <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrfToken); ?>">
 
                         <div class="mb-3">
@@ -169,7 +169,7 @@ require_once __DIR__ . '/../../../Core/Csrf.php';
 
                     <?php if ($order['status'] === 'waiting_return' && !$order['equipment_returned']): ?>
                         <hr>
-                        <form action="/admin/order/equipment-returned/<?php echo $order['id']; ?>" method="POST">
+                        <form action="/admin/orderEquipmentReturned/<?php echo $order['id']; ?>" method="POST">
                             <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrfToken); ?>">
                             <button type="submit" class="btn btn-outline-success w-100">
                                 <i class="fas fa-check me-2"></i>Marquer materiel retourne

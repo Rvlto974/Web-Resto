@@ -91,7 +91,7 @@ require_once __DIR__ . '/../../../Core/Auth.php';
                                         </span>
                                     </td>
                                     <td class="text-end">
-                                        <a href="/admin/order/show/<?php echo $order['id']; ?>" class="btn btn-sm btn-outline-primary">
+                                        <a href="/admin/orderShow/<?php echo $order['id']; ?>" class="btn btn-sm btn-outline-primary">
                                             <i class="fas fa-eye me-1"></i>Details
                                         </a>
                                     </td>
