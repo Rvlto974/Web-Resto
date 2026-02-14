@@ -329,4 +329,51 @@ class User extends Model {
         }
         return $counts;
     }
+
+    /**
+     * Anonymise les donnees d'un utilisateur (RGPD - Droit a l'effacement)
+     * Les commandes sont conservees pour la comptabilite mais anonymisees
+     * @param int $userId
+     * @return bool
+     */
+    public static function anonymize($userId) {
+        $anonymousEmail = 'deleted_' . $userId . '_' . time() . '@anonymous.local';
+
+        // Anonymiser l'utilisateur
+        $result = self::execute(
+            "UPDATE users SET
+                email = ?,
+                first_name = 'Utilisateur',
+                last_name = 'Supprime',
+                phone = '0000000000',
+                address = NULL,
+                city = NULL,
+                postal_code = NULL,
+                password_hash = '',
+                is_active = 0,
+                email_verified = 0,
+                email_verification_token = NULL,
+                updated_at = NOW()
+            WHERE id = ?",
+            [$anonymousEmail, $userId]
+        );
+
+        if (!$result) {
+            return false;
+        }
+
+        // Anonymiser les avis (supprimer les commentaires, garder les notes pour stats)
+        self::execute(
+            "UPDATE reviews SET comment = '[Avis supprime]' WHERE user_id = ?",
+            [$userId]
+        );
+
+        // Supprimer les tokens de reinitialisation
+        self::execute(
+            "DELETE FROM password_resets WHERE user_id = ?",
+            [$userId]
+        );
+
+        return true;
+    }
 }

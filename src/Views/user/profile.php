@@ -146,6 +146,30 @@
                     </div>
                 </div>
             </div>
+
+            <!-- RGPD - Gestion des donnees personnelles -->
+            <div class="card mt-4 shadow-sm">
+                <div class="card-body">
+                    <h5 class="text-muted"><i class="fas fa-shield-alt me-2"></i>Mes donnees personnelles (RGPD)</h5>
+                    <p class="text-muted small mb-3">
+                        Conformement au RGPD, vous pouvez exercer vos droits sur vos donnees personnelles.
+                    </p>
+                    <div class="row">
+                        <div class="col-md-6 mb-2">
+                            <a href="/user/exportData" class="btn btn-outline-primary w-100">
+                                <i class="fas fa-download me-2"></i>Telecharger mes donnees
+                            </a>
+                            <small class="text-muted d-block mt-1">Droit a la portabilite (Art. 20)</small>
+                        </div>
+                        <div class="col-md-6 mb-2">
+                            <a href="/user/deleteAccount" class="btn btn-outline-danger w-100">
+                                <i class="fas fa-trash-alt me-2"></i>Supprimer mon compte
+                            </a>
+                            <small class="text-muted d-block mt-1">Droit a l'effacement (Art. 17)</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

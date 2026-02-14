@@ -3,6 +3,8 @@ require_once __DIR__ . '/../Views/core/Controller.php';
 require_once __DIR__ . '/../Core/Auth.php';
 require_once __DIR__ . '/../Core/Csrf.php';
 require_once __DIR__ . '/../Models/User.php';
+require_once __DIR__ . '/../Models/Order.php';
+require_once __DIR__ . '/../Models/Review.php';
 require_once __DIR__ . '/../Services/EmailService.php';
 
 /**
@@ -326,6 +328,94 @@ class UserController extends Controller {
             'title' => 'Mot de passe oublie',
             'errors' => $errors,
             'success' => $success,
+            'csrf' => Csrf::getInputField()
+        ]);
+    }
+
+    /**
+     * Exporter les donnees personnelles (RGPD - Droit a la portabilite)
+     */
+    public function exportData() {
+        Auth::requireAuth();
+
+        $user = Auth::user();
+        $userId = $user['id'];
+
+        // Collecter toutes les donnees de l'utilisateur
+        $data = [
+            'export_date' => date('Y-m-d H:i:s'),
+            'user' => [
+                'id' => $user['id'],
+                'email' => $user['email'],
+                'first_name' => $user['first_name'],
+                'last_name' => $user['last_name'],
+                'phone' => $user['phone'],
+                'address' => $user['address'],
+                'city' => $user['city'],
+                'postal_code' => $user['postal_code'],
+                'role' => $user['role'],
+                'created_at' => $user['created_at'],
+                'last_login' => $user['last_login']
+            ],
+            'orders' => Order::findByUser($userId, 1000),
+            'reviews' => Review::findByUser($userId)
+        ];
+
+        // Nettoyer les donnees sensibles des commandes
+        foreach ($data['orders'] as &$order) {
+            unset($order['stripe_session_id'], $order['stripe_payment_intent']);
+        }
+
+        // Envoyer en JSON
+        header('Content-Type: application/json; charset=utf-8');
+        header('Content-Disposition: attachment; filename="mes-donnees-viteetgourmand-' . date('Y-m-d') . '.json"');
+        echo json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+        exit;
+    }
+
+    /**
+     * Supprimer le compte (RGPD - Droit a l'effacement)
+     */
+    public function deleteAccount() {
+        Auth::requireAuth();
+
+        $user = Auth::user();
+        $errors = [];
+
+        if ($this->isPost()) {
+            if (!Csrf::validateRequest()) {
+                $errors[] = 'Session expiree. Veuillez reessayer.';
+            } else {
+                $password = $_POST['password'] ?? '';
+                $confirmation = $_POST['confirmation'] ?? '';
+
+                // Verifier le mot de passe
+                if (!User::verifyPassword($password, $user['password_hash'])) {
+                    $errors[] = 'Mot de passe incorrect.';
+                }
+
+                // Verifier la confirmation
+                if ($confirmation !== 'SUPPRIMER') {
+                    $errors[] = 'Veuillez taper SUPPRIMER pour confirmer.';
+                }
+
+                if (empty($errors)) {
+                    // Anonymiser les donnees (garder commandes pour comptabilite)
+                    if (User::anonymize($user['id'])) {
+                        Auth::logout();
+                        Auth::setFlash('success', 'Votre compte a ete supprime. Merci d\'avoir utilise nos services.');
+                        $this->redirect('/');
+                    } else {
+                        $errors[] = 'Erreur lors de la suppression du compte.';
+                    }
+                }
+            }
+        }
+
+        $this->view('user/delete-account', [
+            'title' => 'Supprimer mon compte',
+            'user' => $user,
+            'errors' => $errors,
             'csrf' => Csrf::getInputField()
         ]);
     }
