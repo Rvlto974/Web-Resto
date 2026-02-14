@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>1. Diagramme de Cas d'Utilisation - Vite & Gourmand</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <style>
+        @media print {
+            body { margin: 0; padding: 20px; }
+            .no-print { display: none; }
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: white;
+        }
+        h1 {
+            color: #5DA99A;
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+        }
+        .mermaid {
+            text-align: center;
+        }
+        .nav {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+        }
+        .nav a {
+            color: #5DA99A;
+            margin: 0 10px;
+            text-decoration: none;
+        }
+        .nav a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <h1>1. Diagramme de Cas d'Utilisation</h1>
+    <p class="subtitle">Vite & Gourmand - Application de commande en ligne</p>
+
+    <div class="mermaid">
+flowchart TB
+    subgraph Systeme["Systeme Vite & Gourmand"]
+        UC1["Consulter les menus"]
+        UC2["Filtrer les menus"]
+        UC3["Voir detail menu"]
+        UC4["Contacter l'entreprise"]
+        UC5["S'inscrire"]
+        UC6["Se connecter"]
+        UC7["Se deconnecter"]
+        UC8["Gerer son profil"]
+        UC9["Commander un menu"]
+        UC10["Voir historique commandes"]
+        UC11["Annuler une commande"]
+        UC12["Suivre une commande"]
+        UC13["Laisser un avis"]
+        UC14["Gerer les menus"]
+        UC15["Gerer les commandes"]
+        UC16["Valider/Refuser avis"]
+        UC17["Creer compte employe"]
+        UC18["Voir statistiques"]
+        UC19["Gerer le panier"]
+        UC20["Payer en ligne"]
+    end
+
+    Visiteur((Visiteur))
+    Client((Client))
+    Employe((Employe))
+    Admin((Admin))
+
+    Visiteur --> UC1
+    Visiteur --> UC2
+    Visiteur --> UC3
+    Visiteur --> UC4
+    Visiteur --> UC5
+    Visiteur --> UC6
+
+    Client --> UC7
+    Client --> UC8
+    Client --> UC9
+    Client --> UC10
+    Client --> UC11
+    Client --> UC12
+    Client --> UC13
+    Client --> UC19
+    Client --> UC20
+
+    Employe --> UC14
+    Employe --> UC15
+    Employe --> UC16
+
+    Admin --> UC17
+    Admin --> UC18
+
+    Client -.->|herite| Visiteur
+    Employe -.->|herite| Client
+    Admin -.->|herite| Employe
+    </div>
+
+    <div class="nav no-print">
+        <a href="2-classes.html">Suivant: Classes &rarr;</a>
+    </div>
+
+    <script>mermaid.initialize({ startOnLoad: true, theme: 'default' });</script>
+</body>
+</html>

@@ -131,97 +131,92 @@ classDiagram
     direction LR
 
     class Controller {
-        <<abstract>>
-        #view()
-        #redirect()
-        #json()
+        view()
+        redirect()
+        json()
     }
 
     class HomeController {
-        +index()
-        +about()
+        index()
+        about()
     }
 
     class MenuController {
-        +index()
-        +show()
-        +filter()
+        index()
+        show()
+        filter()
     }
 
     class CartController {
-        +index()
-        +add()
-        +update()
-        +remove()
+        index()
+        add()
+        update()
+        remove()
     }
 
     class PaymentController {
-        +checkout()
-        +process()
-        +success()
+        checkout()
+        process()
+        success()
     }
 
     class OrderController {
-        +create()
-        +store()
-        +history()
+        create()
+        store()
+        history()
     }
 
     class AdminController {
-        +dashboard()
-        +menus()
-        +orders()
-        +reviews()
+        dashboard()
+        menus()
+        orders()
+        reviews()
     }
 
     class Model {
-        <<abstract>>
-        #PDO db
-        +findAll()
-        +findById()
-        +create()
-        +update()
+        findAll()
+        findById()
+        create()
+        update()
     }
 
     class User {
-        -id
-        -email
-        -password
-        -role
-        +findByEmail()
-        +verifyPassword()
+        int id
+        string email
+        string role
+        findByEmail()
+        verifyPassword()
     }
 
     class Menu {
-        -id
-        -title
-        -price
-        +findAvailable()
-        +getAverageRating()
+        int id
+        string title
+        float price
+        findAvailable()
+        getAverageRating()
     }
 
     class Order {
-        -id
-        -orderNumber
-        -status
-        +findByUser()
-        +updateStatus()
+        int id
+        string orderNumber
+        string status
+        findByUser()
+        updateStatus()
     }
 
     class Cart {
-        <<static>>
-        +add()
-        +remove()
-        +getItems()
-        +getTotal()
+        add()
+        remove()
+        getItems()
+        getTotal()
     }
 
     class Review {
-        -id
-        -rating
-        -comment
-        +approve()
-        +reject()
+        int id
+        int rating
+        string comment
+        approve()
+        reject()
     }
 
     Controller <|-- HomeController

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>4. Sequence Commande - Vite & Gourmand</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <style>
+        @media print {
+            body { margin: 0; padding: 20px; }
+            .no-print { display: none; }
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            background: white;
+        }
+        h1 {
+            color: #5DA99A;
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+        }
+        .mermaid {
+            text-align: center;
+        }
+        .nav {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+        }
+        .nav a {
+            color: #5DA99A;
+            margin: 0 10px;
+            text-decoration: none;
+        }
+        .nav a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <h1>4. Diagramme de Sequence - Passer une Commande</h1>
+    <p class="subtitle">Flux de commande avec paiement Stripe</p>
+
+    <div class="mermaid">
+sequenceDiagram
+    autonumber
+    actor C as Client
+    participant P as Page Menu
+    participant Cart as CartController
+    participant Pay as PaymentController
+    participant Stripe as Stripe API
+    participant DB as Base de donnees
+    participant Email as EmailService
+
+    C->>P: Consulte un menu
+    P-->>C: Affiche details
+
+    C->>Cart: Ajoute au panier
+    Cart-->>C: Panier mis a jour
+
+    C->>Cart: Valide le panier
+    Cart->>Pay: Redirection checkout
+
+    Pay->>Stripe: Cree session paiement
+    Stripe-->>Pay: URL de paiement
+    Pay-->>C: Redirection Stripe
+
+    C->>Stripe: Effectue paiement
+    Stripe-->>Pay: Webhook success
+
+    Pay->>DB: Cree commande
+    DB-->>Pay: Commande creee
+
+    Pay->>Email: Envoie confirmation
+    Email-->>C: Email recu
+
+    Pay-->>C: Page de confirmation
+    </div>
+
+    <div class="nav no-print">
+        <a href="3-mcd.html">&larr; Precedent: MCD</a>
+        <a href="5-sequence-avis.html">Suivant: Sequence Avis &rarr;</a>
+    </div>
+
+    <script>mermaid.initialize({ startOnLoad: true, theme: 'default' });</script>
+</body>
+</html>

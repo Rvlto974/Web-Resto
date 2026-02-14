@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Diagrammes UML - Vite & Gourmand</title>
+    <style>
+        @media print {
+            body { margin: 0; padding: 20px; }
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background: white;
+        }
+        h1 {
+            color: #5DA99A;
+            text-align: center;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 40px;
+        }
+        .diagram-list {
+            list-style: none;
+            padding: 0;
+        }
+        .diagram-list li {
+            margin: 15px 0;
+            padding: 20px;
+            background: #f5f5f5;
+            border-radius: 8px;
+            border-left: 4px solid #5DA99A;
+        }
+        .diagram-list a {
+            color: #333;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 500;
+        }
+        .diagram-list a:hover {
+            color: #5DA99A;
+        }
+        .diagram-list .description {
+            color: #666;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        .all-in-one {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+        }
+        .all-in-one a {
+            color: #5DA99A;
+            text-decoration: none;
+        }
+        .all-in-one a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Diagrammes UML</h1>
+    <p class="subtitle">Vite & Gourmand - Documentation technique</p>
+
+    <ul class="diagram-list">
+        <li>
+            <a href="1-cas-utilisation.html">1. Diagramme de Cas d'Utilisation</a>
+            <div class="description">Acteurs et fonctionnalites du systeme (Visiteur, Client, Employe, Admin)</div>
+        </li>
+        <li>
+            <a href="2-classes.html">2. Diagramme de Classes (MVC)</a>
+            <div class="description">Architecture Modele-Vue-Controleur avec Controllers et Models</div>
+        </li>
+        <li>
+            <a href="3-mcd.html">3. MCD - Modele Conceptuel de Donnees</a>
+            <div class="description">Schema de la base de donnees MySQL (entites et relations)</div>
+        </li>
+        <li>
+            <a href="4-sequence-commande.html">4. Diagramme de Sequence - Commande</a>
+            <div class="description">Flux de commande avec panier et paiement Stripe</div>
+        </li>
+        <li>
+            <a href="5-sequence-avis.html">5. Diagramme de Sequence - Avis</a>
+            <div class="description">Workflow de soumission et moderation des avis clients</div>
+        </li>
+    </ul>
+
+    <div class="all-in-one">
+        <a href="visualiser-diagrammes.html">Voir tous les diagrammes sur une seule page</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>5. Sequence Avis - Vite & Gourmand</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <style>
+        @media print {
+            body { margin: 0; padding: 20px; }
+            .no-print { display: none; }
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            background: white;
+        }
+        h1 {
+            color: #5DA99A;
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+        }
+        .mermaid {
+            text-align: center;
+        }
+        .nav {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+        }
+        .nav a {
+            color: #5DA99A;
+            margin: 0 10px;
+            text-decoration: none;
+        }
+        .nav a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <h1>5. Diagramme de Sequence - Moderation des Avis</h1>
+    <p class="subtitle">Workflow de soumission et validation des avis clients</p>
+
+    <div class="mermaid">
+sequenceDiagram
+    autonumber
+    actor C as Client
+    participant M as Page Menu
+    participant RC as ReviewController
+    participant DB as Base de donnees
+    actor E as Employe
+    participant AC as AdminController
+
+    C->>M: Consulte menu
+    C->>M: Remplit formulaire avis
+    M->>RC: POST /review/store
+
+    RC->>DB: INSERT review (is_approved=0)
+    DB-->>RC: OK
+    RC-->>C: "Avis en attente de validation"
+
+    Note over E,AC: Moderation
+
+    E->>AC: Accede /admin/reviews
+    AC->>DB: SELECT reviews non approuves
+    DB-->>AC: Liste avis
+    AC-->>E: Affiche avis en attente
+
+    alt Approuver
+        E->>AC: Clique Approuver
+        AC->>DB: UPDATE is_approved=1
+        DB-->>AC: OK
+        AC-->>E: "Avis approuve"
+    else Rejeter
+        E->>AC: Clique Supprimer
+        AC->>DB: DELETE review
+        DB-->>AC: OK
+        AC-->>E: "Avis supprime"
+    end
+    </div>
+
+    <div class="nav no-print">
+        <a href="4-sequence-commande.html">&larr; Precedent: Sequence Commande</a>
+        <a href="1-cas-utilisation.html">Retour au debut &rarr;</a>
+    </div>
+
+    <script>mermaid.initialize({ startOnLoad: true, theme: 'default' });</script>
+</body>
+</html>
