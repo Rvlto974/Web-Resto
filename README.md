@@ -237,6 +237,45 @@ Web-Resto/
 ### Manuel utilisateur
 - `docs/manuel-utilisateur.html`
 
+### Soutenance DWWM
+- **Script de presentation** : `docs/SCRIPT-SOUTENANCE.md`
+
+---
+
+## Soutenance DWWM - Guide rapide
+
+### Comptes de demonstration
+
+| Role | Email | Mot de passe |
+|------|-------|--------------|
+| **Admin** | admin@viteetgourmand.fr | password |
+| **Employe** | employe@viteetgourmand.fr | password |
+| **Client** | client@test.fr | password |
+
+### Parcours a demontrer
+
+1. **Visiteur** (5 min) : Accueil → Menus → Filtres → Detail menu → Contact
+2. **Client** (10 min) : Inscription → Panier → Commande → Historique → Avis → RGPD
+3. **Employe** (7 min) : Dashboard → CRUD Menus → Gestion commandes → Moderation avis
+4. **Admin** (3 min) : Gestion employes → Statistiques
+
+### Points techniques a montrer
+
+| Securite | Fichier |
+|----------|---------|
+| Protection CSRF | `src/Core/Csrf.php` |
+| Authentification | `src/Core/Auth.php` |
+| Requetes preparees | `src/Views/core/Model.php` |
+| Echappement XSS | Toutes les vues (`htmlspecialchars`) |
+
+### URLs
+
+| Environnement | URL |
+|---------------|-----|
+| Local | http://localhost:8080 |
+| Production | https://vite-gourmand-resto.fly.dev |
+| GitHub | https://github.com/Rvlto974/Web-Resto |
+
 ---
 
 ## Variables d'environnement
