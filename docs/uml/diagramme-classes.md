@@ -129,6 +129,22 @@ classDiagram
         +calculatePrice() void
     }
 
+    class CartController {
+        +index() void
+        +add() void
+        +update() void
+        +remove(int index) void
+        +clear() void
+    }
+
+    class PaymentController {
+        +checkout() void
+        +process() void
+        +success() void
+        +cancel() void
+        +webhook() void
+    }
+
     %% ===== MODELS =====
     class User {
         -int id
@@ -234,6 +250,30 @@ classDiagram
         +getDailyOrders(string date) int
     }
 
+    class Cart {
+        <<static>>
+        -array items
+        +init() void
+        +add(array item) void
+        +update(int index, array data) void
+        +remove(int index) void
+        +clear() void
+        +getItems() array
+        +count() int
+        +getTotal() float
+    }
+
+    class OrderItem {
+        -int id
+        -int orderId
+        -int menuId
+        -int numberOfPeople
+        -decimal unitPrice
+        -decimal totalPrice
+        +findByOrder(int orderId) array
+        +create(array data) int
+    }
+
     %% ===== SERVICES =====
     class EmailService {
         -string fromEmail
@@ -265,6 +305,8 @@ classDiagram
     Controller <|-- ContactController
     Controller <|-- ReviewController
     Controller <|-- ApiController
+    Controller <|-- CartController
+    Controller <|-- PaymentController
 
     Model <|-- User
     Model <|-- Menu
@@ -339,6 +381,8 @@ Protection contre les attaques CSRF.
 | ContactController | Formulaire de contact |
 | ReviewController | Gestion des avis |
 | ApiController | Endpoints JSON pour AJAX |
+| CartController | Gestion du panier multi-menus |
+| PaymentController | Integration Stripe, paiement |
 
 ### Models
 
@@ -349,7 +393,9 @@ Protection contre les attaques CSRF.
 | Dish | dishes | Plats individuels |
 | Allergen | allergens | Allergenes alimentaires |
 | Order | orders | Commandes clients |
+| OrderItem | order_items | Articles de commande (panier) |
 | Review | reviews | Avis et notes |
+| Cart | session | Panier en session (multi-menus) |
 | Statistics | MongoDB | Statistiques (NoSQL) |
 
 ### Services
