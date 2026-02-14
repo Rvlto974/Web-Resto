@@ -31,14 +31,15 @@ require_once __DIR__ . '/../../Core/Auth.php';
             </div>
         </div>
 
-        <!-- CA du jour -->
+        <!-- CA total -->
         <div class="col-xl-3 col-md-6">
             <div class="card shadow h-100" style="border-left: 4px solid #FF8F00;">
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center">
                         <div>
-                            <h6 class="text-muted text-uppercase small mb-1">CA aujourd'hui</h6>
-                            <h2 class="mb-0"><?php echo number_format($todayStats['revenue'], 2, ',', ' '); ?> EUR</h2>
+                            <h6 class="text-muted text-uppercase small mb-1">CA total (livrees)</h6>
+                            <h2 class="mb-0"><?php echo number_format($totalRevenue['revenue'], 2, ',', ' '); ?> EUR</h2>
+                            <small class="text-muted"><?php echo $totalRevenue['count']; ?> commandes</small>
                         </div>
                         <div class="rounded-circle p-3" style="background-color: #FFF3E0;">
                             <i class="fas fa-euro-sign fa-2x" style="color: #FF8F00;"></i>

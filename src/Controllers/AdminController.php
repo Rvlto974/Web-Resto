@@ -34,6 +34,7 @@ class AdminController extends Controller {
         // Statistiques des commandes
         $orderStats = Order::countByStatus();
         $todayStats = Order::getTodayStats();
+        $totalRevenue = Order::getTotalRevenue();
 
         // Avis en attente
         $pendingReviews = Review::countByStatus();
@@ -55,6 +56,7 @@ class AdminController extends Controller {
             'title' => 'Tableau de bord',
             'orderStats' => $orderStats,
             'todayStats' => $todayStats,
+            'totalRevenue' => $totalRevenue,
             'pendingReviews' => $pendingReviews['pending'] ?? 0,
             'recentOrders' => $recentOrders,
             'userStats' => $userStats,

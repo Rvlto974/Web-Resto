@@ -387,6 +387,24 @@ class Order extends Model {
     }
 
     /**
+     * Chiffre d'affaires total (commandes livrees)
+     * @return array
+     */
+    public static function getTotalRevenue() {
+        $stats = self::queryOne(
+            "SELECT COUNT(*) as count, COALESCE(SUM(total_price), 0) as revenue
+             FROM orders
+             WHERE status = ?",
+            [self::STATUS_DELIVERED]
+        );
+
+        return [
+            'count' => (int)$stats['count'],
+            'revenue' => (float)$stats['revenue']
+        ];
+    }
+
+    /**
      * Labels des statuts en francais
      * @return array
      */
