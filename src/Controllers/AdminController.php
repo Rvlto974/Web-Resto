@@ -489,7 +489,7 @@ class AdminController extends Controller {
     }
 
     /**
-     * Rejeter un avis
+     * Supprimer un avis
      * @param int $id
      */
     public function reviewReject($id = null) {
@@ -505,12 +505,14 @@ class AdminController extends Controller {
         $result = Review::reject($id);
 
         if ($result) {
-            Auth::setFlash('success', 'Avis rejete.');
+            Auth::setFlash('success', 'Avis supprime.');
         } else {
-            Auth::setFlash('error', 'Erreur lors du rejet.');
+            Auth::setFlash('error', 'Erreur lors de la suppression.');
         }
 
-        $this->redirect('/admin/reviews?status=pending');
+        // Retourner a la page d'origine
+        $referer = $_SERVER['HTTP_REFERER'] ?? '/admin/reviews';
+        $this->redirect($referer);
     }
 
     // ==================== GESTION DES EMPLOYES (Admin seulement) ====================

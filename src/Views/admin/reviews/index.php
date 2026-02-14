@@ -90,25 +90,23 @@ require_once __DIR__ . '/../../../Core/Csrf.php';
                                         <?php endif; ?>
                                     </td>
                                     <td class="text-end">
-                                        <?php if (!$review['is_approved']): ?>
-                                            <div class="btn-group">
+                                        <div class="btn-group">
+                                            <?php if (!$review['is_approved']): ?>
                                                 <form action="/admin/reviewApprove/<?php echo $review['id']; ?>" method="POST" class="d-inline">
                                                     <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrfToken); ?>">
                                                     <button type="submit" class="btn btn-sm btn-success" title="Approuver">
                                                         <i class="fas fa-check"></i>
                                                     </button>
                                                 </form>
-                                                <form action="/admin/reviewReject/<?php echo $review['id']; ?>" method="POST" class="d-inline"
-                                                      onsubmit="return confirm('Supprimer cet avis ?');">
-                                                    <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrfToken); ?>">
-                                                    <button type="submit" class="btn btn-sm btn-danger" title="Rejeter">
-                                                        <i class="fas fa-times"></i>
-                                                    </button>
-                                                </form>
-                                            </div>
-                                        <?php else: ?>
-                                            <span class="text-muted">-</span>
-                                        <?php endif; ?>
+                                            <?php endif; ?>
+                                            <form action="/admin/reviewReject/<?php echo $review['id']; ?>" method="POST" class="d-inline"
+                                                  onsubmit="return confirm('Supprimer definitivement cet avis ?');">
+                                                <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrfToken); ?>">
+                                                <button type="submit" class="btn btn-sm btn-danger" title="Supprimer">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </form>
+                                        </div>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>
