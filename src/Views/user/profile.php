@@ -18,6 +18,9 @@
                     <a href="/order/history" class="list-group-item list-group-item-action">
                         <i class="fas fa-history me-2"></i>Mes commandes
                     </a>
+                    <a href="/review/myReviews" class="list-group-item list-group-item-action">
+                        <i class="fas fa-star me-2"></i>Mes avis
+                    </a>
                     <?php if ($user['role'] === 'admin' || $user['role'] === 'employee'): ?>
                         <a href="/admin" class="list-group-item list-group-item-action">
                             <i class="fas fa-tachometer-alt me-2"></i>Administration
