@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagrammes UML - Vite & Gourmand</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        h1 {
+            color: #5DA99A;
+            text-align: center;
+        }
+        h2 {
+            color: #333;
+            border-bottom: 2px solid #5DA99A;
+            padding-bottom: 10px;
+        }
+        .diagram-container {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .mermaid {
+            text-align: center;
+        }
+        .download-btn {
+            background: #5DA99A;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px 5px;
+        }
+        .download-btn:hover {
+            background: #4a8a7d;
+        }
+        .instructions {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Diagrammes UML - Vite & Gourmand</h1>
+
+    <div class="instructions">
+        <strong>Instructions :</strong> Pour sauvegarder un diagramme en PNG, faites clic droit sur l'image > "Enregistrer l'image sous..."
+        <br>Ou utilisez l'outil de capture d'ecran de votre systeme.
+    </div>
+
+    <!-- Diagramme de Cas d'Utilisation -->
+    <div class="diagram-container">
+        <h2>1. Diagramme de Cas d'Utilisation</h2>
+        <div class="mermaid">
+flowchart TB
+    subgraph Systeme["Systeme Vite & Gourmand"]
+        UC1["Consulter les menus"]
+        UC2["Filtrer les menus"]
+        UC3["Voir detail menu"]
+        UC4["Contacter l'entreprise"]
+        UC5["S'inscrire"]
+        UC6["Se connecter"]
+        UC7["Se deconnecter"]
+        UC8["Gerer son profil"]
+        UC9["Commander un menu"]
+        UC10["Voir historique commandes"]
+        UC11["Annuler une commande"]
+        UC12["Suivre une commande"]
+        UC13["Laisser un avis"]
+        UC14["Gerer les menus"]
+        UC15["Gerer les commandes"]
+        UC16["Valider/Refuser avis"]
+        UC17["Creer compte employe"]
+        UC18["Voir statistiques"]
+        UC19["Gerer le panier"]
+        UC20["Payer en ligne"]
+    end
+
+    Visiteur((Visiteur))
+    Client((Client))
+    Employe((Employe))
+    Admin((Admin))
+
+    Visiteur --> UC1
+    Visiteur --> UC2
+    Visiteur --> UC3
+    Visiteur --> UC4
+    Visiteur --> UC5
+    Visiteur --> UC6
+
+    Client --> UC7
+    Client --> UC8
+    Client --> UC9
+    Client --> UC10
+    Client --> UC11
+    Client --> UC12
+    Client --> UC13
+    Client --> UC19
+    Client --> UC20
+
+    Employe --> UC14
+    Employe --> UC15
+    Employe --> UC16
+
+    Admin --> UC17
+    Admin --> UC18
+
+    Client -.->|herite| Visiteur
+    Employe -.->|herite| Client
+    Admin -.->|herite| Employe
+        </div>
+    </div>
+
+    <!-- Diagramme de Classes -->
+    <div class="diagram-container">
+        <h2>2. Diagramme de Classes (MVC)</h2>
+        <div class="mermaid">
+classDiagram
+    direction LR
+
+    class Controller {
+        <<abstract>>
+        #view()
+        #redirect()
+        #json()
+    }
+
+    class HomeController {
+        +index()
+        +about()
+    }
+
+    class MenuController {
+        +index()
+        +show()
+        +filter()
+    }
+
+    class CartController {
+        +index()
+        +add()
+        +update()
+        +remove()
+    }
+
+    class PaymentController {
+        +checkout()
+        +process()
+        +success()
+    }
+
+    class OrderController {
+        +create()
+        +store()
+        +history()
+    }
+
+    class AdminController {
+        +dashboard()
+        +menus()
+        +orders()
+        +reviews()
+    }
+
+    class Model {
+        <<abstract>>
+        #PDO db
+        +findAll()
+        +findById()
+        +create()
+        +update()
+    }
+
+    class User {
+        -id
+        -email
+        -password
+        -role
+        +findByEmail()
+        +verifyPassword()
+    }
+
+    class Menu {
+        -id
+        -title
+        -price
+        +findAvailable()
+        +getAverageRating()
+    }
+
+    class Order {
+        -id
+        -orderNumber
+        -status
+        +findByUser()
+        +updateStatus()
+    }
+
+    class Cart {
+        <<static>>
+        +add()
+        +remove()
+        +getItems()
+        +getTotal()
+    }
+
+    class Review {
+        -id
+        -rating
+        -comment
+        +approve()
+        +reject()
+    }
+
+    Controller <|-- HomeController
+    Controller <|-- MenuController
+    Controller <|-- CartController
+    Controller <|-- PaymentController
+    Controller <|-- OrderController
+    Controller <|-- AdminController
+
+    Model <|-- User
+    Model <|-- Menu
+    Model <|-- Order
+    Model <|-- Review
+
+    CartController --> Cart
+    OrderController --> Order
+    AdminController --> Review
+        </div>
+    </div>
+
+    <!-- MCD -->
+    <div class="diagram-container">
+        <h2>3. MCD - Modele Conceptuel de Donnees</h2>
+        <div class="mermaid">
+erDiagram
+    UTILISATEUR ||--o{ COMMANDE : passe
+    UTILISATEUR ||--o{ AVIS : redige
+    MENU ||--o{ COMMANDE : concerne
+    MENU ||--o{ AVIS : recoit
+    MENU ||--|{ MENU_PLAT : contient
+    PLAT ||--|{ MENU_PLAT : compose
+    PLAT ||--o{ PLAT_ALLERGENE : possede
+    ALLERGENE ||--o{ PLAT_ALLERGENE : concerne
+    COMMANDE ||--o{ COMMANDE_ITEM : contient
+
+    UTILISATEUR {
+        int id PK
+        string email UK
+        string nom
+        string prenom
+        string mot_de_passe
+        enum role
+        boolean actif
+    }
+
+    MENU {
+        int id PK
+        string titre
+        text description
+        decimal prix_base
+        int min_personnes
+        boolean disponible
+    }
+
+    COMMANDE {
+        int id PK
+        string numero UK
+        int utilisateur_id FK
+        decimal prix_total
+        enum statut
+        date date_livraison
+    }
+
+    COMMANDE_ITEM {
+        int id PK
+        int commande_id FK
+        int menu_id FK
+        int nb_personnes
+        decimal prix
+    }
+
+    AVIS {
+        int id PK
+        int utilisateur_id FK
+        int menu_id FK
+        int note
+        text commentaire
+        boolean approuve
+    }
+
+    PLAT {
+        int id PK
+        string nom
+        enum categorie
+    }
+
+    ALLERGENE {
+        int id PK
+        string nom
+        string icone
+    }
+        </div>
+    </div>
+
+    <!-- Sequence Commande -->
+    <div class="diagram-container">
+        <h2>4. Diagramme de Sequence - Passer une Commande</h2>
+        <div class="mermaid">
+sequenceDiagram
+    autonumber
+    actor C as Client
+    participant P as Page Menu
+    participant Cart as CartController
+    participant Pay as PaymentController
+    participant Stripe as Stripe API
+    participant DB as Base de donnees
+    participant Email as EmailService
+
+    C->>P: Consulte un menu
+    P-->>C: Affiche details
+
+    C->>Cart: Ajoute au panier
+    Cart-->>C: Panier mis a jour
+
+    C->>Cart: Valide le panier
+    Cart->>Pay: Redirection checkout
+
+    Pay->>Stripe: Cree session paiement
+    Stripe-->>Pay: URL de paiement
+    Pay-->>C: Redirection Stripe
+
+    C->>Stripe: Effectue paiement
+    Stripe-->>Pay: Webhook success
+
+    Pay->>DB: Cree commande
+    DB-->>Pay: Commande creee
+
+    Pay->>Email: Envoie confirmation
+    Email-->>C: Email recu
+
+    Pay-->>C: Page de confirmation
+        </div>
+    </div>
+
+    <!-- Sequence Avis -->
+    <div class="diagram-container">
+        <h2>5. Diagramme de Sequence - Moderation Avis</h2>
+        <div class="mermaid">
+sequenceDiagram
+    autonumber
+    actor C as Client
+    participant M as Page Menu
+    participant RC as ReviewController
+    participant DB as Base de donnees
+    actor E as Employe
+    participant AC as AdminController
+
+    C->>M: Consulte menu
+    C->>M: Remplit formulaire avis
+    M->>RC: POST /review/store
+
+    RC->>DB: INSERT review (is_approved=0)
+    DB-->>RC: OK
+    RC-->>C: "Avis en attente de validation"
+
+    Note over E,AC: Moderation
+
+    E->>AC: Accede /admin/reviews
+    AC->>DB: SELECT reviews non approuves
+    DB-->>AC: Liste avis
+    AC-->>E: Affiche avis en attente
+
+    alt Approuver
+        E->>AC: Clique Approuver
+        AC->>DB: UPDATE is_approved=1
+        DB-->>AC: OK
+        AC-->>E: "Avis approuve"
+    else Rejeter
+        E->>AC: Clique Supprimer
+        AC->>DB: DELETE review
+        DB-->>AC: OK
+        AC-->>E: "Avis supprime"
+    end
+        </div>
+    </div>
+
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'default',
+            securityLevel: 'loose'
+        });
+    </script>
+</body>
+</html>
