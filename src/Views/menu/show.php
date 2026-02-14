@@ -35,11 +35,13 @@ require_once __DIR__ . '/../../Core/Csrf.php';
                         <div class="d-flex gap-2 overflow-auto">
                             <?php if ($menu['main_image_url']): ?>
                                 <img src="<?php echo htmlspecialchars($menu['main_image_url']); ?>"
+                                     alt="<?php echo htmlspecialchars($menu['title']); ?> - Image principale"
                                      class="img-thumbnail thumbnail-img active" style="width: 80px; height: 60px; object-fit: cover; cursor: pointer;"
                                      onclick="changeImage(this.src)">
                             <?php endif; ?>
-                            <?php foreach ($images as $img): ?>
+                            <?php $imgIndex = 1; foreach ($images as $img): ?>
                                 <img src="<?php echo htmlspecialchars($img['image_url']); ?>"
+                                     alt="<?php echo htmlspecialchars($menu['title']); ?> - Image <?php echo ++$imgIndex; ?>"
                                      class="img-thumbnail thumbnail-img" style="width: 80px; height: 60px; object-fit: cover; cursor: pointer;"
                                      onclick="changeImage(this.src)">
                             <?php endforeach; ?>

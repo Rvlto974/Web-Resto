@@ -198,23 +198,71 @@ $cartCount = Cart::count();
                 font-size: 20px !important;
             }
         }
+
+        /* Accessibilite - Skip link */
+        .skip-link {
+            position: absolute;
+            top: -100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--vert-primaire);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 0 0 5px 5px;
+            z-index: 9999;
+            transition: top 0.3s;
+        }
+        .skip-link:focus {
+            top: 0;
+            outline: 3px solid var(--orange);
+        }
+
+        /* Accessibilite - Focus visible */
+        a:focus, button:focus, input:focus, select:focus, textarea:focus {
+            outline: 3px solid var(--orange);
+            outline-offset: 2px;
+        }
+        .btn:focus, .btn-primary-header:focus, .btn-outline:focus {
+            outline: 3px solid var(--orange);
+            outline-offset: 2px;
+            box-shadow: none;
+        }
+
+        /* Classe pour cacher visuellement mais garder accessible */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
     </style>
 </head>
 <body>
+    <!-- Skip link pour accessibilite -->
+    <a href="#main-content" class="visually-hidden-focusable skip-link">
+        Aller au contenu principal
+    </a>
+
     <!-- Header -->
-    <header class="header">
+    <header class="header" role="banner">
         <a href="/" class="logo">Vite & Gourmand</a>
-        <nav class="nav">
+        <nav class="nav" role="navigation" aria-label="Menu principal">
             <a href="/" class="nav-link">Accueil</a>
             <a href="/menu" class="nav-link">Nos Menus</a>
             <a href="/contact" class="nav-link">Contact</a>
         </nav>
         <div class="header-actions">
             <!-- Panier -->
-            <a href="/cart" class="cart-icon position-relative" style="color: var(--vert-primaire); font-size: 22px; margin-right: 10px;">
-                <i class="fas fa-shopping-cart"></i>
+            <a href="/cart" class="cart-icon position-relative" style="color: var(--vert-primaire); font-size: 22px; margin-right: 10px;" aria-label="Panier<?php echo $cartCount > 0 ? ', ' . $cartCount . ' article' . ($cartCount > 1 ? 's' : '') : ', vide'; ?>">
+                <i class="fas fa-shopping-cart" aria-hidden="true"></i>
+                <span class="sr-only">Panier<?php echo $cartCount > 0 ? ', ' . $cartCount . ' article' . ($cartCount > 1 ? 's' : '') : ', vide'; ?></span>
                 <?php if ($cartCount > 0): ?>
-                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill" style="background-color: #FF8F00; font-size: 10px;">
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill" style="background-color: #FF8F00; font-size: 10px;" aria-hidden="true">
                         <?php echo $cartCount > 9 ? '9+' : $cartCount; ?>
                     </span>
                 <?php endif; ?>
@@ -241,14 +289,14 @@ $cartCount = Cart::count();
             <?php endif; ?>
 
             <!-- Mobile menu button -->
-            <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Menu">
-                <i class="fas fa-bars" id="menuIcon"></i>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobileNav">
+                <i class="fas fa-bars" id="menuIcon" aria-hidden="true"></i>
             </button>
         </div>
     </header>
 
     <!-- Mobile Navigation -->
-    <nav class="mobile-nav" id="mobileNav">
+    <nav class="mobile-nav" id="mobileNav" role="navigation" aria-label="Menu mobile" aria-hidden="true">
         <a href="/"><i class="fas fa-home me-2"></i>Accueil</a>
         <a href="/menu"><i class="fas fa-utensils me-2"></i>Nos Menus</a>
         <a href="/cart"><i class="fas fa-shopping-cart me-2"></i>Panier <?php if ($cartCount > 0): ?>(<?php echo $cartCount; ?>)<?php endif; ?></a>
@@ -271,9 +319,14 @@ $cartCount = Cart::count();
         function toggleMobileMenu() {
             const nav = document.getElementById('mobileNav');
             const icon = document.getElementById('menuIcon');
-            nav.classList.toggle('show');
+            const btn = document.querySelector('.mobile-menu-btn');
+            const isOpen = nav.classList.toggle('show');
             icon.classList.toggle('fa-bars');
             icon.classList.toggle('fa-times');
+            // Accessibilite
+            nav.setAttribute('aria-hidden', !isOpen);
+            btn.setAttribute('aria-expanded', isOpen);
+            btn.setAttribute('aria-label', isOpen ? 'Fermer le menu' : 'Ouvrir le menu');
         }
     </script>
 
@@ -289,4 +342,4 @@ $cartCount = Cart::count();
         </div>
     <?php endif; ?>
 
-    <main>
+    <main id="main-content" role="main">

@@ -1,16 +1,16 @@
     </main>
 
     <!-- Footer -->
-    <footer class="footer-home" style="text-align: center;">
+    <footer class="footer-home" style="text-align: center;" role="contentinfo">
         <div class="footer-grid" style="text-align: center;">
             <div class="footer-col" style="text-align: center;">
                 <h4>Vite & Gourmand</h4>
                 <p>Traiteur d'exception a Bordeaux depuis 25 ans. Nous mettons notre passion au service de vos evenements.</p>
-                <div class="footer-social">
-                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+                <div class="footer-social" role="list" aria-label="Reseaux sociaux">
+                    <a href="#" class="social-icon" aria-label="Facebook" role="listitem"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+                    <a href="#" class="social-icon" aria-label="Instagram" role="listitem"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                    <a href="#" class="social-icon" aria-label="Twitter" role="listitem"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+                    <a href="#" class="social-icon" aria-label="WhatsApp" role="listitem"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
                 </div>
             </div>
 
