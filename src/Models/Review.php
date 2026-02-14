@@ -163,7 +163,7 @@ class Review extends Model {
 
         $sql = "INSERT INTO reviews (
             user_id, order_id, menu_id, rating, comment, is_approved, created_at
-        ) VALUES (?, ?, ?, ?, ?, 1, NOW())";
+        ) VALUES (?, ?, ?, ?, ?, 0, NOW())";
 
         $result = self::execute($sql, [
             $data['user_id'],

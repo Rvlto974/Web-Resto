@@ -124,7 +124,7 @@ class ReviewController extends Controller {
         $reviewId = Review::create($reviewData);
 
         if ($reviewId) {
-            Auth::setFlash('success', 'Merci pour votre avis !');
+            Auth::setFlash('success', 'Merci pour votre avis ! Il sera visible apres validation par notre equipe.');
         } else {
             Auth::setFlash('error', 'Une erreur est survenue lors de l\'enregistrement.');
         }
