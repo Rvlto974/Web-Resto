@@ -10,15 +10,20 @@
 ## Table des matières
 
 1. [Présentation du projet](#1-présentation-du-projet)
-2. [Architecture technique](#2-architecture-technique)
-3. [Base de données](#3-base-de-données)
-4. [Sécurité](#4-sécurité)
-5. [Fonctionnalités développées](#5-fonctionnalités-développées)
-6. [API et points d'entrée](#6-api-et-points-dentrée)
-7. [Déploiement](#7-déploiement)
-8. [Tests réalisés](#8-tests-réalisés)
-9. [Veille technologique](#9-veille-technologique)
-10. [Axes d'amélioration](#10-axes-damélioration)
+2. [Gestion de projet](#2-gestion-de-projet)
+3. [Architecture technique](#3-architecture-technique)
+4. [Base de données](#4-base-de-données)
+5. [Sécurité](#5-sécurité)
+6. [Conformité RGPD](#6-conformité-rgpd)
+7. [Accessibilité RGAA/WCAG](#7-accessibilité-rgaawcag)
+8. [Fonctionnalités développées](#8-fonctionnalités-développées)
+9. [API et points d'entrée](#9-api-et-points-dentrée)
+10. [Captures d'écran](#10-captures-décran)
+11. [Déploiement](#11-déploiement)
+12. [Tests réalisés](#12-tests-réalisés)
+13. [Veille technologique](#13-veille-technologique)
+14. [Bilan personnel](#14-bilan-personnel)
+15. [Axes d'amélioration](#15-axes-damélioration)
 
 ---
 
@@ -46,9 +51,77 @@
 
 ---
 
-## 2. Architecture technique
+## 2. Gestion de projet
 
-### 2.1 Stack technologique
+### 2.1 Méthodologie
+
+Le projet a été développé en suivant une **méthodologie Agile** adaptée au contexte solo :
+
+- **Sprints d'une semaine** avec objectifs définis
+- **Daily review** personnelle (15 min/jour)
+- **Backlog** priorisé par fonctionnalité
+- **Git** pour le versioning et le suivi des modifications
+
+### 2.2 Planning de réalisation
+
+| Semaine | Sprint | Objectifs | Livrables |
+|---------|--------|-----------|-----------|
+| S1 | Sprint 0 | Analyse, conception | Cahier des charges, MCD, wireframes |
+| S2 | Sprint 1 | Architecture, BDD | Structure MVC, schéma SQL, Docker |
+| S3 | Sprint 2 | Authentification | Inscription, connexion, sessions |
+| S4 | Sprint 3 | Gestion menus | CRUD menus, filtres AJAX |
+| S5 | Sprint 4 | Panier & commandes | Cart, checkout, historique |
+| S6 | Sprint 5 | Espace admin | Dashboard, gestion commandes |
+| S7 | Sprint 6 | Avis & RGPD | Reviews, export données, suppression |
+| S8 | Sprint 7 | Déploiement | Fly.io, tests, documentation |
+
+### 2.3 Diagramme de Gantt simplifié
+
+```
+Semaine      S1    S2    S3    S4    S5    S6    S7    S8
+            ─────────────────────────────────────────────────
+Conception  ████
+Architecture      ████
+Auth                    ████
+Menus                         ████
+Panier/Cmd                          ████
+Admin                                     ████
+RGPD/Avis                                       ████
+Déploiement                                           ████
+Tests       ──────────────────────────────────────────────▶
+```
+
+### 2.4 Outils utilisés
+
+| Outil | Usage |
+|-------|-------|
+| **VS Code** | Éditeur de code principal |
+| **Git / GitHub** | Versioning, collaboration |
+| **Docker Desktop** | Environnement de développement |
+| **Figma** | Wireframes et mockups |
+| **dbdiagram.io** | Conception MCD |
+| **Postman** | Tests API |
+| **Chrome DevTools** | Debug, responsive |
+
+### 2.5 Suivi des commits
+
+```
+Total commits : 50+
+Branches utilisées : main (production)
+
+Exemples de commits :
+- feat: Système de panier avec sessions
+- feat: Filtres AJAX pour menus
+- fix: Protection CSRF sur formulaires
+- docs: Dossier technique complet
+- deploy: Configuration Fly.io
+```
+
+---
+
+## 3. Architecture technique
+
+### 3.1 Stack technologique
 
 | Couche | Technologie | Version | Justification |
 |--------|-------------|---------|---------------|
@@ -61,7 +134,7 @@
 | Conteneurisation | Docker | 20+ | Portabilité, environnement reproductible |
 | Déploiement | Fly.io | - | PaaS simple, scaling automatique |
 
-### 2.2 Architecture MVC
+### 3.2 Architecture MVC
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
@@ -112,7 +185,7 @@
 └─────────────────────────────────────────────────────────────┘
 ```
 
-### 2.3 Structure des dossiers
+### 3.3 Structure des dossiers
 
 ```
 App-Resto/
@@ -154,9 +227,9 @@ App-Resto/
 
 ---
 
-## 3. Base de données
+## 4. Base de données
 
-### 3.1 Modèle Conceptuel de Données (MCD)
+### 4.1 Modèle Conceptuel de Données (MCD)
 
 ```
 ┌─────────────┐       ┌─────────────┐       ┌─────────────┐
@@ -194,7 +267,7 @@ App-Resto/
 └─────────────┘
 ```
 
-### 3.2 Tables principales
+### 4.2 Tables principales
 
 #### Table `users`
 | Colonne | Type | Description |
@@ -237,7 +310,7 @@ App-Resto/
 | delivery_time | TIME | Heure livraison |
 | delivery_address | TEXT | Adresse complète |
 
-### 3.3 Requêtes préparées (PDO)
+### 4.3 Requêtes préparées (PDO)
 
 Toutes les requêtes utilisent des **requêtes préparées** pour prévenir les injections SQL :
 
@@ -261,9 +334,9 @@ public static function findByEmail($email) {
 
 ---
 
-## 4. Sécurité
+## 5. Sécurité
 
-### 4.1 Authentification
+### 5.1 Authentification
 
 #### Hashage des mots de passe
 ```php
@@ -294,7 +367,7 @@ public static function login($user) {
 }
 ```
 
-### 4.2 Protection CSRF
+### 5.2 Protection CSRF
 
 Chaque formulaire inclut un **token CSRF** :
 
@@ -319,7 +392,7 @@ if (!Csrf::validateRequest()) {
 }
 ```
 
-### 4.3 Validation des entrées
+### 5.3 Validation des entrées
 
 ```php
 // Exemple dans OrderController.php
@@ -341,14 +414,14 @@ if (!preg_match('/^[0-9]{5}$/', $deliveryPostalCode)) {
 }
 ```
 
-### 4.4 Échappement des sorties (XSS)
+### 5.4 Échappement des sorties (XSS)
 
 ```php
 // Dans les vues, toutes les données utilisateur sont échappées
 <?php echo htmlspecialchars($user['first_name'], ENT_QUOTES, 'UTF-8'); ?>
 ```
 
-### 4.5 Contrôle d'accès
+### 5.5 Contrôle d'accès
 
 ```php
 // Protection des routes dans Auth.php
@@ -369,7 +442,7 @@ public static function requireEmployee() {
 }
 ```
 
-### 4.6 Résumé des mesures de sécurité
+### 5.6 Résumé des mesures de sécurité
 
 | Menace | Protection | Implémentation |
 |--------|------------|----------------|
@@ -382,9 +455,229 @@ public static function requireEmployee() {
 
 ---
 
-## 5. Fonctionnalités développées
+## 6. Conformité RGPD
 
-### 5.1 Système de panier (Session)
+Le projet respecte le **Règlement Général sur la Protection des Données** (RGPD - UE 2016/679).
+
+### 6.1 Principes appliqués
+
+| Principe RGPD | Implémentation |
+|---------------|----------------|
+| **Minimisation** | Collecte uniquement des données nécessaires |
+| **Finalité** | Données utilisées uniquement pour le service |
+| **Consentement** | Acceptation CGV obligatoire à l'inscription |
+| **Transparence** | Politique de confidentialité accessible |
+| **Sécurité** | Hashage mots de passe, HTTPS, sessions sécurisées |
+
+### 6.2 Droits des utilisateurs
+
+#### Article 15 - Droit d'accès
+L'utilisateur peut consulter toutes ses données via son profil (`/user/profile`).
+
+#### Article 17 - Droit à l'effacement ("Droit à l'oubli")
+
+```php
+// UserController.php - Suppression de compte
+public function deleteAccount() {
+    Auth::requireAuth();
+    $user = Auth::user();
+
+    // Vérification mot de passe + confirmation "SUPPRIMER"
+    if ($password && $confirmation === 'SUPPRIMER') {
+        if (password_verify($password, $user['password_hash'])) {
+            User::anonymize($user['id']);  // Anonymisation
+            Auth::logout();
+        }
+    }
+}
+
+// User.php - Anonymisation des données
+public static function anonymize($userId) {
+    $anonymousEmail = 'deleted_' . $userId . '_' . time() . '@anonymized.local';
+
+    $sql = "UPDATE users SET
+            email = ?,
+            first_name = 'Utilisateur',
+            last_name = 'Supprimé',
+            phone = NULL,
+            address = NULL,
+            city = NULL,
+            postal_code = NULL,
+            is_active = 0,
+            updated_at = NOW()
+            WHERE id = ?";
+
+    return self::execute($sql, [$anonymousEmail, $userId]);
+}
+```
+
+**Note** : Les commandes sont conservées 10 ans (obligation légale comptable) mais anonymisées.
+
+#### Article 20 - Droit à la portabilité
+
+```php
+// UserController.php - Export des données
+public function exportData() {
+    Auth::requireAuth();
+    $user = Auth::user();
+
+    $data = [
+        'export_date' => date('Y-m-d H:i:s'),
+        'user' => [
+            'email' => $user['email'],
+            'first_name' => $user['first_name'],
+            'last_name' => $user['last_name'],
+            // ... autres données
+        ],
+        'orders' => Order::findByUser($userId),
+        'reviews' => Review::findByUser($userId)
+    ];
+
+    // Téléchargement JSON
+    header('Content-Type: application/json');
+    header('Content-Disposition: attachment; filename="mes-donnees.json"');
+    echo json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+}
+```
+
+### 6.3 Pages légales
+
+| Page | URL | Contenu |
+|------|-----|---------|
+| Mentions légales | `/mentions-legales` | Identité éditeur, hébergeur |
+| CGV | `/cgv` | Conditions générales de vente |
+| Confidentialité | `/confidentialite` | Politique de confidentialité |
+
+### 6.4 Conservation des données
+
+| Donnée | Durée | Justification |
+|--------|-------|---------------|
+| Compte utilisateur | Jusqu'à suppression | Fonctionnement du service |
+| Commandes | 10 ans | Obligation comptable |
+| Logs de connexion | 1 an | Sécurité |
+| Cookies de session | Session | Authentification |
+
+---
+
+## 7. Accessibilité RGAA/WCAG
+
+Le projet respecte les recommandations **RGAA 4.1** (Référentiel Général d'Amélioration de l'Accessibilité) et **WCAG 2.1** niveau AA.
+
+### 7.1 Navigation au clavier
+
+#### Skip link (lien d'évitement)
+```html
+<!-- Dans header.php -->
+<a href="#main-content" class="visually-hidden-focusable skip-link">
+    Aller au contenu principal
+</a>
+
+<!-- Contenu principal -->
+<main id="main-content" role="main">
+```
+
+#### Focus visible
+```css
+/* Style CSS pour le focus */
+a:focus, button:focus, input:focus, select:focus, textarea:focus {
+    outline: 3px solid var(--orange) !important;
+    outline-offset: 2px;
+}
+
+.skip-link:focus {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 10000;
+    background: var(--vert-primaire);
+    color: white;
+    padding: 15px 25px;
+}
+```
+
+### 7.2 Structure sémantique
+
+#### Landmarks ARIA
+```html
+<header role="banner">...</header>
+<nav role="navigation" aria-label="Menu principal">...</nav>
+<main role="main" id="main-content">...</main>
+<footer role="contentinfo">...</footer>
+```
+
+#### Hiérarchie des titres
+- Chaque page a un seul `<h1>`
+- Hiérarchie logique : h1 → h2 → h3 (pas de saut)
+- Titres descriptifs du contenu
+
+### 7.3 Formulaires accessibles
+
+```html
+<!-- Labels explicites -->
+<label for="email">Adresse email *</label>
+<input type="email" id="email" name="email" required
+       aria-describedby="email-help">
+<small id="email-help">Nous ne partagerons jamais votre email.</small>
+
+<!-- Messages d'erreur -->
+<div role="alert" aria-live="polite">
+    <?php if ($error): ?>
+        <p class="text-danger"><?= htmlspecialchars($error) ?></p>
+    <?php endif; ?>
+</div>
+```
+
+### 7.4 Images et icônes
+
+```html
+<!-- Icônes décoratives -->
+<i class="fas fa-phone" aria-hidden="true"></i>
+
+<!-- Icônes informatives -->
+<a href="/cart" aria-label="Panier, 3 articles">
+    <i class="fas fa-shopping-cart" aria-hidden="true"></i>
+</a>
+
+<!-- Images avec alt -->
+<img src="/menu.jpg" alt="Menu de Noël : entrée, plat, dessert pour 8 personnes">
+```
+
+### 7.5 Contrastes et lisibilité
+
+| Élément | Couleur | Contraste | Conforme |
+|---------|---------|-----------|----------|
+| Texte principal | #333 sur #FFF | 12.6:1 | ✅ AAA |
+| Texte secondaire | #666 sur #FFF | 5.7:1 | ✅ AA |
+| Liens | #5DA99A sur #FFF | 3.2:1 | ✅ AA (large) |
+| Boutons | #FFF sur #5DA99A | 3.2:1 | ✅ AA |
+
+### 7.6 Responsive et zoom
+
+- Site utilisable avec zoom 200%
+- Pas de perte d'information en mode portrait/paysage
+- Taille de police minimum : 16px
+- Zones tactiles minimum : 44x44 pixels
+
+### 7.7 Checklist accessibilité
+
+| Critère | Statut |
+|---------|--------|
+| Navigation clavier complète | ✅ |
+| Skip link fonctionnel | ✅ |
+| Focus visible | ✅ |
+| Landmarks ARIA | ✅ |
+| Labels formulaires | ✅ |
+| Alt images | ✅ |
+| Contrastes suffisants | ✅ |
+| Hiérarchie titres | ✅ |
+| Pas de CAPTCHA visuel | ✅ |
+| Messages d'erreur accessibles | ✅ |
+
+---
+
+## 8. Fonctionnalités développées
+
+### 8.1 Système de panier (Session)
 
 Le panier utilise les **sessions PHP** pour stocker les articles :
 
@@ -413,7 +706,7 @@ $_SESSION['cart'] = [
 - Calcul automatique des frais de livraison
 - Remise 10% pour commandes > 10 personnes
 
-### 5.2 Système de commande
+### 8.2 Système de commande
 
 **Workflow de commande :**
 ```
@@ -435,7 +728,7 @@ Panier → Checkout → Validation → Paiement → Confirmation
 7. `completed` - Terminée
 8. `cancelled` - Annulée
 
-### 5.3 Filtrage des menus (AJAX)
+### 8.3 Filtrage des menus (AJAX)
 
 ```javascript
 // Appel AJAX pour filtrer les menus
@@ -455,14 +748,14 @@ fetch('/menu/filter?' + params.toString())
 - Nombre de personnes minimum
 - Tri (prix, date, nom)
 
-### 5.4 Système d'avis
+### 8.4 Système d'avis
 
 - Les clients peuvent laisser un avis après livraison
 - Note de 1 à 5 étoiles + commentaire
 - Modération par les employés (approbation requise)
 - Affichage des avis approuvés sur les fiches menu
 
-### 5.5 Responsive Design
+### 8.5 Responsive Design
 
 **Breakpoints Bootstrap utilisés :**
 - `< 576px` : Mobile portrait
@@ -478,9 +771,9 @@ fetch('/menu/filter?' + params.toString())
 
 ---
 
-## 6. API et points d'entrée
+## 9. API et points d'entrée
 
-### 6.1 Routes publiques
+### 9.1 Routes publiques
 
 | Méthode | URL | Contrôleur | Description |
 |---------|-----|------------|-------------|
@@ -491,7 +784,7 @@ fetch('/menu/filter?' + params.toString())
 | GET | `/contact` | ContactController@index | Page contact |
 | POST | `/contact/send` | ContactController@send | Envoi formulaire |
 
-### 6.2 Routes authentification
+### 9.2 Routes authentification
 
 | Méthode | URL | Contrôleur | Description |
 |---------|-----|------------|-------------|
@@ -502,7 +795,7 @@ fetch('/menu/filter?' + params.toString())
 | GET | `/user/logout` | UserController@logout | Déconnexion |
 | GET | `/user/profile` | UserController@profile | Profil utilisateur |
 
-### 6.3 Routes panier
+### 9.3 Routes panier
 
 | Méthode | URL | Contrôleur | Description |
 |---------|-----|------------|-------------|
@@ -513,7 +806,7 @@ fetch('/menu/filter?' + params.toString())
 | POST | `/cart/clear` | CartController@clear | Vider panier |
 | GET | `/cart/checkout` | CartController@checkout | Page checkout |
 
-### 6.4 Routes commandes (authentifié)
+### 9.4 Routes commandes (authentifié)
 
 | Méthode | URL | Contrôleur | Description |
 |---------|-----|------------|-------------|
@@ -522,7 +815,7 @@ fetch('/menu/filter?' + params.toString())
 | POST | `/order/storeFromCart` | OrderController@storeFromCart | Créer commande |
 | POST | `/order/cancel/{id}` | OrderController@cancel | Annuler commande |
 
-### 6.5 Routes administration (employé/admin)
+### 9.5 Routes administration (employé/admin)
 
 | Méthode | URL | Contrôleur | Description |
 |---------|-----|------------|-------------|
@@ -542,9 +835,158 @@ fetch('/menu/filter?' + params.toString())
 
 ---
 
-## 7. Déploiement
+## 10. Captures d'écran
 
-### 7.1 Environnement local (Docker)
+### 10.1 Pages publiques
+
+#### Page d'accueil
+```
+┌─────────────────────────────────────────────────────────────────┐
+│  🍽️ Vite & Gourmand                    [Menus] [Contact] [Login]│
+├─────────────────────────────────────────────────────────────────┤
+│                                                                 │
+│              VITE & GOURMAND                                   │
+│       Traiteur d'exception depuis 25 ans                       │
+│            [Découvrir nos menus]                               │
+│                                                                 │
+├─────────────────────────────────────────────────────────────────┤
+│        🏆              🌿              🚚                        │
+│   25 ans          Produits         Livraison                   │
+│  d'expérience      locaux          Bordeaux                    │
+├─────────────────────────────────────────────────────────────────┤
+│                  ⭐⭐⭐⭐⭐ Avis clients                           │
+│   ← [Photo] "Excellent service..." - Marie D.  →               │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+#### Liste des menus (avec filtres)
+```
+┌─────────────────────────────────────────────────────────────────┐
+│  Nos Menus                                                      │
+├───────────────┬─────────────────────────────────────────────────┤
+│ FILTRES       │  ┌──────────┐ ┌──────────┐ ┌──────────┐        │
+│               │  │  Menu    │ │  Menu    │ │  Menu    │        │
+│ Thème:        │  │  Noël    │ │  Pâques  │ │ Classique│        │
+│ [v] Noël      │  │  ⭐⭐⭐⭐⭐  │ │  ⭐⭐⭐⭐   │ │  ⭐⭐⭐⭐⭐  │        │
+│ [ ] Pâques    │  │  40€/p   │ │  35€/p   │ │  30€/p   │        │
+│               │  │ [Voir]   │ │ [Voir]   │ │ [Voir]   │        │
+│ Régime:       │  └──────────┘ └──────────┘ └──────────┘        │
+│ [v] Classique │                                                │
+│ [ ] Végétarien│                                                │
+└───────────────┴─────────────────────────────────────────────────┘
+```
+
+### 10.2 Espace client
+
+#### Panier
+```
+┌─────────────────────────────────────────────────────────────────┐
+│  Mon Panier (2 articles)                                        │
+├─────────────────────────────────────────────────────────────────┤
+│  ┌─────┐  Menu Noël Premium                                    │
+│  │ IMG │  8 personnes × 40€ = 320€          [- 1 +] [🗑️]      │
+│  └─────┘                                                        │
+│  ┌─────┐  Menu Classique                                       │
+│  │ IMG │  10 personnes × 30€ = 300€         [- 1 +] [🗑️]      │
+│  └─────┘                                                        │
+├─────────────────────────────────────────────────────────────────┤
+│                              Sous-total:  620€                  │
+│                              Livraison:   Offerte               │
+│                              Remise 10%: -62€                   │
+│                              ─────────────────                  │
+│                              TOTAL:       558€                  │
+│                                                                 │
+│                           [Commander]                           │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+#### Historique des commandes
+```
+┌─────────────────────────────────────────────────────────────────┐
+│  Mes Commandes                                                  │
+├─────────────────────────────────────────────────────────────────┤
+│  CMD-2026-0042  │  15/02/2026  │  558€  │  ✅ Livrée  │ [Voir] │
+│  CMD-2026-0038  │  10/02/2026  │  320€  │  ✅ Livrée  │ [Voir] │
+│  CMD-2026-0035  │  05/02/2026  │  450€  │  ⏳ En cours │ [Voir] │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+### 10.3 Espace administration
+
+#### Dashboard
+```
+┌─────────────────────────────────────────────────────────────────┐
+│  Dashboard                                                      │
+├───────────────┬─────────────────────────────────────────────────┤
+│ MENU ADMIN    │  ┌────────────┐ ┌────────────┐ ┌────────────┐  │
+│               │  │ 📦 12      │ │ 💰 4 580€  │ │ ⭐ 8       │  │
+│ • Dashboard   │  │ Commandes  │ │ CA mensuel │ │ Avis       │  │
+│ • Menus       │  │ en cours   │ │            │ │ en attente │  │
+│ • Commandes   │  └────────────┘ └────────────┘ └────────────┘  │
+│ • Avis        │                                                 │
+│ • Employés    │  Commandes récentes:                           │
+│ • Stats       │  CMD-0042 │ Marie D. │ 558€ │ En livraison    │
+│               │  CMD-0041 │ Jean P.  │ 320€ │ En préparation  │
+└───────────────┴─────────────────────────────────────────────────┘
+```
+
+#### Gestion des menus
+```
+┌─────────────────────────────────────────────────────────────────┐
+│  Gestion des Menus                        [+ Nouveau menu]     │
+├─────────────────────────────────────────────────────────────────┤
+│  Titre        │ Thème    │ Prix  │ Stock │ Actions            │
+│  ─────────────────────────────────────────────────────────────  │
+│  Menu Noël    │ Noël     │ 40€   │ 25    │ [✏️] [🗑️]          │
+│  Menu Pâques  │ Pâques   │ 35€   │ 30    │ [✏️] [🗑️]          │
+│  Menu Classic │ Classique│ 30€   │ 50    │ [✏️] [🗑️]          │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+### 10.4 Version mobile
+
+```
+┌─────────────────────┐
+│ ☰  Vite & Gourmand  │
+├─────────────────────┤
+│                     │
+│   VITE & GOURMAND   │
+│                     │
+│  Traiteur depuis    │
+│     25 ans          │
+│                     │
+│ [Découvrir menus]   │
+│                     │
+├─────────────────────┤
+│       🏆            │
+│  25 ans d'exp.      │
+├─────────────────────┤
+│       🌿            │
+│  Produits locaux    │
+├─────────────────────┤
+│       🚚            │
+│  Livraison          │
+└─────────────────────┘
+```
+
+### 10.5 URLs des captures réelles
+
+Les captures d'écran complètes sont disponibles sur le site de démonstration :
+
+| Page | URL |
+|------|-----|
+| Accueil | https://vite-gourmand-resto.fly.dev/ |
+| Menus | https://vite-gourmand-resto.fly.dev/menu |
+| Détail menu | https://vite-gourmand-resto.fly.dev/menu/show/1 |
+| Connexion | https://vite-gourmand-resto.fly.dev/user/login |
+| Panier | https://vite-gourmand-resto.fly.dev/cart |
+| Admin | https://vite-gourmand-resto.fly.dev/admin |
+
+---
+
+## 11. Déploiement
+
+### 11.1 Environnement local (Docker)
 
 ```bash
 # Démarrer l'environnement
@@ -556,7 +998,7 @@ docker-compose up -d
 # - Mongo Express : http://localhost:8082
 ```
 
-### 7.2 Production (Fly.io)
+### 11.2 Production (Fly.io)
 
 **Configuration Fly.io (`fly.toml`) :**
 ```toml
@@ -585,15 +1027,15 @@ fly secrets set DB_HOST=xxx DB_PORT=xxx DB_NAME=xxx DB_USER=xxx DB_PASSWORD=xxx
 - Host : `trolley.proxy.rlwy.net`
 - SSL : Activé
 
-### 7.3 URL de production
+### 11.3 URL de production
 
 **https://vite-gourmand-resto.fly.dev/**
 
 ---
 
-## 8. Tests réalisés
+## 12. Tests réalisés
 
-### 8.1 Tests fonctionnels automatisés
+### 12.1 Tests fonctionnels automatisés
 
 | Test | Résultat | Code HTTP |
 |------|----------|-----------|
@@ -616,7 +1058,7 @@ fly secrets set DB_HOST=xxx DB_PORT=xxx DB_NAME=xxx DB_USER=xxx DB_PASSWORD=xxx
 
 **Résultat : 17/17 tests passés**
 
-### 8.2 Tests manuels
+### 12.2 Tests manuels
 
 - [x] Inscription nouveau compte
 - [x] Connexion / Déconnexion
@@ -629,7 +1071,7 @@ fly secrets set DB_HOST=xxx DB_PORT=xxx DB_NAME=xxx DB_USER=xxx DB_PASSWORD=xxx
 - [x] Responsive mobile (menu hamburger)
 - [x] Responsive tablette
 
-### 8.3 Tests de sécurité
+### 12.3 Tests de sécurité
 
 - [x] Injection SQL : Requêtes préparées fonctionnelles
 - [x] XSS : Échappement vérifié
@@ -638,9 +1080,9 @@ fly secrets set DB_HOST=xxx DB_PORT=xxx DB_NAME=xxx DB_USER=xxx DB_PASSWORD=xxx
 
 ---
 
-## 9. Veille technologique
+## 13. Veille technologique
 
-### 9.1 Sources utilisées
+### 13.1 Sources utilisées
 
 | Source | Type | Utilisation |
 |--------|------|-------------|
@@ -650,7 +1092,7 @@ fly secrets set DB_HOST=xxx DB_PORT=xxx DB_NAME=xxx DB_USER=xxx DB_PASSWORD=xxx
 | Stack Overflow | Forum | Résolution problèmes |
 | GitHub | Code source | Exemples, bonnes pratiques |
 
-### 9.2 Évolutions technologiques suivies
+### 13.2 Évolutions technologiques suivies
 
 - **PHP 8.x** : Nouvelles fonctionnalités (attributs, match, etc.)
 - **Bootstrap 5** : Suppression jQuery, nouvelles utilities
@@ -659,23 +1101,102 @@ fly secrets set DB_HOST=xxx DB_PORT=xxx DB_NAME=xxx DB_USER=xxx DB_PASSWORD=xxx
 
 ---
 
-## 10. Axes d'amélioration
+## 14. Bilan personnel
 
-### 10.1 Court terme
+### 14.1 Compétences acquises
+
+#### Développement Front-end
+| Compétence | Niveau avant | Niveau après |
+|------------|--------------|--------------|
+| HTML5 sémantique | ⭐⭐ | ⭐⭐⭐⭐ |
+| CSS3 / Flexbox / Grid | ⭐⭐ | ⭐⭐⭐⭐ |
+| Bootstrap 5 | ⭐ | ⭐⭐⭐⭐ |
+| JavaScript (DOM, Fetch) | ⭐⭐ | ⭐⭐⭐⭐ |
+| Responsive Design | ⭐⭐ | ⭐⭐⭐⭐ |
+
+#### Développement Back-end
+| Compétence | Niveau avant | Niveau après |
+|------------|--------------|--------------|
+| PHP 8.x | ⭐⭐ | ⭐⭐⭐⭐ |
+| Architecture MVC | ⭐ | ⭐⭐⭐⭐ |
+| PDO / MySQL | ⭐⭐ | ⭐⭐⭐⭐ |
+| Sécurité web (CSRF, XSS) | ⭐ | ⭐⭐⭐⭐ |
+| API REST | ⭐ | ⭐⭐⭐ |
+
+#### DevOps & Outils
+| Compétence | Niveau avant | Niveau après |
+|------------|--------------|--------------|
+| Git / GitHub | ⭐⭐ | ⭐⭐⭐⭐ |
+| Docker | ⭐ | ⭐⭐⭐⭐ |
+| Déploiement cloud | ⭐ | ⭐⭐⭐ |
+| CI/CD basique | ⭐ | ⭐⭐⭐ |
+
+### 14.2 Difficultés rencontrées et solutions
+
+| Difficulté | Solution apportée |
+|------------|-------------------|
+| Architecture MVC from scratch | Étude de frameworks existants (Laravel), documentation, itérations |
+| Sessions PHP en production | Configuration correcte de session.save_path et HTTPS |
+| Déploiement Fly.io | Lecture documentation, configuration fly.toml, secrets |
+| Intégration Stripe | Mode test, documentation API, gestion des webhooks |
+| Responsive complexe | Utilisation systématique des breakpoints Bootstrap |
+| CSRF sur AJAX | Token dans les headers des requêtes fetch |
+
+### 14.3 Points forts du projet
+
+1. **Architecture solide** : Code organisé, maintenable, évolutif
+2. **Sécurité complète** : CSRF, XSS, SQL injection, auth robuste
+3. **Conformité RGPD** : Export et suppression des données
+4. **Accessibilité** : Navigation clavier, ARIA, contrastes
+5. **Documentation** : UML, wireframes, mockups, dossier technique
+6. **Déploiement professionnel** : Docker, Fly.io, Railway
+
+### 14.4 Ce que je referais différemment
+
+- **Utiliser un framework** (Laravel/Symfony) pour gagner du temps
+- **Mettre en place les tests unitaires** dès le début
+- **Utiliser TypeScript** au lieu de JavaScript vanilla
+- **Implémenter un système de cache** pour les performances
+
+### 14.5 Apports professionnels
+
+Ce projet m'a permis de :
+
+- ✅ Maîtriser le cycle complet de développement web
+- ✅ Comprendre les enjeux de sécurité applicative
+- ✅ Appréhender les contraintes légales (RGPD)
+- ✅ Acquérir une méthodologie de travail structurée
+- ✅ Développer mon autonomie technique
+- ✅ Renforcer ma capacité à résoudre des problèmes complexes
+
+### 14.6 Perspectives professionnelles
+
+Fort de cette expérience, je souhaite :
+
+- Approfondir mes connaissances en **frameworks PHP** (Laravel, Symfony)
+- Explorer le développement **full-stack JavaScript** (Node.js, React)
+- Me former aux pratiques **DevOps** avancées
+- Contribuer à des projets **open source**
+
+---
+
+## 15. Axes d'amélioration
+
+### 15.1 Court terme
 
 - [ ] Intégration service email (Brevo/SendGrid)
 - [ ] Tests unitaires (PHPUnit)
 - [ ] Optimisation images (WebP, lazy loading)
 - [ ] Cache des requêtes fréquentes
 
-### 10.2 Moyen terme
+### 15.2 Moyen terme
 
 - [ ] Application mobile (PWA)
 - [ ] Notifications push
 - [ ] Système de fidélité (points)
 - [ ] Multi-langue (i18n)
 
-### 10.3 Long terme
+### 15.3 Long terme
 
 - [ ] API REST complète
 - [ ] Application mobile native
@@ -723,4 +1244,4 @@ git push                      # Push
 
 ---
 
-*Document généré le 13/02/2026*
+*Document généré le 15/02/2026*
