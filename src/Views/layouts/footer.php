@@ -30,9 +30,9 @@
         </div>
 
         <div class="footer-bottom">
-            <a href="/mentions-legales">Mentions legales</a> |
-            <a href="/cgv">CGV</a> |
-            <a href="/confidentialite">Politique de confidentialite</a>
+            <a href="/contact/mentionsLegales">Mentions legales</a> |
+            <a href="/contact/cgv">CGV</a> |
+            <a href="/contact/confidentialite">Politique de confidentialite</a>
             <p>&copy; <?php echo date('Y'); ?> Vite & Gourmand - Tous droits reserves</p>
         </div>
     </footer>
