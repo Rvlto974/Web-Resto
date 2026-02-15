@@ -90,14 +90,24 @@
         margin: 0 auto;
         position: relative;
     }
+    .avis-slider {
+        position: relative;
+        overflow: hidden;
+    }
     .avis-card {
         background: var(--blanc);
         border-radius: 20px;
         padding: 50px;
         box-shadow: 0 10px 40px rgba(0,0,0,0.08);
-        display: flex;
+        display: none;
         align-items: center;
         gap: 40px;
+        opacity: 0;
+        transition: opacity 0.4s ease-in-out;
+    }
+    .avis-card.active {
+        display: flex;
+        opacity: 1;
     }
     .avatar {
         width: 100px;
@@ -158,8 +168,10 @@
         border-radius: 50%;
         background: #BDBDBD;
         cursor: pointer;
-        transition: background 0.3s;
+        transition: background 0.3s, transform 0.2s;
+        border: none;
     }
+    .dot:hover { transform: scale(1.2); }
     .dot.active { background: var(--vert-primaire); }
     .footer {
         background: var(--vert-fonce);
@@ -277,23 +289,71 @@
     <h2 class="section-title">Avis clients</h2>
 
     <div class="avis-container">
-        <div class="nav-arrow nav-prev">‹</div>
+        <button class="nav-arrow nav-prev" onclick="changeAvis(-1)" aria-label="Avis precedent">‹</button>
 
-        <div class="avis-card">
-            <div class="avatar"></div>
-            <div class="avis-content">
-                <p class="avis-text">"Excellent service, menus delicieux et livraison impeccable ! Nous avons fait appel a Vite & Gourmand pour notre mariage et tous nos invites ont ete enchantes. Je recommande vivement !"</p>
-                <div class="stars">★★★★★</div>
-                <p class="avis-author">Marie D. - Mariage, Decembre 2024</p>
+        <div class="avis-slider">
+            <div class="avis-card active" data-index="0">
+                <div class="avatar" style="background-image: url('https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150');"></div>
+                <div class="avis-content">
+                    <p class="avis-text">"Excellent service, menus delicieux et livraison impeccable ! Nous avons fait appel a Vite & Gourmand pour notre mariage et tous nos invites ont ete enchantes. Je recommande vivement !"</p>
+                    <div class="stars">★★★★★</div>
+                    <p class="avis-author">Marie D. - Mariage, Decembre 2024</p>
+                </div>
+            </div>
+
+            <div class="avis-card" data-index="1">
+                <div class="avatar" style="background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150');"></div>
+                <div class="avis-content">
+                    <p class="avis-text">"Pour l'anniversaire de ma femme, j'ai commande le menu gastronomique. Presentation soignee, saveurs raffinées, tout etait parfait. Le service client est vraiment a l'ecoute !"</p>
+                    <div class="stars">★★★★★</div>
+                    <p class="avis-author">Thomas L. - Anniversaire, Janvier 2025</p>
+                </div>
+            </div>
+
+            <div class="avis-card" data-index="2">
+                <div class="avatar" style="background-image: url('https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150');"></div>
+                <div class="avis-content">
+                    <p class="avis-text">"Traiteur de confiance pour nos evenements d'entreprise depuis 3 ans. Qualite constante, equipe professionnelle et toujours des nouveautes. Nos collaborateurs adorent !"</p>
+                    <div class="stars">★★★★★</div>
+                    <p class="avis-author">Sophie M. - Seminaire entreprise, Fevrier 2025</p>
+                </div>
             </div>
         </div>
 
-        <div class="nav-arrow nav-next">›</div>
+        <button class="nav-arrow nav-next" onclick="changeAvis(1)" aria-label="Avis suivant">›</button>
     </div>
 
     <div class="pagination">
-        <span class="dot active"></span>
-        <span class="dot"></span>
-        <span class="dot"></span>
+        <span class="dot active" onclick="goToAvis(0)"></span>
+        <span class="dot" onclick="goToAvis(1)"></span>
+        <span class="dot" onclick="goToAvis(2)"></span>
     </div>
 </section>
+
+<script>
+let currentAvis = 0;
+const totalAvis = 3;
+
+function changeAvis(direction) {
+    currentAvis += direction;
+    if (currentAvis < 0) currentAvis = totalAvis - 1;
+    if (currentAvis >= totalAvis) currentAvis = 0;
+    updateAvis();
+}
+
+function goToAvis(index) {
+    currentAvis = index;
+    updateAvis();
+}
+
+function updateAvis() {
+    // Update cards
+    document.querySelectorAll('.avis-card').forEach((card, index) => {
+        card.classList.toggle('active', index === currentAvis);
+    });
+    // Update dots
+    document.querySelectorAll('.dot').forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentAvis);
+    });
+}
+</script>
