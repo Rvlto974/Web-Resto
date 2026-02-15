@@ -318,6 +318,33 @@
                     <p class="avis-author">Sophie M. - Seminaire entreprise, Fevrier 2025</p>
                 </div>
             </div>
+
+            <div class="avis-card" data-index="3">
+                <div class="avatar" style="background-image: url('https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150');"></div>
+                <div class="avis-content">
+                    <p class="avis-text">"Le buffet de Noel etait exceptionnel ! Foie gras, saumon, desserts... Tout etait frais et delicieux. Mes invites en parlent encore. Merci a toute l'equipe !"</p>
+                    <div class="stars">★★★★★</div>
+                    <p class="avis-author">Pierre B. - Reveillon, Decembre 2024</p>
+                </div>
+            </div>
+
+            <div class="avis-card" data-index="4">
+                <div class="avatar" style="background-image: url('https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150');"></div>
+                <div class="avis-content">
+                    <p class="avis-text">"Menu vegetarien parfait pour notre reception. Enfin un traiteur qui propose des options veggie gourmandes et creatives. La presentation etait magnifique !"</p>
+                    <div class="stars">★★★★★</div>
+                    <p class="avis-author">Claire V. - Reception, Novembre 2024</p>
+                </div>
+            </div>
+
+            <div class="avis-card" data-index="5">
+                <div class="avatar" style="background-image: url('https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150');"></div>
+                <div class="avis-content">
+                    <p class="avis-text">"Bapteme de notre fille reussi grace a Vite & Gourmand. Service impeccable, equipe souriante et plats savoureux. Le rapport qualite-prix est excellent !"</p>
+                    <div class="stars">★★★★★</div>
+                    <p class="avis-author">Laurent G. - Bapteme, Octobre 2024</p>
+                </div>
+            </div>
         </div>
 
         <button class="nav-arrow nav-next" onclick="changeAvis(1)" aria-label="Avis suivant">›</button>
@@ -327,12 +354,15 @@
         <span class="dot active" onclick="goToAvis(0)"></span>
         <span class="dot" onclick="goToAvis(1)"></span>
         <span class="dot" onclick="goToAvis(2)"></span>
+        <span class="dot" onclick="goToAvis(3)"></span>
+        <span class="dot" onclick="goToAvis(4)"></span>
+        <span class="dot" onclick="goToAvis(5)"></span>
     </div>
 </section>
 
 <script>
 let currentAvis = 0;
-const totalAvis = 3;
+const totalAvis = 6;
 
 function changeAvis(direction) {
     currentAvis += direction;
