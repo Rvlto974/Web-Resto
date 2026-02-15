@@ -7,10 +7,10 @@
                 <h4>Vite & Gourmand</h4>
                 <p>Traiteur d'exception a Bordeaux depuis 25 ans. Nous mettons notre passion au service de vos evenements.</p>
                 <div class="footer-social" role="list" aria-label="Reseaux sociaux">
-                    <a href="#" class="social-icon" aria-label="Facebook" role="listitem"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
-                    <a href="#" class="social-icon" aria-label="Instagram" role="listitem"><i class="fab fa-instagram" aria-hidden="true"></i></a>
-                    <a href="#" class="social-icon" aria-label="Twitter" role="listitem"><i class="fab fa-twitter" aria-hidden="true"></i></a>
-                    <a href="#" class="social-icon" aria-label="WhatsApp" role="listitem"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
+                    <a href="https://www.facebook.com/viteetgourmand" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Facebook - ouvre dans un nouvel onglet" role="listitem"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+                    <a href="https://www.instagram.com/viteetgourmand" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="Instagram - ouvre dans un nouvel onglet" role="listitem"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                    <a href="https://x.com/viteetgourmand" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="X (Twitter) - ouvre dans un nouvel onglet" role="listitem"><i class="fab fa-x-twitter" aria-hidden="true"></i></a>
+                    <a href="https://wa.me/33556123456" target="_blank" rel="noopener noreferrer" class="social-icon" aria-label="WhatsApp - ouvre dans un nouvel onglet" role="listitem"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
                 </div>
             </div>
 
